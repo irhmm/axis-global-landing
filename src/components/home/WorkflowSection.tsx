@@ -45,50 +45,43 @@ const WorkflowSection = () => {
         </div>
 
         {/* Process Flow Container */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Desktop Zigzag Timeline */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Desktop Timeline */}
           <div className="hidden lg:block relative">
-            {/* Vertical Center Line */}
-            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-1 bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20" />
+            {/* Connection Line */}
+            <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-elegant opacity-30" />
             
-            <div className="space-y-16">
+            <div className="grid grid-cols-5 gap-6">
               {steps.map((step, index) => {
                 const Icon = step.icon;
-                const isLeft = index % 2 === 0;
-                
                 return (
                   <div
                     key={index}
-                    className={`relative animate-fade-in flex items-center gap-8 ${
-                      isLeft ? 'flex-row' : 'flex-row-reverse'
-                    }`}
-                    style={{ animationDelay: `${index * 150}ms` }}
+                    className="relative animate-fade-in group"
+                    style={{ animationDelay: `${index * 100}ms` }}
                   >
-                    {/* Content Side */}
-                    <div className={`flex-1 ${isLeft ? 'text-right pr-8' : 'text-left pl-8'}`}>
-                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                        {step.title}
-                      </h3>
-                      <p className="text-muted-foreground leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-
-                    {/* Icon Circle in Center */}
-                    <div className="relative flex-shrink-0 z-10">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary/15 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center hover:border-primary/50 hover:shadow-glow transition-all duration-300">
-                        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
-                          <Icon className="w-12 h-12 text-primary-foreground" strokeWidth={1.5} />
+                    {/* Icon Circle */}
+                    <div className="relative z-10 mb-6">
+                      <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 flex items-center justify-center group-hover:border-primary/40 group-hover:shadow-glow transition-all duration-300">
+                        <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
+                          <Icon className="w-20 h-20 text-primary-foreground" strokeWidth={1.5} />
                         </div>
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-lg text-primary shadow-md">
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-lg text-primary shadow-md">
                         {step.number}
                       </div>
                     </div>
 
-                    {/* Empty Space for Balance */}
-                    <div className="flex-1" />
+                    {/* Content */}
+                    <div className="text-center px-2">
+                      <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -96,7 +89,7 @@ const WorkflowSection = () => {
           </div>
 
           {/* Mobile Timeline */}
-          <div className="lg:hidden space-y-6">
+          <div className="lg:hidden space-y-8">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
@@ -105,28 +98,28 @@ const WorkflowSection = () => {
                   className="relative animate-fade-in"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="flex gap-4 items-start">
+                  <div className="flex gap-6 items-start">
                     {/* Icon Circle */}
                     <div className="relative flex-shrink-0">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/15 via-primary/10 to-transparent border-2 border-primary/30 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
-                          <Icon className="w-8 h-8 text-primary-foreground" strokeWidth={1.5} />
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
+                          <Icon className="w-10 h-10 text-primary-foreground" strokeWidth={1.5} />
                         </div>
                       </div>
                       {/* Number Badge */}
-                      <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-xs text-primary shadow-md">
+                      <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-sm text-primary shadow-md">
                         {step.number}
                       </div>
 
                       {/* Connector Line */}
                       {index < steps.length - 1 && (
-                        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-0.5 h-10 bg-gradient-to-b from-primary/50 to-primary/20" />
+                        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-1 h-16 bg-gradient-to-b from-primary/40 to-transparent" />
                       )}
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 pt-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2">
+                    <div className="flex-1 pt-2">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
                         {step.title}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
