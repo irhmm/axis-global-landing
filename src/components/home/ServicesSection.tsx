@@ -102,25 +102,29 @@ const ServicesSection = () => {
           <TabsContent value="iso" className="animate-fade-in">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
               {isoServices.map((service, index) => (
-                <Card
+                <div
                   key={index}
-                  className="group hover:shadow-elegant transition-all duration-300 animate-slide-up hover:-translate-y-1"
+                  className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardHeader className="p-4 md:p-6">
-                    <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={20} />
+                  <div className="relative p-4 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                    
+                    <div className="relative flex flex-col h-full">
+                      <div className="relative w-12 h-12 md:w-14 md:h-14 mb-3 md:mb-4 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-primary/30 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <service.icon className="text-white" size={20} />
+                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h3 className="card-title text-foreground group-hover:text-primary transition-colors duration-300 mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="card-description leading-relaxed">
+                        {service.description}
+                      </p>
                     </div>
-                    <CardTitle className="card-title group-hover:text-primary transition-colors">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
-                    <CardDescription className="card-description leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </TabsContent>
@@ -128,25 +132,29 @@ const ServicesSection = () => {
           <TabsContent value="special" className="animate-fade-in">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
               {specialServices.map((service, index) => (
-                <Card
+                <div
                   key={index}
-                  className="group hover:shadow-elegant transition-all duration-300 animate-slide-up hover:-translate-y-1"
+                  className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardHeader className="p-4 md:p-6">
-                    <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={20} />
+                  <div className="relative p-4 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                    
+                    <div className="relative flex flex-col h-full">
+                      <div className="relative w-12 h-12 md:w-14 md:h-14 mb-3 md:mb-4 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-primary/30 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <service.icon className="text-white" size={20} />
+                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h3 className="card-title text-foreground group-hover:text-primary transition-colors duration-300 mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="card-description leading-relaxed">
+                        {service.description}
+                      </p>
                     </div>
-                    <CardTitle className="card-title group-hover:text-primary transition-colors">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
-                    <CardDescription className="card-description leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </TabsContent>
