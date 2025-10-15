@@ -1,22 +1,23 @@
-import { FileCheck, Leaf, PlaneTakeoff, GraduationCap, ClipboardCheck } from "lucide-react";
+import { FileCheck, Leaf, PlaneTakeoff, GraduationCap, Lock, Palmtree } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const services = [
   {
     icon: FileCheck,
-    title: "Sertifikasi ISO 9001",
+    title: "ISO 9001",
     description: "Sistem Manajemen Mutu untuk meningkatkan kualitas produk dan kepuasan pelanggan.",
   },
   {
     icon: Leaf,
-    title: "Sertifikasi ISO 14001",
+    title: "ISO 14001",
     description: "Sistem Manajemen Lingkungan untuk pengelolaan lingkungan yang berkelanjutan.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Sertifikasi ISO 45001",
-    description: "Sistem Manajemen Keselamatan dan Kesehatan Kerja untuk lingkungan kerja yang aman.",
+    icon: Lock,
+    title: "ISO 27001",
+    description: "Sistem Manajemen Keamanan Informasi untuk melindungi aset data perusahaan.",
   },
   {
     icon: Leaf,
@@ -24,52 +25,58 @@ const services = [
     description: "Sertifikasi produk halal sesuai standar BPJPH dan MUI untuk pasar Muslim.",
   },
   {
-    icon: PlaneTakeoff,
-    title: "Sertifikasi Haji & Umrah",
-    description: "Lisensi penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
+    icon: Palmtree,
+    title: "ISPO",
+    description: "Sertifikasi perkebunan kelapa sawit berkelanjutan dengan standar Indonesia.",
   },
   {
-    icon: GraduationCap,
-    title: "Pelatihan & Konsultasi",
-    description: "Pendampingan implementasi, audit internal, dan pelatihan sistem manajemen.",
+    icon: PlaneTakeoff,
+    title: "Haji & Umrah",
+    description: "Lisensi penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="py-20">
+    <section className="py-12 md:py-20 bg-gradient-to-br from-background to-secondary/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-foreground mb-4">Layanan Kami</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Solusi lengkap untuk kebutuhan sertifikasi dan konsultasi bisnis Anda
+          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Layanan Kami</h2>
+          <p className="text-muted-foreground text-sm md:text-lg max-w-3xl mx-auto">
+            Solusi lengkap sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
           {services.map((service, index) => (
             <Card
               key={index}
-              className="hover:shadow-primary transition-all duration-300 animate-slide-up"
+              className="group hover:shadow-elegant transition-all duration-300 animate-slide-up hover:-translate-y-1"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <CardHeader>
-                <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <service.icon className="text-primary" size={28} />
+              <CardHeader className="p-4 md:p-6">
+                <div className="w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                  <service.icon className="text-white" size={20} />
                 </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
+                <CardTitle className="text-sm md:text-xl group-hover:text-primary transition-colors">
+                  {service.title}
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{service.description}</CardDescription>
+              <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
+                <CardDescription className="text-xs md:text-base leading-relaxed">
+                  {service.description}
+                </CardDescription>
               </CardContent>
             </Card>
           ))}
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="shadow-primary">
-            Lihat Semua Layanan
-          </Button>
+          <Link to="/services">
+            <Button size="lg" className="shadow-primary bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
+              Lihat Semua Layanan
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

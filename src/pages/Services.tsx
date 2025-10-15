@@ -1,81 +1,109 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { FileCheck, Leaf, PlaneTakeoff, GraduationCap, ClipboardCheck, Shield, CheckCircle } from "lucide-react";
+import { FileCheck, Leaf, PlaneTakeoff, GraduationCap, Shield, CheckCircle, Lock, Award, Factory, FlaskConical, GraduationCap as School, Utensils, Sparkles, RefreshCcw, KeyRound, Zap, Palmtree } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
-const services = [
+const isoServices = [
   {
     icon: FileCheck,
-    title: "Sertifikasi ISO 9001:2015",
-    description: "Sistem Manajemen Mutu (Quality Management System)",
-    benefits: [
-      "Meningkatkan kepuasan pelanggan",
-      "Efisiensi operasional perusahaan",
-      "Kredibilitas dan reputasi bisnis",
-      "Akses ke pasar global",
-    ],
-    process: "6-12 bulan (tergantung kesiapan organisasi)",
+    code: "ISO 9001",
+    title: "Sistem Manajemen Mutu",
+    description: "Standar internasional untuk sistem manajemen mutu yang memastikan konsistensi kualitas produk dan layanan.",
+  },
+  {
+    icon: Factory,
+    code: "ISO 13485",
+    title: "Sistem Manajemen Peralatan Medis",
+    description: "Standar khusus untuk organisasi yang terlibat dalam desain, produksi, dan distribusi perangkat medis.",
   },
   {
     icon: Leaf,
-    title: "Sertifikasi ISO 14001:2015",
-    description: "Sistem Manajemen Lingkungan (Environmental Management System)",
-    benefits: [
-      "Pengelolaan dampak lingkungan",
-      "Kepatuhan regulasi lingkungan",
-      "Efisiensi penggunaan sumber daya",
-      "Citra perusahaan yang peduli lingkungan",
-    ],
-    process: "6-12 bulan (tergantung kesiapan organisasi)",
+    code: "ISO 14001",
+    title: "Sistem Manajemen Lingkungan",
+    description: "Standar untuk mengelola tanggung jawab lingkungan secara sistematis dan berkelanjutan.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Sertifikasi ISO 45001:2018",
-    description: "Sistem Manajemen Keselamatan dan Kesehatan Kerja (OH&S)",
-    benefits: [
-      "Mengurangi risiko kecelakaan kerja",
-      "Meningkatkan produktivitas karyawan",
-      "Kepatuhan regulasi K3",
-      "Biaya kompensasi lebih rendah",
-    ],
-    process: "6-12 bulan (tergantung kesiapan organisasi)",
+    icon: FlaskConical,
+    code: "ISO/IEC 17025",
+    title: "Kompetensi Laboratorium Pengujian dan Kalibrasi",
+    description: "Standar untuk kompetensi laboratorium pengujian dan kalibrasi yang menghasilkan data valid.",
   },
   {
-    icon: Leaf,
-    title: "Sertifikasi Halal (BPJPH)",
-    description: "Sertifikasi Produk Halal untuk pasar konsumen Muslim",
-    benefits: [
-      "Akses pasar Muslim domestik dan internasional",
-      "Kepercayaan konsumen Muslim",
-      "Kepatuhan regulasi halal Indonesia",
-      "Daya saing produk meningkat",
-    ],
-    process: "3-6 bulan (tergantung jenis produk)",
+    icon: School,
+    code: "ISO 21001",
+    title: "Sistem Manajemen Organisasi Pendidikan",
+    description: "Standar untuk meningkatkan kepuasan peserta didik dan stakeholder pendidikan lainnya.",
+  },
+  {
+    icon: Utensils,
+    code: "ISO 22000",
+    title: "Sistem Manajemen Keamanan Pangan",
+    description: "Standar untuk memastikan keamanan pangan di seluruh rantai pasokan makanan.",
+  },
+  {
+    icon: Sparkles,
+    code: "ISO 22716",
+    title: "Praktik Produksi Kosmetik yang Baik (GMP)",
+    description: "Pedoman untuk produksi, pengendalian, penyimpanan, dan pengiriman produk kosmetik yang aman.",
+  },
+  {
+    icon: RefreshCcw,
+    code: "ISO 22301",
+    title: "Sistem Manajemen Keberlangsungan Bisnis",
+    description: "Standar untuk melindungi, mengurangi kemungkinan, dan memastikan pemulihan dari insiden yang mengganggu.",
+  },
+  {
+    icon: Lock,
+    code: "ISO 27001",
+    title: "Sistem Manajemen Keamanan Informasi",
+    description: "Standar untuk mengelola keamanan aset informasi seperti data keuangan dan karyawan.",
+  },
+  {
+    icon: Shield,
+    code: "ISO 37001",
+    title: "Sistem Manajemen Anti Penyuapan",
+    description: "Standar untuk membantu organisasi mencegah, mendeteksi, dan menangani penyuapan.",
+  },
+  {
+    icon: Shield,
+    code: "ISO 45001",
+    title: "Sistem Manajemen Kesehatan dan Keselamatan Kerja",
+    description: "Standar untuk menciptakan tempat kerja yang aman dan sehat, mencegah cedera dan penyakit.",
+  },
+  {
+    icon: Zap,
+    code: "ISO 50001",
+    title: "Sistem Manajemen Energi",
+    description: "Standar untuk meningkatkan efisiensi energi dan mengurangi biaya serta emisi gas rumah kaca.",
+  },
+];
+
+const specialServices = [
+  {
+    icon: Palmtree,
+    code: "ISPO",
+    title: "Sertifikasi Perkebunan Kelapa Sawit Berkelanjutan",
+    description: "Sertifikasi untuk memastikan praktik perkebunan kelapa sawit yang berkelanjutan dan bertanggung jawab.",
+  },
+  {
+    icon: Award,
+    code: "Halal",
+    title: "Sertifikasi Halal",
+    description: "Untuk produk dan proses sesuai syariat Islam, diakui oleh BPJPH dan MUI.",
   },
   {
     icon: PlaneTakeoff,
-    title: "Lisensi Haji & Umrah",
-    description: "Penyelenggara Perjalanan Ibadah Umrah (PPIU) & Haji Khusus",
-    benefits: [
-      "Lisensi resmi dari Kementerian Agama",
-      "Pelatihan SDM travel haji umrah",
-      "Konsultasi sistem operasional",
-      "Pendampingan hingga lisensi terbit",
-    ],
-    process: "4-8 bulan (tergantap kelengkapan dokumen)",
+    code: "Haji & Umrah",
+    title: "Sertifikasi Haji & Umrah",
+    description: "Lisensi untuk penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
   },
   {
     icon: GraduationCap,
-    title: "Pelatihan & Konsultasi",
-    description: "Pendampingan Implementasi Sistem Manajemen",
-    benefits: [
-      "Pelatihan ISO & sistem manajemen",
-      "Audit internal berkala",
-      "Gap analysis & corrective action",
-      "Dokumentasi sistem manajemen",
-    ],
-    process: "Disesuaikan dengan kebutuhan klien",
+    code: "Auditor",
+    title: "Auditor Sertifikasi",
+    description: "Pelatihan dan penugasan auditor profesional untuk berbagai standar sertifikasi.",
   },
 ];
 
@@ -85,65 +113,106 @@ const Services = () => {
       <Navigation />
       <main className="pt-[72px]">
         {/* Hero Section */}
-        <section className="bg-gradient-hero text-primary-foreground py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="mb-4 animate-fade-in">Layanan Sertifikasi Profesional</h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
-              Solusi lengkap untuk kebutuhan sertifikasi ISO, Halal, dan Haji & Umrah dengan standar internasional
+        <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <Badge className="mb-4 bg-white/10 text-white border-white/20 hover:bg-white/20">
+              Layanan Sertifikasi Axis Global
+            </Badge>
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">
+              Layanan Sertifikasi Profesional
+            </h1>
+            <p className="text-base md:text-xl max-w-3xl mx-auto opacity-90">
+              Solusi lengkap untuk kebutuhan sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
             </p>
           </div>
         </section>
 
-        {/* Services Detail */}
-        <section className="py-20">
+        {/* ISO Series */}
+        <section className="py-12 md:py-20 bg-gradient-to-br from-background to-secondary/20">
           <div className="container mx-auto px-4">
-            <div className="space-y-12">
-              {services.map((service, index) => (
+            <div className="text-center mb-12">
+              <Badge className="mb-4" variant="outline">
+                ✅ ISO Series
+              </Badge>
+              <h2 className="text-2xl md:text-4xl font-bold mb-4">Sertifikasi ISO Internasional</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Standar internasional untuk berbagai sistem manajemen yang diakui secara global
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {isoServices.map((service, index) => (
                 <Card
                   key={index}
-                  className="overflow-hidden hover:shadow-primary transition-all duration-300 animate-slide-up"
+                  className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 animate-slide-up border-border/50"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <service.icon className="text-white" size={24} />
+                      </div>
+                      <Badge variant="secondary" className="text-xs">
+                        {service.code}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-sm leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Special Certifications */}
+        <section className="py-12 md:py-20">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <Badge className="mb-4" variant="outline">
+                🌿 Sertifikasi Khusus
+              </Badge>
+              <h2 className="text-2xl md:text-4xl font-bold mb-4">Sertifikasi Spesialisasi</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Layanan sertifikasi khusus untuk kebutuhan industri dan bisnis tertentu
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {specialServices.map((service, index) => (
+                <Card
+                  key={index}
+                  className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 animate-slide-up border-border/50"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="grid grid-cols-1 lg:grid-cols-3">
-                    <div className="bg-primary/5 p-8 flex flex-col justify-center">
-                      <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <service.icon className="text-primary" size={32} />
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all">
+                        <service.icon className="text-white" size={28} />
                       </div>
-                      <CardHeader className="p-0">
-                        <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                        <CardDescription className="text-base">{service.description}</CardDescription>
-                      </CardHeader>
+                      <Badge variant="secondary">
+                        {service.code}
+                      </Badge>
                     </div>
-                    
-                    <CardContent className="col-span-2 p-8">
-                      <div className="mb-6">
-                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <CheckCircle className="text-primary" size={20} />
-                          Manfaat
-                        </h3>
-                        <ul className="space-y-2">
-                          {service.benefits.map((benefit, i) => (
-                            <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                              <span className="text-primary mt-1">•</span>
-                              <span>{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div className="mb-6">
-                        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                          <Shield className="text-primary" size={20} />
-                          Durasi Proses
-                        </h3>
-                        <p className="text-muted-foreground">{service.process}</p>
-                      </div>
-
-                      <Button className="shadow-primary">
-                        Konsultasi Layanan Ini
-                      </Button>
-                    </CardContent>
-                  </div>
+                    <CardTitle className="text-xl group-hover:text-primary transition-colors mb-3">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
                 </Card>
               ))}
             </div>
