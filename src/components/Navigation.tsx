@@ -18,10 +18,10 @@ const Navigation = () => {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/services", label: "Layanan" },
-    { path: "/affiliasi", label: "Afiliasi" },
-    { path: "/about", label: "Tentang Kami" },
-    { path: "/contact", label: "Kontak" },
+    { path: "/affiliasi", label: "Affiliation Certification" },
+    { path: "/services", label: "Services" },
+    { path: "/about", label: "About" },
+    { path: "/contact", label: "Contact" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -34,31 +34,36 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">
               <span className="text-primary-foreground font-bold text-xl">AG</span>
             </div>
-            <div className="hidden md:block">
-              <h1 className="text-xl font-bold text-foreground leading-tight">Axis Global</h1>
-              <p className="text-xs text-muted-foreground">Certification</p>
+            <div>
+              <h1 className="text-lg font-bold text-foreground leading-tight">Axis Global</h1>
+              <p className="text-xs text-muted-foreground -mt-0.5">Certification</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(link.path) ? "text-primary" : "text-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button size="sm" className="shadow-primary">
-              Konsultasi Gratis
+          <div className="hidden lg:flex items-center gap-10">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-sm font-medium transition-colors hover:text-primary relative ${
+                    isActive(link.path) ? "text-primary" : "text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+            <Button 
+              size="lg" 
+              className="shadow-primary rounded-full px-6 font-semibold tracking-wide uppercase text-xs"
+            >
+              Certification Check
             </Button>
           </div>
 
@@ -88,8 +93,8 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button size="sm" className="w-full shadow-primary">
-                Konsultasi Gratis
+              <Button size="lg" className="w-full shadow-primary rounded-full font-semibold">
+                Certification Check
               </Button>
             </div>
           </div>

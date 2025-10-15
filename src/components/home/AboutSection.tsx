@@ -1,4 +1,4 @@
-import { Network, Target, Users, Handshake, Globe, Leaf } from "lucide-react";
+import { Network, Target, Users, Handshake, Globe, Leaf, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -6,32 +6,32 @@ const features = [
   {
     icon: Users,
     title: "Expert Auditors & Practitioners",
-    description: "Tim auditor dan praktisi bersertifikat internasional dengan pengalaman luas",
+    description: "Tim auditor dan praktisi bersertifikat internasional dengan pengalaman luas di berbagai industri",
   },
   {
     icon: Target,
     title: "Transparent & Objective",
-    description: "Proses audit yang transparan dan objektif sesuai standar global",
+    description: "Proses audit yang transparan dan objektif sesuai dengan standar internasional yang berlaku",
   },
   {
     icon: Network,
     title: "Performance-Driven Improvement",
-    description: "Fokus pada peningkatan kinerja bisnis yang terukur dan berkelanjutan",
+    description: "Fokus pada peningkatan kinerja bisnis yang terukur, berkelanjutan, dan memberikan nilai tambah",
   },
   {
     icon: Handshake,
     title: "Partnership-Oriented Service",
-    description: "Pendekatan kemitraan jangka panjang untuk kesuksesan bersama",
+    description: "Pendekatan kemitraan jangka panjang untuk kesuksesan bersama dengan komitmen penuh",
   },
   {
     icon: Globe,
     title: "Globally Recognized Standard",
-    description: "Sertifikasi dengan standar yang diakui secara internasional",
+    description: "Sertifikasi dengan standar yang diakui secara internasional di lebih dari 30 negara",
   },
   {
     icon: Leaf,
     title: "Sustainability-Focused",
-    description: "Komitmen terhadap praktik bisnis yang berkelanjutan dan bertanggung jawab",
+    description: "Komitmen terhadap praktik bisnis yang berkelanjutan dan bertanggung jawab terhadap lingkungan",
   },
 ];
 
@@ -41,38 +41,45 @@ const partners = [
 
 const AboutSection = () => {
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
-          {/* Left Side - Title */}
-          <div className="animate-slide-in-right">
-            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">• ABOUT US</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start mb-16">
+          {/* Left Side - Title (2 columns) */}
+          <div className="lg:col-span-2 animate-slide-in-right">
+            <p className="text-sm uppercase tracking-widest text-muted-foreground mb-6 font-medium">• ABOUT US</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-8 text-foreground">
               The Best Partner For Global Business Certification
             </h2>
             <Link to="/about">
-              <Button variant="outline" size="lg" className="group">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="group border-2 hover:bg-foreground hover:text-background transition-all rounded-lg font-semibold"
+              >
                 Read More
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
 
-          {/* Right Side - Features Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <feature.icon className="text-primary" size={24} />
+          {/* Right Side - Features Grid (3 columns) */}
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-10">
+            {features.map((feature, index) => {
+              const IconComponent = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="animate-slide-up group"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <IconComponent className="text-primary" size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-foreground">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
