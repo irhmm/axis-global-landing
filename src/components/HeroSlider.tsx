@@ -8,18 +8,18 @@ import hero3 from "@/assets/hero-3.jpg";
 const slides = [
   {
     image: hero1,
-    title: "BERSAMA AXIS GLOBAL SERTIFIKASI, WUJUDKAN USAHA YANG SIAP BERSAING DI PASAR GLOBAL.",
-    subtitle: "Profesional, Terpercaya, Tersertifikasi.",
+    title: "Helping Leaders",
+    subtitle: "Navigate Complex Certification Processes with Confidence",
   },
   {
     image: hero2,
-    title: "DAPATKAN SERTIFIKASI ISO, HALAL, HINGGA HAJI & UMRAH DENGAN PROSES MUDAH DAN CEPAT.",
-    subtitle: "Langkah Cerdas Menuju Standar Global.",
+    title: "Global Standards",
+    subtitle: "Achieve ISO, Halal & Umrah Certification Excellence",
   },
   {
     image: hero3,
-    title: "TINGKATKAN KREDIBILITAS BISNIS ANDA DENGAN STANDAR INTERNASIONAL.",
-    subtitle: "Bangun Kepercayaan Lewat Sertifikasi Resmi.",
+    title: "Build Credibility",
+    subtitle: "Elevate Your Business with International Standards",
   },
 ];
 
@@ -51,13 +51,13 @@ const HeroSlider = () => {
             alt={`Hero ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <div className="container mx-auto px-4">
-              <div className="max-w-5xl mx-auto text-center animate-fade-in">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight">
+          <div className="absolute inset-0 z-20 flex items-end">
+            <div className="container mx-auto px-6 md:px-8 pb-16 md:pb-20">
+              <div className="max-w-3xl animate-fade-in">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 leading-tight">
                   {slide.title}
                 </h1>
-                <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide">
+                <p className="text-lg md:text-xl text-white/90 font-light">
                   {slide.subtitle}
                 </p>
               </div>
