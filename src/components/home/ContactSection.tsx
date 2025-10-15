@@ -101,7 +101,7 @@ const ContactSection = () => {
           <div className="mt-12 md:mt-16 text-center">
             <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 md:p-10 animate-fade-in">
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-                Konsultasi Gratis Sekarang
+                Konsultasi Sekarang
               </h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Dapatkan solusi terbaik untuk kebutuhan sertifikasi bisnis Anda dari konsultan berpengalaman kami
