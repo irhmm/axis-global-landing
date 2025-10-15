@@ -33,7 +33,8 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
+        <div className="grid grid-cols-3 items-center lg:gap-8">
+          {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-3">
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">
               <span className="text-primary-foreground font-bold text-xl">AG</span>
@@ -44,21 +45,23 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-10">
-            <div className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`text-sm font-medium transition-colors hover:text-primary relative ${
-                    isActive(link.path) ? "text-primary" : "text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+          {/* Desktop Navigation - Center */}
+          <div className="hidden lg:flex items-center justify-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors hover:text-primary relative ${
+                  isActive(link.path) ? "text-primary font-semibold" : "text-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Button - Right */}
+          <div className="hidden lg:flex justify-end">
             <Button 
               size="lg" 
               className="shadow-primary rounded-full px-6 font-semibold tracking-wide uppercase text-xs"
@@ -69,7 +72,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button - Only visible on mobile */}
           <button
-            className="lg:hidden p-2 hover:bg-muted rounded-md transition-colors"
+            className="lg:hidden col-start-3 justify-self-end p-2 hover:bg-muted rounded-md transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
