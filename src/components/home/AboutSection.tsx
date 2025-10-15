@@ -41,13 +41,13 @@ const partners = [
 
 const AboutSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-background">
+    <section className="py-24 xl:py-28 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-14 xl:gap-16 items-start mb-16">
           {/* Left Side - Title (2 columns) */}
           <div className="lg:col-span-2 animate-slide-in-right">
             <p className="text-sm uppercase tracking-widest text-muted-foreground mb-6 font-normal">• ABOUT US</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-8 text-foreground">
+            <h2 className="text-5xl xl:text-6xl font-bold leading-[1.1] mb-8 text-foreground">
               The Best Partner For Global Business Improvement
             </h2>
             <Link to="/about">
@@ -63,7 +63,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right Side - Features Grid (3 columns) */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -75,7 +75,7 @@ const AboutSection = () => {
                   <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                     <IconComponent className="text-white" size={32} />
                   </div>
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground/90 leading-snug">{feature.title}</h3>
+                  <h3 className="text-xl font-semibold text-foreground/90 leading-snug">{feature.title}</h3>
                 </div>
               );
             })}

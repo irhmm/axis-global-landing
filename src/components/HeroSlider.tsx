@@ -37,7 +37,7 @@ const HeroSlider = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative h-[600px] md:h-[700px] overflow-hidden">
+    <section className="relative h-[650px] xl:h-[700px] overflow-hidden">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -52,12 +52,12 @@ const HeroSlider = () => {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 z-20 flex items-end">
-            <div className="container mx-auto px-6 md:px-8 pb-16 md:pb-20">
+            <div className="container mx-auto px-6 md:px-8 pb-16 xl:pb-20">
               <div className="max-w-3xl animate-fade-in">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 leading-tight">
+                <h1 className="text-5xl xl:text-6xl font-bold text-white mb-4 leading-tight">
                   {slide.title}
                 </h1>
-                <p className="text-lg md:text-xl text-white/90 font-light">
+                <p className="text-xl text-white/90 font-light">
                   {slide.subtitle}
                 </p>
               </div>
