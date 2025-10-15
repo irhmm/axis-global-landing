@@ -18,7 +18,7 @@ const Navigation = () => {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/affiliasi", label: "Affiliation Certification" },
+    { path: "/affiliasi", label: "Affiliation" },
     { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
@@ -46,12 +46,12 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation - Center */}
-          <div className="hidden md:flex items-center justify-center gap-8">
+          <div className="hidden md:flex items-center justify-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary relative ${
+                className={`text-sm font-medium transition-colors hover:text-primary relative whitespace-nowrap ${
                   isActive(link.path) ? "text-primary font-semibold" : "text-foreground"
                 }`}
               >
