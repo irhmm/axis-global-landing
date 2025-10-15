@@ -90,8 +90,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Telepon</h3>
-                  <p className="text-muted-foreground">+62 812-3456-7890</p>
-                  <p className="text-muted-foreground">+62 21-1234-5678</p>
+                  <p className="text-muted-foreground">+62 812 6874 6727</p>
                 </div>
               </div>
             </div>
@@ -103,8 +102,8 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <p className="text-muted-foreground">info@axisglobal.co.id</p>
-                  <p className="text-muted-foreground">konsultasi@axisglobal.co.id</p>
+                  <p className="text-muted-foreground">axisglobalcertification@gmail.com</p>
+                  <p className="text-muted-foreground">axiscertificate.com</p>
                 </div>
               </div>
             </div>
@@ -117,9 +116,9 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Alamat Kantor</h3>
                   <p className="text-muted-foreground">
-                    Jl. Profesional No. 123<br />
-                    Jakarta Selatan, DKI Jakarta<br />
-                    Indonesia 12345
+                    Intiland Suite Tower Level 3<br />
+                    Jl. PB Sudirman Kav. 101-103<br />
+                    Surabaya, Indonesia
                   </p>
                   <p className="text-sm text-muted-foreground mt-2">
                     <strong>Jam Kerja:</strong> Senin - Jumat, 09:00 - 17:00 WIB

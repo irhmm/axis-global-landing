@@ -27,7 +27,7 @@ const Contact = () => {
     setFormData({ name: "", email: "", company: "", phone: "", message: "" });
   };
 
-  const whatsappNumber = "6281234567890";
+  const whatsappNumber = "6281268746727";
   const whatsappMessage = encodeURIComponent("Halo Axis Global Certification, saya ingin berkonsultasi mengenai sertifikasi.");
 
   return (
@@ -54,8 +54,7 @@ const Contact = () => {
                     <Phone className="text-primary" size={28} />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">Telepon</h3>
-                  <p className="text-muted-foreground text-sm mb-1">+62 812-3456-7890</p>
-                  <p className="text-muted-foreground text-sm">+62 21-1234-5678</p>
+                  <p className="text-muted-foreground text-sm">+62 812 6874 6727</p>
                 </CardContent>
               </Card>
 
@@ -65,8 +64,8 @@ const Contact = () => {
                     <Mail className="text-primary" size={28} />
                   </div>
                   <h3 className="font-semibold text-lg mb-2">Email</h3>
-                  <p className="text-muted-foreground text-sm mb-1">info@axisglobal.co.id</p>
-                  <p className="text-muted-foreground text-sm">konsultasi@axisglobal.co.id</p>
+                  <p className="text-muted-foreground text-sm mb-1">axisglobalcertification@gmail.com</p>
+                  <p className="text-muted-foreground text-sm">axiscertificate.com</p>
                 </CardContent>
               </Card>
 
@@ -202,10 +201,9 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Alamat Lengkap</h3>
                         <p className="text-muted-foreground leading-relaxed">
-                          Jl. Profesional No. 123<br />
-                          Kebayoran Baru, Jakarta Selatan<br />
-                          DKI Jakarta 12345<br />
-                          Indonesia
+                          Intiland Suite Tower Level 3<br />
+                          Jl. PB Sudirman Kav. 101-103<br />
+                          Surabaya, Indonesia
                         </p>
                       </div>
                     </div>

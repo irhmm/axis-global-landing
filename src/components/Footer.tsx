@@ -54,15 +54,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-background/80">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />
-                <span>Jl. Profesional No. 123, Jakarta Selatan, DKI Jakarta 12345</span>
+                <span>Intiland Suite Tower Level 3, Jl. PB Sudirman Kav. 101-103, Surabaya</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-background/80">
                 <Phone size={16} className="flex-shrink-0" />
-                <span>+62 812-3456-7890</span>
+                <span>+62 812 6874 6727</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-background/80">
                 <Mail size={16} className="flex-shrink-0" />
-                <span>info@axisglobal.co.id</span>
+                <span>axisglobalcertification@gmail.com</span>
               </li>
             </ul>
             <div className="flex gap-3 mt-4">
