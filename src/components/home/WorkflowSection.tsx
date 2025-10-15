@@ -35,11 +35,11 @@ const steps = [
 
 const WorkflowSection = () => {
   return (
-    <section className="py-12 md:py-20 bg-secondary">
+    <section className="py-16 md:py-20 lg:py-24 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-16 animate-fade-in">
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">ISO Certification Process</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
+        <div className="text-center mb-12 md:mb-16 lg:mb-20 animate-fade-in">
+          <h2 className="section-title text-foreground mb-4 md:mb-6">ISO Certification Process</h2>
+          <p className="section-subtitle max-w-3xl mx-auto">
             Proses sistematis dan terstruktur untuk memastikan kesuksesan sertifikasi ISO Anda
           </p>
         </div>
@@ -74,8 +74,8 @@ const WorkflowSection = () => {
                         </div>
 
                         {/* Content */}
-                        <div className="text-center w-20 md:w-auto">
-                          <h3 className="text-xs md:text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        <div className="text-center w-24 md:w-32 lg:w-auto">
+                          <h3 className="text-xs md:text-sm lg:text-base font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
                             {step.title}
                           </h3>
                         </div>

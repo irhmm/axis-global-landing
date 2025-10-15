@@ -41,7 +41,7 @@ const partners = [
 
 const AboutSection = () => {
   return (
-    <section className="relative py-12 md:py-24 xl:py-28 bg-gradient-to-br from-background via-background to-primary/[0.02] overflow-hidden">
+    <section className="relative py-16 md:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-background via-background to-primary/[0.02] overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl opacity-0 md:opacity-100" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-0 md:opacity-100" />
@@ -54,10 +54,10 @@ const AboutSection = () => {
               <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full animate-pulse" />
               <p className="text-xs md:text-sm uppercase tracking-widest text-primary font-medium">ABOUT US</p>
             </div>
-            <h2 className="text-2xl md:text-4xl xl:text-5xl font-semibold leading-[1.2] mb-4 md:mb-8 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="section-title leading-[1.2] mb-4 md:mb-8 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
               The Best Partner For Global Business Improvement
             </h2>
-            <p className="text-muted-foreground text-sm md:text-lg leading-relaxed mb-6 md:mb-8">
+            <p className="section-subtitle leading-relaxed mb-6 md:mb-8">
               Membangun kepercayaan melalui standar internasional dan komitmen terhadap keunggulan.
             </p>
             <Link to="/about">
@@ -90,9 +90,12 @@ const AboutSection = () => {
                         <IconComponent className="text-white" size={20} />
                         <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
-                      <h3 className="text-xs md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight md:leading-snug">
+                      <h3 className="text-sm md:text-base lg:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight md:leading-snug">
                         {feature.title}
                       </h3>
+                      <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-relaxed">
+                        {feature.description}
+                      </p>
                     </div>
                   </div>
                 </div>

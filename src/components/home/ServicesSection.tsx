@@ -72,11 +72,11 @@ const specialServices = [
 
 const ServicesSection = () => {
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-br from-background to-secondary/20">
+    <section className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-background to-secondary/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12 animate-fade-in">
-          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Layanan Kami</h2>
-          <p className="text-muted-foreground text-sm md:text-lg max-w-3xl mx-auto">
+        <div className="text-center mb-12 md:mb-16 animate-fade-in">
+          <h2 className="section-title text-foreground mb-4 md:mb-6">Layanan Kami</h2>
+          <p className="section-subtitle max-w-3xl mx-auto">
             Solusi lengkap sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
           </p>
         </div>
@@ -100,7 +100,7 @@ const ServicesSection = () => {
           </div>
 
           <TabsContent value="iso" className="animate-fade-in">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 mb-8 md:mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-8 md:mb-12">
               {isoServices.map((service, index) => (
                 <Card
                   key={index}
@@ -108,15 +108,15 @@ const ServicesSection = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-4 md:p-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={24} />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                      <service.icon className="text-white" size={20} />
                     </div>
-                    <CardTitle className="text-sm md:text-xl group-hover:text-primary transition-colors">
+                    <CardTitle className="card-title group-hover:text-primary transition-colors">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
-                    <CardDescription className="text-xs md:text-base leading-relaxed">
+                    <CardDescription className="card-description leading-relaxed">
                       {service.description}
                     </CardDescription>
                   </CardContent>
@@ -126,7 +126,7 @@ const ServicesSection = () => {
           </TabsContent>
 
           <TabsContent value="special" className="animate-fade-in">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 mb-8 md:mb-12">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-8 md:mb-12">
               {specialServices.map((service, index) => (
                 <Card
                   key={index}
@@ -134,15 +134,15 @@ const ServicesSection = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-4 md:p-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={24} />
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                      <service.icon className="text-white" size={20} />
                     </div>
-                    <CardTitle className="text-sm md:text-xl group-hover:text-primary transition-colors">
+                    <CardTitle className="card-title group-hover:text-primary transition-colors">
                       {service.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-0 md:p-6 md:pt-0">
-                    <CardDescription className="text-xs md:text-base leading-relaxed">
+                    <CardDescription className="card-description leading-relaxed">
                       {service.description}
                     </CardDescription>
                   </CardContent>
@@ -154,7 +154,7 @@ const ServicesSection = () => {
 
         <div className="text-center">
           <Link to="/services">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all text-base md:text-lg px-8 py-6">
               Lihat Semua Layanan
             </Button>
           </Link>

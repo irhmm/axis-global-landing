@@ -36,12 +36,12 @@ const Navigation = () => {
         <div className="grid grid-cols-3 items-center md:gap-8">
           {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">
-              <span className="text-primary-foreground font-bold text-xl">AG</span>
+            <div className="w-12 h-12 md:w-14 md:h-14 bg-primary rounded-full flex items-center justify-center shadow-sm">
+              <span className="text-primary-foreground font-bold text-xl md:text-2xl">AG</span>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground leading-tight">Axis Global</h1>
-              <p className="text-xs text-muted-foreground -mt-0.5">Certification</p>
+              <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight">Axis Global</h1>
+              <p className="text-xs md:text-sm text-muted-foreground -mt-0.5">Certification</p>
             </div>
           </Link>
 
@@ -51,7 +51,7 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary relative whitespace-nowrap ${
+                className={`text-base font-medium transition-colors hover:text-primary relative whitespace-nowrap ${
                   isActive(link.path) ? "text-primary font-semibold" : "text-foreground"
                 }`}
               >
@@ -64,7 +64,7 @@ const Navigation = () => {
           <div className="hidden md:flex justify-end">
             <Button 
               size="default" 
-              className="rounded-full px-6 font-medium"
+              className="rounded-full px-6 md:px-8 font-medium text-base"
             >
               Certification Check
             </Button>
@@ -89,14 +89,14 @@ const Navigation = () => {
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`text-base font-medium transition-colors hover:text-primary ${
                     isActive(link.path) ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button size="default" className="w-full rounded-full font-medium">
+              <Button size="default" className="w-full rounded-full font-medium text-base">
                 Certification Check
               </Button>
             </div>

@@ -26,7 +26,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Navigasi</h4>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Navigasi</h4>
             <ul className="space-y-2">
               <li><Link to="/" className="text-sm text-background/80 hover:text-primary transition-colors">Home</Link></li>
               <li><Link to="/services" className="text-sm text-background/80 hover:text-primary transition-colors">Layanan</Link></li>
@@ -38,7 +38,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Layanan</h4>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Layanan</h4>
             <ul className="space-y-2">
               <li className="text-sm text-background/80">Sertifikasi ISO 9001</li>
               <li className="text-sm text-background/80">Sertifikasi ISO 14001</li>
@@ -50,7 +50,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Hubungi Kami</h4>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Hubungi Kami</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-background/80">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />

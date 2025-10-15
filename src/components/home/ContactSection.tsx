@@ -15,10 +15,10 @@ const ContactSection = () => {
               Hubungi Kami
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 md:mb-6">
+          <h2 className="section-title text-foreground mb-4 md:mb-6">
             Mari Wujudkan <span className="text-primary">Standar Terbaik</span>
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="section-subtitle max-w-2xl mx-auto leading-relaxed">
             Konsultasi gratis untuk kebutuhan sertifikasi Anda. Tim profesional kami siap membantu mencapai standar internasional.
           </p>
         </div>
