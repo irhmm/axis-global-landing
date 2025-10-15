@@ -4,6 +4,7 @@ import { FileCheck, Leaf, PlaneTakeoff, GraduationCap, Shield, CheckCircle, Lock
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 const isoServices = [
   {
@@ -131,91 +132,110 @@ const Services = () => {
           </div>
         </section>
 
-        {/* ISO Series */}
+        {/* Services Section with Tabs */}
         <section className="py-12 md:py-20 bg-gradient-to-br from-background to-secondary/20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <Badge className="mb-4" variant="outline">
-                ✅ ISO Series
-              </Badge>
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">Sertifikasi ISO Internasional</h2>
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-4xl font-bold mb-4">Layanan Sertifikasi Kami</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Standar internasional untuk berbagai sistem manajemen yang diakui secara global
+                Pilih kategori layanan yang Anda butuhkan
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {isoServices.map((service, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 animate-slide-up border-border/50"
-                  style={{ animationDelay: `${index * 50}ms` }}
+            <Tabs defaultValue="iso" className="w-full">
+              <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-12 h-12 bg-muted/50 p-1">
+                <TabsTrigger 
+                  value="iso" 
+                  className="text-sm md:text-base font-medium data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-primary-foreground"
                 >
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <service.icon className="text-white" size={24} />
-                      </div>
-                      <Badge variant="secondary" className="text-xs">
-                        {service.code}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-sm leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Special Certifications */}
-        <section className="py-12 md:py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <Badge className="mb-4" variant="outline">
-                🌿 Sertifikasi Khusus
-              </Badge>
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">Sertifikasi Spesialisasi</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Layanan sertifikasi khusus untuk kebutuhan industri dan bisnis tertentu
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {specialServices.map((service, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 animate-slide-up border-border/50"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  ✅ ISO Series ({isoServices.length})
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="special"
+                  className="text-sm md:text-base font-medium data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-primary-foreground"
                 >
-                  <CardHeader>
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all">
-                        <service.icon className="text-white" size={28} />
-                      </div>
-                      <Badge variant="secondary">
-                        {service.code}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors mb-3">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  🌿 Sertifikasi Khusus ({specialServices.length})
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="iso" className="mt-0 animate-fade-in">
+                <div className="text-center mb-8">
+                  <Badge className="mb-4" variant="outline">
+                    Sertifikasi ISO Internasional
+                  </Badge>
+                  <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
+                    Standar internasional untuk berbagai sistem manajemen yang diakui secara global
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {isoServices.map((service, index) => (
+                    <Card
+                      key={index}
+                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50"
+                    >
+                      <CardHeader>
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <service.icon className="text-white" size={24} />
+                          </div>
+                          <Badge variant="secondary" className="text-xs">
+                            {service.code}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-lg group-hover:text-primary transition-colors">
+                          {service.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="text-sm leading-relaxed">
+                          {service.description}
+                        </CardDescription>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="special" className="mt-0 animate-fade-in">
+                <div className="text-center mb-8">
+                  <Badge className="mb-4" variant="outline">
+                    Sertifikasi Spesialisasi
+                  </Badge>
+                  <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
+                    Layanan sertifikasi khusus untuk kebutuhan industri dan bisnis tertentu
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  {specialServices.map((service, index) => (
+                    <Card
+                      key={index}
+                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50"
+                    >
+                      <CardHeader>
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all">
+                            <service.icon className="text-white" size={28} />
+                          </div>
+                          <Badge variant="secondary">
+                            {service.code}
+                          </Badge>
+                        </div>
+                        <CardTitle className="text-xl group-hover:text-primary transition-colors mb-3">
+                          {service.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="leading-relaxed">
+                          {service.description}
+                        </CardDescription>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
 
