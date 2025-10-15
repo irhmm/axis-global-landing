@@ -93,7 +93,7 @@ const AboutSection = () => {
                       <h3 className="text-sm md:text-base lg:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight md:leading-snug">
                         {feature.title}
                       </h3>
-                      <p className="text-xs md:text-sm text-muted-foreground mt-2 leading-relaxed">
+                      <p className="hidden md:block text-xs md:text-sm text-muted-foreground mt-2 leading-relaxed">
                         {feature.description}
                       </p>
                     </div>
