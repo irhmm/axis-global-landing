@@ -1,6 +1,3 @@
-import workflowImage from "@/assets/workflow-complete.jpg";
-import { Card } from "@/components/ui/card";
-
 const steps = [
   {
     number: "01",
@@ -40,34 +37,51 @@ const WorkflowSection = () => {
           </p>
         </div>
 
-        {/* Infographic Image */}
-        <Card className="mb-12 overflow-hidden animate-fade-in border-border/50">
-          <img 
-            src={workflowImage} 
-            alt="ISO Certification Process - 5 Steps Workflow"
-            className="w-full h-auto"
-          />
-        </Card>
+        <div className="relative max-w-5xl mx-auto">
+          {/* Timeline Flow */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 lg:gap-4">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="relative flex-1 animate-fade-in"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                {/* Connector Arrow */}
+                {index < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary via-primary/50 to-transparent">
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-l-8 border-l-primary border-y-4 border-y-transparent" />
+                  </div>
+                )}
 
-        {/* Steps Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-          {steps.map((step, index) => (
-            <Card
-              key={index}
-              className="p-6 animate-slide-up hover:shadow-elegant hover:-translate-y-2 transition-all duration-300 border-border/50"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="text-4xl font-bold text-primary/30 mb-3">
-                {step.number}
+                {/* Step Content */}
+                <div className="relative z-10">
+                  {/* Number Badge */}
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground font-bold text-2xl mb-4 shadow-lg">
+                    {step.number}
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
+                    {step.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-muted-foreground text-sm lg:text-base leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+
+                {/* Mobile Arrow */}
+                {index < steps.length - 1 && (
+                  <div className="lg:hidden flex justify-center my-6">
+                    <div className="w-0.5 h-8 bg-gradient-to-b from-primary to-primary/50 relative">
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-t-8 border-t-primary border-x-4 border-x-transparent" />
+                    </div>
+                  </div>
+                )}
               </div>
-              <h3 className="text-xl font-bold mb-3 text-foreground">
-                {step.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {step.description}
-              </p>
-            </Card>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
