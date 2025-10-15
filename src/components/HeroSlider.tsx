@@ -51,23 +51,15 @@ const HeroSlider = () => {
             alt={`Hero ${index + 1}`}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 z-20 flex items-center">
+          <div className="absolute inset-0 z-20 flex items-center justify-center">
             <div className="container mx-auto px-4">
-              <div className="max-w-4xl animate-fade-in">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
+              <div className="max-w-5xl mx-auto text-center animate-fade-in">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight">
                   {slide.title}
                 </h1>
-                <p className="text-lg md:text-2xl text-white/90 mb-8 font-light">
+                <p className="text-xl md:text-2xl lg:text-3xl text-white/90 font-light tracking-wide">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="shadow-primary text-base">
-                    Konsultasi Sekarang
-                  </Button>
-                  <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-foreground">
-                    Pelajari Lebih Lanjut
-                  </Button>
-                </div>
               </div>
             </div>
           </div>
