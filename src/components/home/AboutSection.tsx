@@ -1,25 +1,37 @@
-import { Shield, Award, Users, Globe } from "lucide-react";
+import { Network, Target, Users, Handshake, Globe, Leaf } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const features = [
   {
-    icon: Shield,
-    title: "Terpercaya",
-    description: "Pengalaman bertahun-tahun dalam industri sertifikasi",
-  },
-  {
-    icon: Award,
-    title: "Tersertifikasi",
-    description: "Tim konsultan bersertifikat internasional",
-  },
-  {
     icon: Users,
-    title: "Profesional",
-    description: "Pendampingan penuh dari awal hingga selesai",
+    title: "Expert Auditors & Practitioners",
+    description: "Tim auditor dan praktisi bersertifikat internasional dengan pengalaman luas",
+  },
+  {
+    icon: Target,
+    title: "Transparent & Objective",
+    description: "Proses audit yang transparan dan objektif sesuai standar global",
+  },
+  {
+    icon: Network,
+    title: "Performance-Driven Improvement",
+    description: "Fokus pada peningkatan kinerja bisnis yang terukur dan berkelanjutan",
+  },
+  {
+    icon: Handshake,
+    title: "Partnership-Oriented Service",
+    description: "Pendekatan kemitraan jangka panjang untuk kesuksesan bersama",
   },
   {
     icon: Globe,
-    title: "Global Standard",
-    description: "Mengikuti standar internasional terbaru",
+    title: "Globally Recognized Standard",
+    description: "Sertifikasi dengan standar yang diakui secara internasional",
+  },
+  {
+    icon: Leaf,
+    title: "Sustainability-Focused",
+    description: "Komitmen terhadap praktik bisnis yang berkelanjutan dan bertanggung jawab",
   },
 ];
 
@@ -31,28 +43,37 @@ const AboutSection = () => {
   return (
     <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-foreground mb-4">Tentang Axis Global Certification</h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Kami adalah konsultan profesional yang membantu perusahaan Anda mendapatkan sertifikasi 
-            ISO, Halal, dan Haji & Umrah dengan proses yang mudah, cepat, dan terpercaya.
-          </p>
-        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          {/* Left Side - Title */}
+          <div className="animate-slide-in-right">
+            <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">• ABOUT US</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+              The Best Partner For Global Business Certification
+            </h2>
+            <Link to="/about">
+              <Button variant="outline" size="lg" className="group">
+                Read More
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </Button>
+            </Link>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-card p-6 rounded-lg shadow-card hover:shadow-primary transition-all duration-300 animate-slide-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                <feature.icon className="text-primary" size={24} />
+          {/* Right Side - Features Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="animate-slide-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <feature.icon className="text-primary" size={24} />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground text-sm">{feature.description}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Partner Logos Scroll */}
