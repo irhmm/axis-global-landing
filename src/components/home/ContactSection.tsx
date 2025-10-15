@@ -23,10 +23,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-12 md:py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-foreground mb-4">Hubungi Kami</h2>
+        <div className="text-center mb-8 md:mb-12 animate-fade-in">
+          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Hubungi Kami</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Siap membantu Anda mencapai standar internasional. Konsultasi gratis untuk kebutuhan sertifikasi Anda.
           </p>
@@ -74,7 +74,7 @@ const ContactSection = () => {
                   required
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full shadow-primary">
+              <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
                 <Send className="mr-2" size={18} />
                 Kirim Pesan
               </Button>

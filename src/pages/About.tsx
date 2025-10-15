@@ -55,19 +55,23 @@ const About = () => {
       <Navigation />
       <main className="pt-[72px]">
         {/* Hero Section */}
-        <section className="bg-gradient-hero text-primary-foreground py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="mb-4 animate-fade-in">Tentang Axis Global Certification</h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
+        <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground py-16 md:py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h1 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">Tentang Axis Global Certification</h1>
+            <p className="text-base md:text-xl max-w-3xl mx-auto opacity-90">
               Partner terpercaya untuk sertifikasi standar internasional di Indonesia
             </p>
           </div>
         </section>
 
         {/* Company Profile */}
-        <section className="py-20">
+        <section className="py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center mb-16 animate-fade-in">
+            <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 animate-fade-in">
               <h2 className="mb-6">Siapa Kami</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                 <strong className="text-foreground">Axis Global Certification</strong> adalah perusahaan konsultan profesional yang berfokus pada 
@@ -83,10 +87,10 @@ const About = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
               {/* Vision */}
-              <Card className="bg-primary/5 border-primary/20 animate-slide-up">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Eye className="text-primary" size={32} />
+              <Card className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up">
+                <CardContent className="p-6 md:p-8 text-center">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Eye className="text-white" size={24} />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Visi</h3>
                   <p className="text-muted-foreground leading-relaxed">
@@ -97,10 +101,10 @@ const About = () => {
               </Card>
 
               {/* Mission */}
-              <Card className="bg-primary/5 border-primary/20 animate-slide-up" style={{ animationDelay: "100ms" }}>
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="text-primary" size={32} />
+              <Card className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up" style={{ animationDelay: "100ms" }}>
+                <CardContent className="p-6 md:p-8 text-center">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                    <Target className="text-white" size={24} />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Misi</h3>
                   <ul className="text-left space-y-2 text-muted-foreground">
@@ -124,10 +128,10 @@ const About = () => {
         </section>
 
         {/* Values */}
-        <section className="py-20 bg-secondary">
+        <section className="py-12 md:py-20 bg-secondary">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="mb-4">Nilai-Nilai Kami</h2>
+            <div className="text-center mb-8 md:mb-12 animate-fade-in">
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Nilai-Nilai Kami</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Prinsip yang menjadi fondasi dalam setiap layanan yang kami berikan
               </p>
@@ -137,12 +141,12 @@ const About = () => {
               {values.map((value, index) => (
                 <Card
                   key={index}
-                  className="text-center hover:shadow-primary transition-all duration-300 animate-slide-up"
+                  className="group text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-6">
-                    <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <value.icon className="text-primary" size={28} />
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <value.icon className="text-white" size={24} />
                     </div>
                     <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
                     <p className="text-sm text-muted-foreground">{value.description}</p>
@@ -154,10 +158,10 @@ const About = () => {
         </section>
 
         {/* Team */}
-        <section className="py-20">
+        <section className="py-12 md:py-20">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12 animate-fade-in">
-              <h2 className="mb-4">Tim Profesional Kami</h2>
+            <div className="text-center mb-8 md:mb-12 animate-fade-in">
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Tim Profesional Kami</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
                 Didukung oleh konsultan bersertifikat dan berpengalaman di bidangnya
               </p>
@@ -167,12 +171,12 @@ const About = () => {
               {team.map((member, index) => (
                 <Card
                   key={index}
-                  className="text-center hover:shadow-primary transition-all duration-300 animate-slide-up"
+                  className="group text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardContent className="p-6">
-                    <div className="w-20 h-20 bg-gradient-hero rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="text-primary-foreground" size={36} />
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                      <Users className="text-white" size={24} />
                     </div>
                     <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
                     <p className="text-primary text-sm font-medium mb-2">{member.position}</p>
@@ -185,7 +189,7 @@ const About = () => {
         </section>
 
         {/* Stats */}
-        <section className="py-20 bg-secondary">
+        <section className="py-12 md:py-20 bg-secondary">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="text-center animate-fade-in">

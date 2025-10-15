@@ -63,8 +63,8 @@ const Navigation = () => {
           {/* Button - Right */}
           <div className="hidden md:flex justify-end">
             <Button 
-              size="lg" 
-              className="shadow-primary rounded-full px-6 font-semibold tracking-wide uppercase text-xs"
+              size="default" 
+              className="rounded-full px-6 font-medium"
             >
               Certification Check
             </Button>
@@ -96,7 +96,7 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button size="lg" className="w-full shadow-primary rounded-full font-semibold">
+              <Button size="default" className="w-full rounded-full font-medium">
                 Certification Check
               </Button>
             </div>

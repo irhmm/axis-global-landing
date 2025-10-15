@@ -148,13 +148,13 @@ const Services = () => {
                   value="iso" 
                   className="text-sm md:text-base font-medium data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-primary-foreground"
                 >
-                  ✅ ISO Series ({isoServices.length})
+                  ISO Series ({isoServices.length})
                 </TabsTrigger>
                 <TabsTrigger 
                   value="special"
                   className="text-sm md:text-base font-medium data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-primary-foreground"
                 >
-                  🌿 Sertifikasi Khusus ({specialServices.length})
+                  Sertifikasi Khusus ({specialServices.length})
                 </TabsTrigger>
               </TabsList>
 
@@ -176,7 +176,7 @@ const Services = () => {
                     >
                       <CardHeader>
                         <div className="flex items-start justify-between mb-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
                             <service.icon className="text-white" size={24} />
                           </div>
                           <Badge variant="secondary" className="text-xs">
@@ -247,7 +247,7 @@ const Services = () => {
               Hubungi kami sekarang untuk konsultasi gratis dan dapatkan penawaran terbaik untuk kebutuhan sertifikasi bisnis Anda.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="shadow-primary">
+              <Button size="lg" className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
                 Konsultasi Gratis
               </Button>
               <Button size="lg" variant="outline">

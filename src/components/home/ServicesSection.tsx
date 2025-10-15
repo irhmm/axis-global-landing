@@ -54,7 +54,7 @@ const ServicesSection = () => {
   return (
     <section className="py-12 md:py-20 bg-gradient-to-br from-background to-secondary/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-10 animate-fade-in">
+        <div className="text-center mb-8 md:mb-12 animate-fade-in">
           <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Layanan Kami</h2>
           <p className="text-muted-foreground text-sm md:text-lg max-w-3xl mx-auto">
             Solusi lengkap sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
@@ -68,14 +68,12 @@ const ServicesSection = () => {
                 value="iso" 
                 className="rounded-full px-4 md:px-6 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-white data-[state=active]:shadow-glow hover:scale-105"
               >
-                <span className="mr-1.5">✅</span>
                 ISO Series
               </TabsTrigger>
               <TabsTrigger 
                 value="special" 
                 className="rounded-full px-4 md:px-6 py-2 md:py-2.5 text-xs md:text-sm font-medium transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary/90 data-[state=active]:text-white data-[state=active]:shadow-glow hover:scale-105"
               >
-                <span className="mr-1.5">🌿</span>
                 Sertifikasi Khusus
               </TabsTrigger>
             </TabsList>
@@ -90,8 +88,8 @@ const ServicesSection = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-4 md:p-6">
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={20} />
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                      <service.icon className="text-white" size={24} />
                     </div>
                     <CardTitle className="text-sm md:text-xl group-hover:text-primary transition-colors">
                       {service.title}
@@ -116,8 +114,8 @@ const ServicesSection = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-4 md:p-6">
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
-                      <service.icon className="text-white" size={20} />
+                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                      <service.icon className="text-white" size={24} />
                     </div>
                     <CardTitle className="text-sm md:text-xl group-hover:text-primary transition-colors">
                       {service.title}
@@ -136,7 +134,7 @@ const ServicesSection = () => {
 
         <div className="text-center">
           <Link to="/services">
-            <Button size="lg" className="shadow-primary bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-primary/90 hover:shadow-glow transition-all">
               Lihat Semua Layanan
             </Button>
           </Link>

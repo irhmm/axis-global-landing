@@ -35,10 +35,10 @@ const steps = [
 
 const WorkflowSection = () => {
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-12 md:py-20 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-foreground mb-4">Alur Kerja Kami</h2>
+        <div className="text-center mb-8 md:mb-12 animate-fade-in">
+          <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Alur Kerja Kami</h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
             Proses sistematis dan terstruktur untuk memastikan kesuksesan sertifikasi Anda
           </p>
@@ -56,9 +56,9 @@ const WorkflowSection = () => {
                 <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-primary/20 z-0" />
               )}
               
-              <div className="relative bg-card p-6 rounded-lg shadow-card hover:shadow-primary transition-all duration-300 z-10">
-                <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mb-4 mx-auto shadow-primary">
-                  <step.icon className="text-primary-foreground" size={28} />
+              <div className="relative bg-card p-6 rounded-lg border border-border/50 hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 z-10 group">
+                <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
+                  <step.icon className="text-white" size={24} />
                 </div>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-primary/20 mb-2">{step.number}</div>
