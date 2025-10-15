@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { user, isAdmin, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +24,7 @@ const Navigation = () => {
     { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
+    { path: "/verify", label: "Verify Certificate" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -60,14 +63,32 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Button - Right */}
-          <div className="hidden md:flex justify-end">
-            <Button 
-              size="default" 
-              className="rounded-full px-6 md:px-8 font-medium text-base"
-            >
-              Certification Check
-            </Button>
+          {/* Auth Buttons - Right */}
+          <div className="hidden md:flex justify-end gap-3">
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Link to="/admin/dashboard">
+                    <Button variant="outline" size="default" className="rounded-full px-6 font-medium">
+                      Dashboard
+                    </Button>
+                  </Link>
+                )}
+                <Button 
+                  size="default" 
+                  className="rounded-full px-6 font-medium"
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth">
+                <Button size="default" className="rounded-full px-6 md:px-8 font-medium text-base">
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button - Only visible on mobile */}
@@ -96,9 +117,33 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button size="default" className="w-full rounded-full font-medium text-base">
-                Certification Check
-              </Button>
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Link to="/admin/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="outline" size="default" className="w-full rounded-full font-medium">
+                        Dashboard
+                      </Button>
+                    </Link>
+                  )}
+                  <Button 
+                    size="default" 
+                    className="w-full rounded-full font-medium"
+                    onClick={() => {
+                      signOut();
+                      setIsMobileMenuOpen(false);
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button size="default" className="w-full rounded-full font-medium text-base">
+                    Login
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
