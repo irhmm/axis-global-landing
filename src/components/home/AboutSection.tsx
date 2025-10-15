@@ -63,7 +63,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right Side - Features Grid (3 columns) */}
-          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -72,10 +72,10 @@ const AboutSection = () => {
                   className="animate-slide-up flex flex-col items-start group"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mb-4 group-hover:scale-105 transition-transform shadow-sm">
+                  <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
                     <IconComponent className="text-white" size={32} />
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground leading-snug">{feature.title}</h3>
+                  <h3 className="text-base md:text-lg font-bold text-foreground leading-snug">{feature.title}</h3>
                 </div>
               );
             })}
