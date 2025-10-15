@@ -25,6 +25,16 @@ const isoServices = [
     title: "ISO 45001",
     description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja untuk lingkungan kerja yang aman.",
   },
+  {
+    icon: FileCheck,
+    title: "ISO 22000",
+    description: "Sistem Manajemen Keamanan Pangan untuk industri makanan dan minuman.",
+  },
+  {
+    icon: Leaf,
+    title: "ISO 50001",
+    description: "Sistem Manajemen Energi untuk efisiensi dan penghematan energi perusahaan.",
+  },
 ];
 
 const specialServices = [
@@ -47,6 +57,16 @@ const specialServices = [
     icon: GraduationCap,
     title: "Pelatihan & Sertifikasi",
     description: "Program pelatihan dan sertifikasi profesional untuk meningkatkan kompetensi SDM.",
+  },
+  {
+    icon: Palmtree,
+    title: "RSPO",
+    description: "Sertifikasi kelapa sawit berkelanjutan dengan standar internasional RSPO.",
+  },
+  {
+    icon: FileCheck,
+    title: "SNI",
+    description: "Sertifikasi Standar Nasional Indonesia untuk produk berkualitas dan aman.",
   },
 ];
 
