@@ -54,7 +54,7 @@ const AboutSection = () => {
               <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <p className="text-sm uppercase tracking-widest text-primary font-medium">ABOUT US</p>
             </div>
-            <h2 className="text-5xl xl:text-6xl font-bold leading-[1.1] mb-8 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl xl:text-5xl font-semibold leading-[1.2] mb-8 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
               The Best Partner For Global Business Improvement
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed mb-8">
