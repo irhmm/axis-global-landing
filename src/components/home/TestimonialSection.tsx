@@ -60,28 +60,33 @@ const TestimonialSection = () => {
         <div className="max-w-4xl mx-auto relative">
           <div className="relative overflow-hidden">
             {testimonials.map((testimonial, index) => (
-              <Card
+              <div
                 key={index}
-                className={`transition-all duration-500 ${
+                className={`transition-all duration-500 group ${
                   index === currentIndex ? "opacity-100 scale-100" : "opacity-0 scale-95 absolute inset-0"
                 }`}
               >
-                <CardContent className="p-8 md:p-12 lg:p-16 text-center">
-                  <Quote className="text-primary mx-auto mb-6 md:mb-8" size={48} />
-                  <div className="flex justify-center mb-6">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="text-yellow-400 fill-yellow-400" size={24} />
-                    ))}
+                <div className="relative p-3 md:p-6 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                  
+                  <div className="relative p-5 md:p-6 lg:p-10 text-center">
+                    <Quote className="text-primary mx-auto mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-300" size={48} />
+                    <div className="flex justify-center mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="text-yellow-400 fill-yellow-400 group-hover:scale-110 transition-transform duration-300" size={24} style={{ transitionDelay: `${i * 50}ms` }} />
+                      ))}
+                    </div>
+                    <p className="text-base md:text-lg lg:text-xl text-foreground mb-8 italic leading-relaxed">
+                      "{testimonial.content}"
+                    </p>
+                    <div>
+                      <p className="card-title text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.name}</p>
+                      <p className="text-sm md:text-base text-muted-foreground mt-2">{testimonial.role}</p>
+                    </div>
                   </div>
-                  <p className="text-base md:text-lg lg:text-xl text-foreground mb-8 italic leading-relaxed">
-                    "{testimonial.content}"
-                  </p>
-                  <div>
-                    <p className="card-title text-foreground">{testimonial.name}</p>
-                    <p className="text-sm md:text-base text-muted-foreground mt-2">{testimonial.role}</p>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
 

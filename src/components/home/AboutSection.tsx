@@ -87,7 +87,7 @@ const AboutSection = () => {
                     
                     <div className="relative flex flex-col h-full items-center text-center">
                       <div className="relative w-10 h-10 md:w-14 md:h-14 mb-2 md:mb-4 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-primary/30 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <IconComponent className="text-white" size={20} />
+                        <IconComponent className="text-white w-5 h-5 md:w-6 md:h-6" />
                         <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                       <h3 className="text-sm md:text-base lg:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight md:leading-snug">
