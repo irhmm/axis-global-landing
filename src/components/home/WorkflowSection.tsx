@@ -45,107 +45,52 @@ const WorkflowSection = () => {
         </div>
 
         {/* Process Flow Container */}
-        <div className="relative max-w-7xl mx-auto">
-          {/* Desktop Zigzag Timeline */}
-          <div className="hidden lg:block">
-            <div className="relative min-h-[400px]">
-              {/* Steps arranged in zigzag pattern */}
-              <div className="flex justify-between items-center relative">
-                {steps.map((step, index) => {
-                  const Icon = step.icon;
-                  const isTopRow = index % 2 === 0;
-                  
-                  return (
-                    <div
-                      key={index}
-                      className="relative flex-1 animate-fade-in"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      {/* Connector Arrow */}
-                      {index < steps.length - 1 && (
-                        <>
-                          {/* Horizontal line */}
-                          <div className={`absolute ${isTopRow ? 'top-12' : 'bottom-12'} left-1/2 w-full h-0.5 bg-gradient-to-r from-primary/60 to-primary/30 z-0`}>
-                            {/* Diagonal connector to next level */}
-                            <div className={`absolute right-0 top-0 w-0.5 ${isTopRow ? 'h-48 bg-gradient-to-b from-primary/30 to-primary/60' : 'h-48 -translate-y-48 bg-gradient-to-b from-primary/60 to-primary/30'}`} />
-                          </div>
-                          {/* Arrow tip */}
-                          <div className={`absolute ${isTopRow ? 'top-12' : 'bottom-12'} right-0 translate-x-1/2 w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-primary/60 z-10`} />
-                        </>
-                      )}
-
-                      <div className={`flex flex-col items-center ${isTopRow ? 'pt-0' : 'pt-48'}`}>
-                        {/* Icon Circle */}
-                        <div className="relative z-10 mb-3 group">
-                          <div className="w-24 h-24 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 flex items-center justify-center group-hover:border-primary/40 group-hover:shadow-glow transition-all duration-300">
-                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
-                              <Icon className="w-10 h-10 text-primary-foreground" strokeWidth={1.5} />
-                            </div>
-                          </div>
-                          {/* Number Badge */}
-                          <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-sm text-primary shadow-md">
-                            {step.number}
-                          </div>
-                        </div>
-
-                        {/* Content */}
-                        <div className="text-center px-2 max-w-[180px]">
-                          <h3 className="text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            {step.title}
-                          </h3>
-                          <p className="text-xs text-muted-foreground leading-relaxed">
-                            {step.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Timeline */}
-          <div className="lg:hidden space-y-6">
+        <div className="relative max-w-7xl mx-auto overflow-x-auto pb-4">
+          {/* Horizontal Timeline for All Resolutions */}
+          <div className="flex items-center gap-4 md:gap-6 lg:gap-8 min-w-max px-4">
             {steps.map((step, index) => {
               const Icon = step.icon;
+              
               return (
-                <div
-                  key={index}
-                  className="relative animate-fade-in"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex gap-4 items-start">
-                    {/* Icon Circle */}
-                    <div className="relative flex-shrink-0">
-                      <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
-                          <Icon className="w-8 h-8 text-primary-foreground" strokeWidth={1.5} />
+                <div key={index} className="flex items-center">
+                  {/* Step Item */}
+                  <div
+                    className="relative animate-fade-in flex-shrink-0"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="flex flex-col items-center w-44 md:w-52">
+                      {/* Icon Circle */}
+                      <div className="relative z-10 mb-3 group">
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 flex items-center justify-center group-hover:border-primary/40 group-hover:shadow-glow transition-all duration-300">
+                          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-elegant">
+                            <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary-foreground" strokeWidth={1.5} />
+                          </div>
+                        </div>
+                        {/* Number Badge */}
+                        <div className="absolute -bottom-2 -right-2 w-7 h-7 md:w-8 md:h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-xs md:text-sm text-primary shadow-md">
+                          {step.number}
                         </div>
                       </div>
-                      {/* Number Badge */}
-                      <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-background border-2 border-primary flex items-center justify-center font-bold text-xs text-primary shadow-md">
-                        {step.number}
+
+                      {/* Content */}
+                      <div className="text-center">
+                        <h3 className="text-sm md:text-base font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                          {step.title}
+                        </h3>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
                       </div>
-
-                      {/* Connector Arrow */}
-                      {index < steps.length - 1 && (
-                        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-primary/60 to-primary/30">
-                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[6px] border-t-primary/60" />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 pt-1">
-                      <h3 className="text-lg font-bold text-foreground mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {step.description}
-                      </p>
                     </div>
                   </div>
+
+                  {/* Connector Arrow */}
+                  {index < steps.length - 1 && (
+                    <div className="flex items-center flex-shrink-0 mx-2 md:mx-4">
+                      <div className="w-12 md:w-16 h-0.5 bg-gradient-to-r from-primary/60 to-primary/30" />
+                      <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-primary/60" />
+                    </div>
+                  )}
                 </div>
               );
             })}
