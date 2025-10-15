@@ -33,7 +33,7 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-3 items-center lg:gap-8">
+        <div className="grid grid-cols-3 items-center md:gap-8">
           {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-3">
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">
@@ -46,7 +46,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation - Center */}
-          <div className="hidden lg:flex items-center justify-center gap-8">
+          <div className="hidden md:flex items-center justify-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -61,7 +61,7 @@ const Navigation = () => {
           </div>
 
           {/* Button - Right */}
-          <div className="hidden lg:flex justify-end">
+          <div className="hidden md:flex justify-end">
             <Button 
               size="lg" 
               className="shadow-primary rounded-full px-6 font-semibold tracking-wide uppercase text-xs"
@@ -72,7 +72,7 @@ const Navigation = () => {
 
           {/* Mobile Menu Button - Only visible on mobile */}
           <button
-            className="lg:hidden col-start-3 justify-self-end p-2 hover:bg-muted rounded-md transition-colors"
+            className="md:hidden col-start-3 justify-self-end p-2 hover:bg-muted rounded-md transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -82,7 +82,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 animate-fade-in">
+          <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
