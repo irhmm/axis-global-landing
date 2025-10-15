@@ -62,17 +62,9 @@ const ContactSection = () => {
                   <h3 className="font-bold text-xl mb-3 text-foreground">Email</h3>
                   <a 
                     href="mailto:axisglobalcertification@gmail.com" 
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium block mb-2"
-                  >
-                    axisglobalcertification@gmail.com
-                  </a>
-                  <a 
-                    href="http://axiscertificate.com" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
                   >
-                    axiscertificate.com
+                    axisglobalcertification@gmail.com
                   </a>
                 </div>
               </div>
