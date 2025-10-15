@@ -111,9 +111,9 @@ const AboutSection = () => {
             </div>
           </div>
           
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+          {/* Gradient Overlays - hidden on mobile */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 hidden md:block" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 hidden md:block" />
           
           <div className="relative">
             <div className="flex animate-scroll hover:[animation-play-state:paused]">
