@@ -1,4 +1,4 @@
-import { FileCheck, Leaf, PlaneTakeoff, Lock, Palmtree } from "lucide-react";
+import { FileCheck, Leaf, PlaneTakeoff, Lock, Palmtree, Shield, GraduationCap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -20,6 +20,11 @@ const isoServices = [
     title: "ISO 27001",
     description: "Sistem Manajemen Keamanan Informasi untuk melindungi aset data perusahaan.",
   },
+  {
+    icon: Shield,
+    title: "ISO 45001",
+    description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja untuk lingkungan kerja yang aman.",
+  },
 ];
 
 const specialServices = [
@@ -37,6 +42,11 @@ const specialServices = [
     icon: PlaneTakeoff,
     title: "Haji & Umrah",
     description: "Lisensi penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Pelatihan & Sertifikasi",
+    description: "Program pelatihan dan sertifikasi profesional untuk meningkatkan kompetensi SDM.",
   },
 ];
 
