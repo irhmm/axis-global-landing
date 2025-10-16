@@ -95,17 +95,19 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
 
           {/* QR Code Info */}
           <div className="max-w-2xl mx-auto mt-6">
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 flex items-start gap-3">
-              <Smartphone className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-              <div className="text-sm text-blue-700 dark:text-blue-300">
-                <p className="font-medium mb-1">This information was retrieved by</p>
-                <p>scanning a QR code on your certificate</p>
+            <div className="bg-slate-100 dark:bg-slate-800/50 rounded-xl p-5 flex items-center justify-center gap-3">
+              <Smartphone className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+              <div className="text-center">
+                <p className="text-sm text-foreground leading-relaxed">
+                  This information was retrieved by<br />
+                  scanning a QR code on your certificate
+                </p>
               </div>
             </div>
           </div>
 
           {/* Footer Note */}
-          <div className="max-w-2xl mx-auto mt-6 text-center">
+          <div className="max-w-2xl mx-auto mt-4 text-center">
             <p className="text-sm text-muted-foreground">
               For verification inquiries, contact our support team.
             </p>
