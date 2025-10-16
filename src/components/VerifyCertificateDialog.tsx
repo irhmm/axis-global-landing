@@ -162,8 +162,8 @@ export default function VerifyCertificateDialog({
           </Button>
 
           <div className="pt-6 border-t border-border/30">
-            <div className="flex items-start gap-3 p-4 sm:p-5 rounded-xl bg-muted/30 border border-border/30 backdrop-blur-sm hover:bg-muted/40 transition-colors duration-300">
-              <Smartphone className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
+            <div className="flex items-center gap-3 p-4 sm:p-5 rounded-xl bg-muted/30 border border-border/30 backdrop-blur-sm hover:bg-muted/40 transition-colors duration-300">
+              <Smartphone className="h-5 w-5 flex-shrink-0 text-primary" />
               <p className="text-sm text-muted-foreground leading-relaxed">
                 <span className="font-semibold text-foreground block mb-1">Quick tip:</span>
                 Scan the QR code on your certificate for instant verification
