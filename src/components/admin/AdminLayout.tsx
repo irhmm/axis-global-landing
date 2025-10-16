@@ -44,7 +44,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-64 bg-card border-r border-border/50 transition-all duration-300 shadow-xl lg:shadow-none ${
+        className={`fixed left-0 z-40 w-64 bg-card border-r border-border/50 transition-all duration-300 shadow-xl lg:shadow-none top-14 h-[calc(100vh-3.5rem)] lg:top-0 lg:h-screen ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
@@ -115,7 +115,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-30 lg:hidden backdrop-blur-sm animate-fade-in"
+          className="fixed top-14 left-0 right-0 bottom-0 bg-black/60 z-35 lg:hidden backdrop-blur-sm animate-fade-in"
           onClick={() => setSidebarOpen(false)}
         />
       )}
