@@ -143,18 +143,21 @@ export default function CertificateForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Template Selection</CardTitle>
-              <CardDescription>Choose the visual design for this certificate</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <TemplateSelector
-                value={(formData.template_type as CertificateTemplate) || "americo"}
-                onChange={(value) => setFormData({ ...formData, template_type: value })}
-              />
-            </CardContent>
-          </Card>
+          {/* Only show template selector if no template param or in edit mode */}
+          {(!templateParam || isEditMode) && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Template Selection</CardTitle>
+                <CardDescription>Choose the visual design for this certificate</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <TemplateSelector
+                  value={(formData.template_type as CertificateTemplate) || "americo"}
+                  onChange={(value) => setFormData({ ...formData, template_type: value })}
+                />
+              </CardContent>
+            </Card>
+          )}
 
           <Card>
             <CardHeader>
