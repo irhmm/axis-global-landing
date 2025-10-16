@@ -112,17 +112,19 @@ const Navigation = () => {
                                     {affiliationMenu.certificateAffiliate.map((cert, idx) => (
                                       <div
                                         key={idx}
-                                        onMouseEnter={() => setSelectedAffiliate(cert.name)}
-                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all cursor-pointer ${
+                                        onMouseEnter={() => cert.accreditation && setSelectedAffiliate(cert.name)}
+                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all ${
+                                          cert.accreditation ? 'cursor-pointer' : 'cursor-default'
+                                        } ${
                                           selectedAffiliate === cert.name
                                             ? 'bg-primary/10 text-primary'
-                                            : 'hover:bg-accent'
+                                            : cert.accreditation ? 'hover:bg-accent' : ''
                                         }`}
                                       >
                                         <span className="text-sm font-medium">
                                           • {cert.name}
                                         </span>
-                                        <ChevronRight className="w-4 h-4" />
+                                        {cert.accreditation && <ChevronRight className="w-4 h-4" />}
                                       </div>
                                     ))}
                                   </div>
@@ -278,19 +280,21 @@ const Navigation = () => {
                                   {affiliationMenu.certificateAffiliate.map((cert, idx) => (
                                     <div
                                       key={idx}
-                                      onClick={() => setSelectedAffiliate(
+                                      onClick={() => cert.accreditation && setSelectedAffiliate(
                                         selectedAffiliate === cert.name ? null : cert.name
                                       )}
-                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all cursor-pointer ${
+                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all ${
+                                        cert.accreditation ? 'cursor-pointer' : 'cursor-default'
+                                      } ${
                                         selectedAffiliate === cert.name
                                           ? 'bg-primary/10 text-primary'
-                                          : 'active:bg-accent'
+                                          : cert.accreditation ? 'active:bg-accent' : ''
                                       }`}
                                     >
                                       <span className="text-xs font-medium">
                                         • {cert.name}
                                       </span>
-                                      <ChevronRight className="w-3 h-3" />
+                                      {cert.accreditation && <ChevronRight className="w-3 h-3" />}
                                     </div>
                                   ))}
                                 </div>
