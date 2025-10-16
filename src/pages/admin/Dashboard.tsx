@@ -49,38 +49,42 @@ export default function Dashboard() {
 
   return (
     <AdminLayout>
-      <div className="space-y-8">
+      <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground mt-1">
+          <h1 className="text-2xl lg:text-3xl font-bold">Dashboard</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Welcome to your admin dashboard
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-muted-foreground">
                 Total Certificates
               </CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <FileText className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stats.totalCertificates}</div>
-              <p className="text-xs text-muted-foreground mt-1">
+              <div className="text-3xl font-bold">{stats.totalCertificates}</div>
+              <p className="text-xs text-muted-foreground mt-1.5">
                 Active certificates in system
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
-              <Plus className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-muted-foreground">Quick Actions</CardTitle>
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Plus className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
               <Link to="/admin/certificates/new">
-                <Button className="w-full">
+                <Button className="w-full h-9 text-sm">
                   <Plus className="w-4 h-4 mr-2" />
                   New Certificate
                 </Button>
@@ -88,28 +92,30 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">System Status</CardTitle>
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-muted-foreground">System Status</CardTitle>
+              <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
+                <TrendingUp className="h-4 w-4 text-green-600" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-green-600">Active</div>
-              <p className="text-xs text-muted-foreground mt-1">
+              <div className="text-3xl font-bold text-green-600">Active</div>
+              <p className="text-xs text-muted-foreground mt-1.5">
                 All systems operational
               </p>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Certificate Templates</CardTitle>
-              <CardDescription>Available templates and their usage statistics</CardDescription>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg">Certificate Templates</CardTitle>
+              <CardDescription className="text-sm">Available templates and their usage statistics</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-2.5">
                 {CERTIFICATE_TEMPLATES.map((template) => {
                   const templateStat = stats.templateStats.find(
                     (s) => s.template === template.value
@@ -134,39 +140,31 @@ export default function Dashboard() {
 
                   const TemplateCard = (
                     <div
-                      className={`flex items-center justify-between p-4 border rounded-lg transition-all ${
+                      className={`flex items-center gap-3 p-3 border border-border/50 rounded-lg transition-all duration-200 ${
                         isDisabled
-                          ? 'bg-muted/50 opacity-60 cursor-not-allowed'
-                          : 'hover:bg-muted/50 hover:shadow-md hover:border-primary/50 cursor-pointer'
+                          ? 'bg-muted/30 opacity-60 cursor-not-allowed'
+                          : 'hover:bg-accent/50 hover:shadow-sm hover:border-primary/30 cursor-pointer'
                       }`}
                     >
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${template.color}`}>
-                          <Icon className="w-5 h-5 text-white" />
-                        </div>
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-semibold">{template.name}</h4>
-                            {isDisabled && (
-                              <Badge variant="secondary" className="text-xs">
-                                Coming Soon
-                              </Badge>
-                            )}
-                            {!isDisabled && (
-                              <Badge variant="outline" className="text-xs">
-                                <Plus className="w-3 h-3 mr-1" />
-                                Click to Create
-                              </Badge>
-                            )}
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            {template.description}
-                          </p>
-                        </div>
+                      <div className={`w-10 h-10 rounded-full ${template.color} shadow-sm flex items-center justify-center flex-shrink-0`}>
+                        <Icon className="w-5 h-5 text-white" />
                       </div>
-                      <div className="text-right">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <h4 className="font-semibold text-sm">{template.name}</h4>
+                          {isDisabled && (
+                            <Badge variant="secondary" className="text-xs py-0 h-5">
+                              Coming Soon
+                            </Badge>
+                          )}
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {template.description}
+                        </p>
+                      </div>
+                      <div className="text-right flex-shrink-0">
                         <div className="text-2xl font-bold">{count}</div>
-                        <p className="text-xs text-muted-foreground">certificates</p>
+                        <p className="text-xs text-muted-foreground">used</p>
                       </div>
                     </div>
                   );
@@ -186,21 +184,21 @@ export default function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
-              <CardDescription>Latest updates to your certificates</CardDescription>
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg">Recent Activity</CardTitle>
+              <CardDescription className="text-sm">Latest updates to your certificates</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-2.5">
                 <Link to="/admin/certificates">
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
                     <FileText className="w-4 h-4 mr-2" />
                     View All Certificates
                   </Button>
                 </Link>
                 <Link to="/admin/certificates/new">
-                  <Button variant="outline" className="w-full justify-start">
+                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
                     <Plus className="w-4 h-4 mr-2" />
                     Create New Certificate
                   </Button>

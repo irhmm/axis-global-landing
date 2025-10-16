@@ -147,58 +147,57 @@ export default function CertificateList() {
 
   return (
     <AdminLayout>
-      <div className="space-y-8">
+      <div className="space-y-6">
         {/* Template Selection Section */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div>
-            <h2 className="text-2xl font-bold">Certificate Templates</h2>
-            <p className="text-sm text-muted-foreground mt-1">
-              Available templates and their usage statistics
+            <h2 className="text-xl font-bold">Certificate Templates</h2>
+            <p className="text-xs text-muted-foreground mt-1">
+              Select a template to create a new certificate
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {CERTIFICATE_TEMPLATES.map((template) => {
               const isDisabled = template.value !== 'americo';
               const Icon = getTemplateIcon(template.value);
               const count = templateStats[template.value] || 0;
 
               const TemplateItem = (
-                <Card className={`transition-all ${
+                <Card className={`border-border/50 transition-all duration-200 ${
                   isDisabled
                     ? 'opacity-60 cursor-not-allowed'
-                    : 'hover:shadow-md hover:border-primary/50 cursor-pointer'
+                    : 'hover:shadow-sm hover:border-primary/30 cursor-pointer'
                 }`}>
-                  <div className="flex items-center gap-4 p-4">
+                  <div className="flex items-center gap-3 p-3">
                     {/* Icon */}
-                    <div className={`p-3 rounded-full ${template.color} bg-opacity-10 flex-shrink-0`}>
-                      <Icon className={`w-6 h-6 ${template.color.replace('bg-', 'text-')}`} />
+                    <div className={`p-2.5 rounded-full ${template.color} shadow-sm flex-shrink-0`}>
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
 
                     {/* Template Info */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-semibold text-base">{template.name}</h3>
-                        {isDisabled && (
-                          <Badge variant="secondary" className="text-xs">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <h3 className="font-semibold text-sm">{template.name}</h3>
+                        {isDisabled ? (
+                          <Badge variant="secondary" className="text-xs py-0 h-5">
                             Coming Soon
                           </Badge>
-                        )}
-                        {!isDisabled && (
-                          <Badge variant="outline" className="text-xs">
-                            + Click to Create
+                        ) : (
+                          <Badge variant="outline" className="text-xs py-0 h-5">
+                            Click to Create
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-muted-foreground truncate">
+                      <p className="text-xs text-muted-foreground truncate">
                         {template.description}
                       </p>
                     </div>
 
                     {/* Count */}
                     <div className="text-right flex-shrink-0">
-                      <p className="text-3xl font-bold">{count}</p>
-                      <p className="text-xs text-muted-foreground">certificates</p>
+                      <p className="text-2xl font-bold">{count}</p>
+                      <p className="text-xs text-muted-foreground">used</p>
                     </div>
                   </div>
                 </Card>
@@ -219,11 +218,11 @@ export default function CertificateList() {
         </div>
 
         {/* Certificate List Section */}
-        <div className="space-y-4 pt-8 border-t">
+        <div className="space-y-4 pt-4 border-t border-border/50">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h2 className="text-2xl font-bold">All Certificates</h2>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h2 className="text-xl font-bold">All Certificates</h2>
+              <p className="text-xs text-muted-foreground mt-1">
                 {filteredCertificates.length > 0 && (
                   `Showing ${startIndex + 1}-${Math.min(endIndex, filteredCertificates.length)} of ${filteredCertificates.length} certificates`
                 )}
@@ -238,7 +237,7 @@ export default function CertificateList() {
                 placeholder="Search certificates..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-10 h-10 border-border/50"
               />
             </div>
           </div>
@@ -249,7 +248,7 @@ export default function CertificateList() {
             </div>
           ) : (
             <>
-              <div className="border rounded-lg overflow-hidden">
+              <div className="border border-border/50 rounded-lg overflow-hidden shadow-sm">
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -318,23 +317,23 @@ export default function CertificateList() {
               {totalPages > 1 && (
                 <div className="flex justify-center mt-6">
                   <Pagination>
-                    <PaginationContent>
+                    <PaginationContent className="gap-1">
                       <PaginationItem>
                         <PaginationPrevious 
                           onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                          className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                          className={`h-9 ${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:bg-accent'}`}
                         />
                       </PaginationItem>
                       
                       {getPageNumbers().map((page, idx) => (
                         <PaginationItem key={idx}>
                           {page === '...' ? (
-                            <PaginationEllipsis />
+                            <PaginationEllipsis className="h-9 w-9" />
                           ) : (
                             <PaginationLink 
                               isActive={currentPage === page}
                               onClick={() => setCurrentPage(page as number)}
-                              className="cursor-pointer"
+                              className="cursor-pointer h-9 w-9 hover:bg-accent"
                             >
                               {page}
                             </PaginationLink>
@@ -345,7 +344,7 @@ export default function CertificateList() {
                       <PaginationItem>
                         <PaginationNext 
                           onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                          className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                          className={`h-9 ${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:bg-accent'}`}
                         />
                       </PaginationItem>
                     </PaginationContent>

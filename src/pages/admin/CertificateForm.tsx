@@ -132,23 +132,23 @@ export default function CertificateForm() {
 
   return (
     <AdminLayout>
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-4xl space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-2xl lg:text-3xl font-bold">
             {isEditMode ? "Edit Certificate" : "New Certificate"}
           </h1>
-          <p className="text-muted-foreground mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             {isEditMode ? "Update certificate information" : "Create a new certificate"}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           {/* Only show template selector if no template param or in edit mode */}
           {(!templateParam || isEditMode) && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Template Selection</CardTitle>
-                <CardDescription>Choose the visual design for this certificate</CardDescription>
+            <Card className="border-border/50 shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Template Selection</CardTitle>
+                <CardDescription className="text-sm">Choose the visual design for this certificate</CardDescription>
               </CardHeader>
               <CardContent>
                 <TemplateSelector
@@ -159,39 +159,41 @@ export default function CertificateForm() {
             </Card>
           )}
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Certificate Details</CardTitle>
-              <CardDescription>Enter the certificate information below</CardDescription>
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg">Certificate Details</CardTitle>
+              <CardDescription className="text-sm">Enter the certificate information below</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="certificate_number">Certificate Number *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="certificate_number" className="text-sm font-medium">Certificate Number *</Label>
                   <Input
                     id="certificate_number"
                     value={formData.certificate_number || ""}
                     onChange={(e) =>
                       setFormData({ ...formData, certificate_number: e.target.value })
                     }
+                    className="h-10 border-border/50 focus:border-primary"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="company_name">Company Name *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="company_name" className="text-sm font-medium">Company Name *</Label>
                   <Input
                     id="company_name"
                     value={formData.company_name || ""}
                     onChange={(e) =>
                       setFormData({ ...formData, company_name: e.target.value })
                     }
+                    className="h-10 border-border/50 focus:border-primary"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="certificate_standard">Certificate Standard *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="certificate_standard" className="text-sm font-medium">Certificate Standard *</Label>
                   <Input
                     id="certificate_standard"
                     value={formData.certificate_standard || ""}
@@ -199,18 +201,19 @@ export default function CertificateForm() {
                       setFormData({ ...formData, certificate_standard: e.target.value })
                     }
                     placeholder="e.g., ISO 9001:2015"
+                    className="h-10 border-border/50 focus:border-primary"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Issue Date *</Label>
+                <div className="space-y-1.5">
+                  <Label className="text-sm font-medium">Issue Date *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal",
+                          "w-full h-10 justify-start text-left font-normal border-border/50",
                           !formData.issue_date && "text-muted-foreground"
                         )}
                       >
@@ -222,7 +225,7 @@ export default function CertificateForm() {
                         )}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent className="w-auto p-0 z-50" align="start">
                       <Calendar
                         mode="single"
                         selected={formData.issue_date}
@@ -234,14 +237,14 @@ export default function CertificateForm() {
                   </Popover>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Surveillance Date *</Label>
+                <div className="space-y-1.5">
+                  <Label className="text-sm font-medium">Surveillance Date *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal",
+                          "w-full h-10 justify-start text-left font-normal border-border/50",
                           !formData.surveillance_date && "text-muted-foreground"
                         )}
                       >
@@ -253,7 +256,7 @@ export default function CertificateForm() {
                         )}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent className="w-auto p-0 z-50" align="start">
                       <Calendar
                         mode="single"
                         selected={formData.surveillance_date}
@@ -267,14 +270,14 @@ export default function CertificateForm() {
                   </Popover>
                 </div>
 
-                <div className="space-y-2">
-                  <Label>Expiry Date *</Label>
+                <div className="space-y-1.5">
+                  <Label className="text-sm font-medium">Expiry Date *</Label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal",
+                          "w-full h-10 justify-start text-left font-normal border-border/50",
                           !formData.expiry_date && "text-muted-foreground"
                         )}
                       >
@@ -286,7 +289,7 @@ export default function CertificateForm() {
                         )}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
+                    <PopoverContent className="w-auto p-0 z-50" align="start">
                       <Calendar
                         mode="single"
                         selected={formData.expiry_date}
@@ -298,26 +301,28 @@ export default function CertificateForm() {
                   </Popover>
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="certification_body">Certification Body *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="certification_body" className="text-sm font-medium">Certification Body *</Label>
                   <Input
                     id="certification_body"
                     value={formData.certification_body || ""}
                     onChange={(e) =>
                       setFormData({ ...formData, certification_body: e.target.value })
                     }
+                    className="h-10 border-border/50 focus:border-primary"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="accreditation_body">Accreditation Body *</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="accreditation_body" className="text-sm font-medium">Accreditation Body *</Label>
                   <Input
                     id="accreditation_body"
                     value={formData.accreditation_body || ""}
                     onChange={(e) =>
                       setFormData({ ...formData, accreditation_body: e.target.value })
                     }
+                    className="h-10 border-border/50 focus:border-primary"
                     required
                   />
                 </div>
@@ -326,23 +331,23 @@ export default function CertificateForm() {
           </Card>
 
           {verificationUrl && (
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+            <Card className="border-border/50 shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg">
                   <QrCode className="w-5 h-5" />
                   Verification URL
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-sm">
                   Use this URL to verify the certificate
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="p-4 bg-muted rounded-lg break-all">
+                <div className="p-3 bg-muted/50 rounded-lg break-all border border-border/50">
                   <a
                     href={verificationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:underline"
+                    className="text-sm text-primary hover:underline"
                   >
                     {verificationUrl}
                   </a>
@@ -351,14 +356,24 @@ export default function CertificateForm() {
             </Card>
           )}
 
-          <div className="flex gap-4">
-            <Button type="submit" disabled={loading}>
-              {loading ? "Saving..." : isEditMode ? "Update Certificate" : "Create Certificate"}
+          <div className="flex gap-3 pt-2">
+            <Button type="submit" disabled={loading} className="h-10">
+              {loading ? (
+                <>
+                  <span className="animate-spin mr-2">⏳</span>
+                  Saving...
+                </>
+              ) : (
+                <>
+                  {isEditMode ? "Update Certificate" : "Create Certificate"}
+                </>
+              )}
             </Button>
             <Button
               type="button"
               variant="outline"
               onClick={() => navigate("/admin/certificates")}
+              className="h-10 border-border/50"
             >
               Cancel
             </Button>
