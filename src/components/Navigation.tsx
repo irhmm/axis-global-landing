@@ -32,12 +32,12 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background shadow-md py-2.5" : "bg-background/95 backdrop-blur-sm py-3.5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 ${
+        isScrolled ? "bg-background shadow-md" : "bg-background/95 backdrop-blur-sm"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between gap-4">
+      <div className="container mx-auto px-4 h-full">
+        <div className="flex items-center justify-between gap-4 h-full">
           {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-2.5 md:gap-3 flex-shrink-0">
             <div className="w-11 h-11 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">

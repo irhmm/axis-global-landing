@@ -33,7 +33,7 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-[72px]">
+      <main className="pt-20">
         {/* Hero Section */}
         <section className="bg-gradient-hero text-primary-foreground py-20">
           <div className="container mx-auto px-4 text-center">

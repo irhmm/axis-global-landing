@@ -141,7 +141,7 @@ export default function CertificateVerification() {
       {(!certificate || loading || error) && (
         <div className="min-h-screen flex flex-col" style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
           <Navigation />
-          <div className="flex-1 bg-gradient-to-b from-background to-muted/20 px-4 py-12">
+          <div className="flex-1 bg-gradient-to-b from-background to-muted/20 px-4 py-12 pt-32">
             <div className="max-w-4xl mx-auto">
               {/* Loading State */}
               {loading && (

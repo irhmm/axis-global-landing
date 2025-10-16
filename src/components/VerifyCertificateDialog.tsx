@@ -79,7 +79,7 @@ export default function VerifyCertificateDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden border-0 shadow-2xl backdrop-blur-sm">
+      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden border-0 shadow-2xl backdrop-blur-sm z-[100]">
         <DialogHeader className="bg-gradient-to-br from-background via-muted/30 to-muted/50 py-8 px-8 border-b border-border/50">
           <DialogTitle className="text-2xl sm:text-3xl font-semibold tracking-tight text-muted-foreground">
             Certificate Verification

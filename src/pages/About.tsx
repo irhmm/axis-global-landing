@@ -53,7 +53,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main className="pt-[72px]">
+      <main className="pt-20">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground py-16 md:py-24 overflow-hidden">
           <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
