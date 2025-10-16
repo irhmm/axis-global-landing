@@ -16,7 +16,7 @@ import logo from "@/assets/logo.png";
 import uafLogo from "@/assets/accreditation/uaf.png";
 import iasLogo from "@/assets/accreditation/ias.png";
 import kanLogo from "@/assets/accreditation/kan.webp";
-import nordLogo from "@/assets/accreditation/nord.png";
+import nordLogo from "@/assets/accreditation/tuv-nord.jpg";
 import egacLogo from "@/assets/accreditation/egac.png";
 
 const Navigation = () => {
