@@ -256,39 +256,100 @@ const Navigation = () => {
                         />
                       </button>
                       {isAffiliationOpen && (
-                        <div className="mt-2 ml-4 flex flex-col gap-2 border-l-2 border-border pl-4">
-                          {/* Certificate Affiliate Section */}
-                          <div className="mb-2">
-                            <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase">
+                        <div className="mt-2 bg-background border border-border rounded-lg overflow-hidden">
+                          {/* Certificate Affiliate Section - 2 Columns */}
+                          <div className="p-4">
+                            <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
                               Sertificate Affiliate
                             </p>
-                            {affiliationMenu.certificateAffiliate.map((cert, idx) => (
-                              <Link
-                                key={idx}
-                                to="/affiliasi"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="block py-1.5 text-sm text-foreground hover:text-primary transition-colors"
-                              >
-                                • {cert.name}
-                                {cert.accreditation && (
-                                  <span className="text-muted-foreground"> - {cert.accreditation}</span>
+                            <div className="grid grid-cols-2 gap-0">
+                              {/* Left Column - Certificate Names */}
+                              <div className="pr-2 border-r border-border">
+                                <div className="space-y-1">
+                                  {affiliationMenu.certificateAffiliate.map((cert, idx) => (
+                                    <div
+                                      key={idx}
+                                      onClick={() => setSelectedAffiliate(
+                                        selectedAffiliate === cert.name ? null : cert.name
+                                      )}
+                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all cursor-pointer ${
+                                        selectedAffiliate === cert.name
+                                          ? 'bg-primary/10 text-primary'
+                                          : 'active:bg-accent'
+                                      }`}
+                                    >
+                                      <span className="text-xs font-medium">
+                                        • {cert.name}
+                                      </span>
+                                      <ChevronRight className="w-3 h-3" />
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Right Column - Accreditation Details */}
+                              <div className="pl-2 bg-accent/30 rounded-r-md flex items-start justify-center py-2">
+                                {selectedAffiliate ? (
+                                  <div className="w-full px-1">
+                                    {(() => {
+                                      const cert = affiliationMenu.certificateAffiliate.find(
+                                        c => c.name === selectedAffiliate
+                                      );
+                                      
+                                      if (cert?.accreditation) {
+                                        return (
+                                          <div className="space-y-2">
+                                            <div>
+                                              <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                                                Accreditation
+                                              </p>
+                                              <p className="text-sm font-bold text-primary">
+                                                {cert.accreditation}
+                                              </p>
+                                            </div>
+                                            <div className="border-2 border-dashed border-border rounded-lg h-16 flex items-center justify-center bg-muted/50">
+                                              <span className="text-[10px] text-muted-foreground">Logo</span>
+                                            </div>
+                                          </div>
+                                        );
+                                      } else {
+                                        return (
+                                          <div className="text-center py-4">
+                                            <p className="text-[10px] text-muted-foreground">
+                                              No accreditation
+                                            </p>
+                                          </div>
+                                        );
+                                      }
+                                    })()}
+                                  </div>
+                                ) : (
+                                  <div className="text-center py-4 px-1">
+                                    <p className="text-[10px] text-muted-foreground">
+                                      Tap certificate to see details
+                                    </p>
+                                  </div>
                                 )}
-                              </Link>
-                            ))}
+                              </div>
+                            </div>
                           </div>
 
-                          {/* Other Certifications */}
-                          <div className="pt-2 border-t border-border">
-                            {affiliationMenu.otherCertifications.map((cert, idx) => (
-                              <Link
-                                key={idx}
-                                to="/affiliasi"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="block py-1.5 text-sm text-foreground hover:text-primary transition-colors"
-                              >
-                                • {cert}
-                              </Link>
-                            ))}
+                          {/* Other Certifications Section */}
+                          <div className="px-4 pb-4 pt-2 border-t border-border">
+                            <div className="space-y-1">
+                              {affiliationMenu.otherCertifications.map((cert, idx) => (
+                                <Link
+                                  key={idx}
+                                  to="/affiliasi"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="block px-2 py-2 rounded-md active:bg-accent transition-colors"
+                                >
+                                  <span className="text-xs font-medium text-foreground">
+                                    • {cert}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       )}
