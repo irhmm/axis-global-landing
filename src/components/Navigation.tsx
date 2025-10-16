@@ -33,7 +33,7 @@ const Navigation = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 ${
-        isScrolled ? "bg-background shadow-md" : "bg-background/95 backdrop-blur-sm"
+        isScrolled ? "bg-background shadow-md" : "bg-background shadow-sm"
       }`}
     >
       <div className="container mx-auto px-4 h-full">
@@ -110,7 +110,7 @@ const Navigation = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-3 border-t border-border pt-4 animate-fade-in">
+          <div className="lg:hidden mt-4 pb-3 border-t border-border pt-4 animate-fade-in bg-background">
             <div className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
