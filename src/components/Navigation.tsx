@@ -3,10 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
+import VerifyCertificateDialog from "@/components/VerifyCertificateDialog";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVerifyDialogOpen, setIsVerifyDialogOpen] = useState(false);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
 
@@ -24,7 +26,6 @@ const Navigation = () => {
     { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
-    { path: "/verify", label: "Verify Certificate" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -61,6 +62,12 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
+            <button
+              onClick={() => setIsVerifyDialogOpen(true)}
+              className="text-sm xl:text-base font-medium transition-colors hover:text-primary whitespace-nowrap"
+            >
+              Verify Certificate
+            </button>
           </div>
 
           {/* Auth Buttons - Right Desktop */}
@@ -117,6 +124,15 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsVerifyDialogOpen(true);
+                }}
+                className="text-sm font-medium transition-colors hover:text-primary py-1.5 text-left"
+              >
+                Verify Certificate
+              </button>
               <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-border">
                 {user ? (
                   <>
@@ -150,6 +166,11 @@ const Navigation = () => {
           </div>
         )}
       </div>
+
+      <VerifyCertificateDialog
+        open={isVerifyDialogOpen}
+        onOpenChange={setIsVerifyDialogOpen}
+      />
     </nav>
   );
 };
