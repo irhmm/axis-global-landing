@@ -95,9 +95,9 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
 
           {/* QR Code Info */}
           <div className="max-w-2xl mx-auto mt-6">
-            <div className="bg-gray-50 rounded-lg p-4 flex items-center gap-3">
+            <div className="bg-gray-50 rounded-lg p-4 flex items-center justify-center gap-3">
               <Smartphone className="w-6 h-6 text-blue-600 flex-shrink-0" />
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 leading-relaxed text-center">
                 This information was retrieved by<br />
                 scanning a QR code on your certificate
               </p>
