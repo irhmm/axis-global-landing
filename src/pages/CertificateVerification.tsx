@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Certificate } from "@/types/certificate";
-import { Smartphone, AlertCircle } from "lucide-react";
+import { Smartphone, AlertCircle, Search } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { AmericoTemplate } from "@/components/certificate-templates";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function CertificateVerification() {
   const [searchParams] = useSearchParams();
@@ -13,6 +16,10 @@ export default function CertificateVerification() {
   const [certificate, setCertificate] = useState<Certificate | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchForm, setSearchForm] = useState({
+    clientName: '',
+    certificateNumber: ''
+  });
 
   useEffect(() => {
     if (certNumber) {
@@ -46,6 +53,53 @@ export default function CertificateVerification() {
     }
   };
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const first3Letters = searchForm.clientName.trim().substring(0, 3).toUpperCase();
+    
+    if (first3Letters.length < 3) {
+      setError("Please enter at least 3 letters of company name");
+      return;
+    }
+    
+    if (!searchForm.certificateNumber.trim()) {
+      setError("Please enter certificate number");
+      return;
+    }
+    
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const { data, error } = await supabase
+        .from("certificates")
+        .select("*")
+        .ilike("company_name", `${first3Letters}%`)
+        .eq("certificate_number", searchForm.certificateNumber.trim())
+        .maybeSingle();
+      
+      if (error) throw error;
+      
+      if (!data) {
+        setError("Certificate not found. Please check your company name and certificate number.");
+      } else {
+        setCertificate(data);
+      }
+    } catch (err) {
+      console.error("Error searching certificate:", err);
+      setError("Failed to search certificate. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearchAnother = () => {
+    setCertificate(null);
+    setError(null);
+    setSearchForm({ clientName: '', certificateNumber: '' });
+  };
+
   const renderTemplate = () => {
     if (!certificate) return null;
 
@@ -69,6 +123,17 @@ export default function CertificateVerification() {
       {certificate && !loading && (
         <>
           {renderTemplate()}
+          {!certNumber && (
+            <div className="fixed bottom-8 right-8 z-50">
+              <Button 
+                onClick={handleSearchAnother}
+                className="bg-red-600 hover:bg-red-700 text-white shadow-lg"
+              >
+                <Search className="w-4 h-4 mr-2" />
+                Search Another Certificate
+              </Button>
+            </div>
+          )}
         </>
       )}
 
@@ -102,15 +167,60 @@ export default function CertificateVerification() {
                 </div>
               )}
 
-              {/* Default State - No Certificate */}
-              {!certNumber && !loading && (
-                <div className="text-center py-12">
-                  <Smartphone className="w-20 h-20 text-muted-foreground mx-auto mb-6" />
-                  <h3 className="text-2xl font-bold mb-4">Scan QR Code to Verify</h3>
-                  <p className="text-muted-foreground max-w-md mx-auto">
-                    Use your smartphone to scan the QR code on your certificate to verify its authenticity
-                  </p>
-                </div>
+              {/* Search Form - No Certificate */}
+              {!certNumber && !loading && !certificate && (
+                <Card className="max-w-2xl mx-auto shadow-lg">
+                  <CardHeader className="bg-red-600 text-white rounded-t-xl p-6">
+                    <h2 className="text-2xl font-bold text-center">Check Certificate Status</h2>
+                  </CardHeader>
+                  <CardContent className="p-8">
+                    <form onSubmit={handleSearch} className="space-y-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground block uppercase">
+                          Client Name (Please enter first 3 letters only of your company name)
+                        </label>
+                        <Input
+                          type="text"
+                          placeholder="Enter first 3 letters..."
+                          value={searchForm.clientName}
+                          onChange={(e) => setSearchForm(prev => ({ ...prev, clientName: e.target.value }))}
+                          className="w-full"
+                          maxLength={50}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-foreground block uppercase">
+                          Certificate No.
+                        </label>
+                        <Input
+                          type="text"
+                          placeholder="Enter certificate number..."
+                          value={searchForm.certificateNumber}
+                          onChange={(e) => setSearchForm(prev => ({ ...prev, certificateNumber: e.target.value }))}
+                          className="w-full"
+                        />
+                      </div>
+
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg"
+                        disabled={loading}
+                      >
+                        {loading ? "SEARCHING..." : "CHECK STATUS"}
+                      </Button>
+                    </form>
+
+                    <div className="mt-8 pt-6 border-t text-center">
+                      <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                        <Smartphone className="w-5 h-5" />
+                        <p className="text-sm">
+                          Or scan the QR code on your certificate
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               )}
 
               {/* Info Section */}
