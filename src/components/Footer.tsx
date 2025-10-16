@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,9 +12,11 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">AG</span>
-              </div>
+              <img 
+                src={logo} 
+                alt="Axis Global Sertifikasi Logo" 
+                className="w-10 h-10 object-contain"
+              />
               <div>
                 <h3 className="text-lg font-bold leading-tight">Axis Global</h3>
                 <p className="text-xs text-background/70">Certification</p>
