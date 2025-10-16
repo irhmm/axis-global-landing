@@ -108,10 +108,18 @@ const Navigation = () => {
           </button>
         </div>
 
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden top-20" 
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-3 border-t border-border pt-4 animate-fade-in bg-background">
-            <div className="flex flex-col gap-3">
+          <div className="lg:hidden absolute left-0 right-0 top-full bg-background shadow-lg border-t border-border z-50 animate-fade-in">
+            <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
