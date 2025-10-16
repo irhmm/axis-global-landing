@@ -1,0 +1,1 @@
+export { AmericoTemplate } from './AmericoTemplate';

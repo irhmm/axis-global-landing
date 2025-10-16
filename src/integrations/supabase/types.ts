@@ -27,6 +27,7 @@ export type Database = {
           id: string
           issue_date: string
           surveillance_date: string
+          template_type: Database["public"]["Enums"]["certificate_template"]
           updated_at: string
         }
         Insert: {
@@ -41,6 +42,7 @@ export type Database = {
           id?: string
           issue_date: string
           surveillance_date: string
+          template_type?: Database["public"]["Enums"]["certificate_template"]
           updated_at?: string
         }
         Update: {
@@ -55,6 +57,7 @@ export type Database = {
           id?: string
           issue_date?: string
           surveillance_date?: string
+          template_type?: Database["public"]["Enums"]["certificate_template"]
           updated_at?: string
         }
         Relationships: []
@@ -95,6 +98,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
+      certificate_template: "americo" | "modern" | "classic"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -223,6 +227,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      certificate_template: ["americo", "modern", "classic"],
     },
   },
 } as const

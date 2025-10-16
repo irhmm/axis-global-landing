@@ -1,3 +1,12 @@
+export type CertificateTemplate = 'americo' | 'modern' | 'classic';
+
+export interface TemplateMetadata {
+  value: CertificateTemplate;
+  name: string;
+  description: string;
+  color: string;
+}
+
 export interface Certificate {
   id: string;
   certificate_number: string;
@@ -8,6 +17,7 @@ export interface Certificate {
   expiry_date: string;
   certification_body: string;
   accreditation_body: string;
+  template_type: CertificateTemplate;
   created_at: string;
   updated_at: string;
   created_by?: string;

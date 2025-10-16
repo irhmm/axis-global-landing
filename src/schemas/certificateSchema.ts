@@ -9,6 +9,7 @@ export const certificateSchema = z.object({
   expiry_date: z.date({ required_error: "Expiry date is required" }),
   certification_body: z.string().min(1, "Certification body is required").max(100),
   accreditation_body: z.string().min(1, "Accreditation body is required").max(100),
+  template_type: z.enum(['americo', 'modern', 'classic']).default('americo'),
 });
 
 export type CertificateFormData = z.infer<typeof certificateSchema>;

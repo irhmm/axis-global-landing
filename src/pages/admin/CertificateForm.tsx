@@ -10,6 +10,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { certificateSchema, CertificateFormData } from "@/schemas/certificateSchema";
+import { CertificateTemplate } from "@/types/certificate";
+import { TemplateSelector } from "@/components/admin/TemplateSelector";
 import { format } from "date-fns";
 import { CalendarIcon, QrCode } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -22,6 +24,7 @@ export default function CertificateForm() {
   const [formData, setFormData] = useState<Partial<CertificateFormData>>({
     certification_body: "Americo",
     accreditation_body: "UAF",
+    template_type: "americo",
   });
 
   const isEditMode = !!id;
@@ -51,6 +54,7 @@ export default function CertificateForm() {
         expiry_date: new Date(data.expiry_date),
         certification_body: data.certification_body,
         accreditation_body: data.accreditation_body,
+        template_type: data.template_type || "americo",
       });
     } catch (error) {
       toast({
@@ -77,6 +81,7 @@ export default function CertificateForm() {
         expiry_date: format(validated.expiry_date, "yyyy-MM-dd"),
         certification_body: validated.certification_body,
         accreditation_body: validated.accreditation_body,
+        template_type: validated.template_type,
       };
 
       if (isEditMode) {
@@ -133,6 +138,19 @@ export default function CertificateForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Template Selection</CardTitle>
+              <CardDescription>Choose the visual design for this certificate</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TemplateSelector
+                value={(formData.template_type as CertificateTemplate) || "americo"}
+                onChange={(value) => setFormData({ ...formData, template_type: value })}
+              />
+            </CardContent>
+          </Card>
+
           <Card>
             <CardHeader>
               <CardTitle>Certificate Details</CardTitle>

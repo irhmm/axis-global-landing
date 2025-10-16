@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
 import { Certificate } from "@/types/certificate";
 import { Plus, Search, Edit, Trash2, ExternalLink } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
+import { getTemplateMetadata } from "@/constants/templates";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -142,6 +144,7 @@ export default function CertificateList() {
                   <TableHead>Certificate Number</TableHead>
                   <TableHead>Company</TableHead>
                   <TableHead>Standard</TableHead>
+                  <TableHead>Template</TableHead>
                   <TableHead>Issue Date</TableHead>
                   <TableHead>Expiry Date</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
@@ -150,42 +153,50 @@ export default function CertificateList() {
               <TableBody>
                 {filteredCertificates.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                    <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
                       No certificates found
                     </TableCell>
                   </TableRow>
                 ) : (
-                  filteredCertificates.map((cert) => (
-                    <TableRow key={cert.id}>
-                      <TableCell className="font-medium">{cert.certificate_number}</TableCell>
-                      <TableCell>{cert.company_name}</TableCell>
-                      <TableCell>{cert.certificate_standard}</TableCell>
-                      <TableCell>{formatDate(cert.issue_date)}</TableCell>
-                      <TableCell>{formatDate(cert.expiry_date)}</TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex justify-end gap-2">
-                          <Link to={`/verify?cert=${cert.certificate_number}`} target="_blank">
-                            <Button variant="ghost" size="icon" title="View">
-                              <ExternalLink className="w-4 h-4" />
+                  filteredCertificates.map((cert) => {
+                    const templateMeta = getTemplateMetadata(cert.template_type || 'americo');
+                    return (
+                      <TableRow key={cert.id}>
+                        <TableCell className="font-medium">{cert.certificate_number}</TableCell>
+                        <TableCell>{cert.company_name}</TableCell>
+                        <TableCell>{cert.certificate_standard}</TableCell>
+                        <TableCell>
+                          <Badge variant="secondary" className={templateMeta.color}>
+                            {templateMeta.name}
+                          </Badge>
+                        </TableCell>
+                        <TableCell>{formatDate(cert.issue_date)}</TableCell>
+                        <TableCell>{formatDate(cert.expiry_date)}</TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-2">
+                            <Link to={`/verify?cert=${cert.certificate_number}`} target="_blank">
+                              <Button variant="ghost" size="icon" title="View">
+                                <ExternalLink className="w-4 h-4" />
+                              </Button>
+                            </Link>
+                            <Link to={`/admin/certificates/${cert.id}/edit`}>
+                              <Button variant="ghost" size="icon" title="Edit">
+                                <Edit className="w-4 h-4" />
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              onClick={() => setDeleteId(cert.id)}
+                              title="Delete"
+                            >
+                              <Trash2 className="w-4 h-4 text-destructive" />
                             </Button>
-                          </Link>
-                          <Link to={`/admin/certificates/${cert.id}/edit`}>
-                            <Button variant="ghost" size="icon" title="Edit">
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                          </Link>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setDeleteId(cert.id)}
-                            title="Delete"
-                          >
-                            <Trash2 className="w-4 h-4 text-destructive" />
-                          </Button>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })
                 )}
               </TableBody>
             </Table>
