@@ -13,6 +13,11 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import logo from "@/assets/logo.png";
+import uafLogo from "@/assets/accreditation/uaf.png";
+import iasLogo from "@/assets/accreditation/ias.png";
+import kanLogo from "@/assets/accreditation/kan.webp";
+import nordLogo from "@/assets/accreditation/nord.png";
+import egacLogo from "@/assets/accreditation/egac.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,13 +30,13 @@ const Navigation = () => {
 
   const affiliationMenu = {
     certificateAffiliate: [
-      { name: "Americo", accreditation: "UAF" },
-      { name: "Siscert", accreditation: "IAS" },
-      { name: "TSI", accreditation: "KAN" },
-      { name: "TUV", accreditation: "NORD" },
+      { name: "Americo", accreditation: "UAF", logo: uafLogo },
+      { name: "Siscert", accreditation: "IAS", logo: iasLogo },
+      { name: "TSI", accreditation: "KAN", logo: kanLogo },
+      { name: "TUV", accreditation: "NORD", logo: nordLogo },
       { name: "BSi" },
-      { name: "UKS", accreditation: "EGAC" },
-      { name: "Sucofindo", accreditation: "KAN" }
+      { name: "UKS", accreditation: "EGAC", logo: egacLogo },
+      { name: "Sucofindo", accreditation: "KAN", logo: kanLogo }
     ],
     otherCertifications: [
       "Sertifikasi Kemenaker",
@@ -143,8 +148,12 @@ const Navigation = () => {
                                                   {cert.accreditation}
                                                 </p>
                                               </div>
-                                              <div className="border-2 border-dashed border-border rounded-lg h-24 flex items-center justify-center bg-muted/50">
-                                                <span className="text-sm text-muted-foreground">Logo Placeholder</span>
+                                              <div className="rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/50">
+                                                <img 
+                                                  src={cert.logo} 
+                                                  alt={`${cert.accreditation} Logo`}
+                                                  className="w-full h-20 object-contain"
+                                                />
                                               </div>
                                             </div>
                                           );
@@ -307,8 +316,12 @@ const Navigation = () => {
                                                 {cert.accreditation}
                                               </p>
                                             </div>
-                                            <div className="border-2 border-dashed border-border rounded-lg h-16 flex items-center justify-center bg-muted/50">
-                                              <span className="text-[10px] text-muted-foreground">Logo</span>
+                                            <div className="rounded-lg overflow-hidden bg-white dark:bg-white p-2 border border-border/50">
+                                              <img 
+                                                src={cert.logo} 
+                                                alt={`${cert.accreditation} Logo`}
+                                                className="w-full h-12 object-contain"
+                                              />
                                             </div>
                                           </div>
                                         );
