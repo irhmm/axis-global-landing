@@ -131,7 +131,7 @@ const Navigation = () => {
                                 </div>
 
                                 {/* Right Column - Accreditation Logo */}
-                                <div className="pl-4 bg-accent/30 rounded-r-md flex items-center justify-center">
+                                <div className="pl-4 rounded-r-md flex items-center justify-center">
                                 {selectedAffiliate ? (
                                   <div className="w-full h-full flex items-center justify-center p-4">
                                     {(() => {
@@ -291,7 +291,7 @@ const Navigation = () => {
                               </div>
 
                               {/* Right Column - Accreditation Logo */}
-                              <div className="pl-2 bg-accent/30 rounded-r-md flex items-center justify-center">
+                              <div className="pl-2 rounded-r-md flex items-center justify-center">
                                 {selectedAffiliate ? (
                                   <div className="w-full h-full flex items-center justify-center p-3">
                                     {(() => {
