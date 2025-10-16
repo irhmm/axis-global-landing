@@ -214,14 +214,6 @@ export default function CertificateVerification() {
                   </CardContent>
                 </Card>
               )}
-
-              {/* Info Section */}
-              <div className="bg-muted/50 rounded-xl p-6 text-center">
-                <Smartphone className="w-12 h-12 text-primary mx-auto mb-4" />
-                <p className="text-sm text-muted-foreground">
-                  For verification inquiries, please contact us at verification@americo.com
-                </p>
-              </div>
             </div>
           </div>
           <Footer />
