@@ -79,53 +79,60 @@ export default function VerifyCertificateDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-xl p-0 gap-0">
-        <DialogHeader className="bg-red-600 text-white py-4 px-6 rounded-t-lg">
-          <DialogTitle className="text-xl font-semibold">
+      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden border-0 shadow-2xl">
+        <DialogHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white py-6 px-8 rounded-t-lg">
+          <DialogTitle className="text-2xl font-bold tracking-tight">
             Check Certificate Status
           </DialogTitle>
+          <p className="text-red-50 text-sm mt-2 font-normal">
+            Enter your company details to verify your certification
+          </p>
         </DialogHeader>
 
-        <form onSubmit={handleSearch} className="p-6 space-y-6">
+        <form onSubmit={handleSearch} className="p-8 space-y-6 bg-gradient-to-b from-background to-muted/20">
           {error && (
-            <div className="flex items-center gap-2 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
-              <AlertCircle className="h-4 w-4 flex-shrink-0" />
-              <p>{error}</p>
+            <div className="flex items-center gap-3 p-4 bg-destructive/10 border-l-4 border-destructive rounded-lg text-destructive text-sm shadow-sm animate-in slide-in-from-top-2">
+              <AlertCircle className="h-5 w-5 flex-shrink-0" />
+              <p className="font-medium">{error}</p>
             </div>
           )}
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label
               htmlFor="clientName"
-              className="text-sm font-medium uppercase text-muted-foreground"
+              className="text-sm font-semibold text-foreground flex items-center gap-2"
             >
-              Client Name (Please enter first 3 letters only of your company
-              name)
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              Client Name
             </Label>
+            <p className="text-xs text-muted-foreground -mt-1 ml-3.5">
+              Please enter first 3 letters only of your company name
+            </p>
             <Input
               id="clientName"
               type="text"
-              placeholder="Enter first 3 letters..."
+              placeholder="e.g., ABC"
               value={searchForm.clientName}
               onChange={(e) =>
                 setSearchForm({ ...searchForm, clientName: e.target.value })
               }
-              className="h-12"
+              className="h-12 text-base border-2 focus:border-red-600 transition-all"
               disabled={isLoading}
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-3">
             <Label
               htmlFor="certificateNumber"
-              className="text-sm font-medium uppercase text-muted-foreground"
+              className="text-sm font-semibold text-foreground flex items-center gap-2"
             >
-              Certificate No.
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              Certificate Number
             </Label>
             <Input
               id="certificateNumber"
               type="text"
-              placeholder="Enter certificate number..."
+              placeholder="e.g., CERT-2025-001"
               value={searchForm.certificateNumber}
               onChange={(e) =>
                 setSearchForm({
@@ -133,23 +140,32 @@ export default function VerifyCertificateDialog({
                   certificateNumber: e.target.value,
                 })
               }
-              className="h-12"
+              className="h-12 text-base border-2 focus:border-red-600 transition-all"
               disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 text-white py-6 text-lg font-semibold"
+            className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-6 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
             disabled={isLoading}
           >
-            {isLoading ? "CHECKING..." : "CHECK STATUS"}
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                <span className="animate-spin">⏳</span>
+                Checking...
+              </span>
+            ) : (
+              "CHECK STATUS"
+            )}
           </Button>
 
-          <div className="pt-4 border-t border-border">
-            <div className="flex items-start gap-2 text-sm text-muted-foreground">
-              <Smartphone className="h-5 w-5 flex-shrink-0 mt-0.5" />
-              <p>Or scan the QR code on your certificate</p>
+          <div className="pt-6 border-t border-border/50">
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border/50">
+              <Smartphone className="h-5 w-5 flex-shrink-0 text-red-600" />
+              <p className="text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">Quick tip:</span> Scan the QR code on your certificate for instant verification
+              </p>
             </div>
           </div>
         </form>
