@@ -45,49 +45,49 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
                 {/* Certificate Number */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Certificate Number:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 break-words sm:ml-4">{certificate.certificate_number}</span>
+                  <span className="text-sm sm:text-right text-gray-900 break-words sm:ml-4">{certificate.certificate_number}</span>
                 </div>
 
                 {/* Company Name */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Company Name:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 break-words sm:ml-4">{certificate.company_name}</span>
+                  <span className="text-sm sm:text-right text-gray-900 break-words sm:ml-4">{certificate.company_name}</span>
                 </div>
 
                 {/* Certificate Standard */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Certificate Standard:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{certificate.certificate_standard}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{certificate.certificate_standard}</span>
                 </div>
 
                 {/* Issue Date */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Issue Date:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{formatDate(certificate.issue_date)}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{formatDate(certificate.issue_date)}</span>
                 </div>
 
                 {/* Surveillance */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Surveillance:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{formatDate(certificate.surveillance_date)}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{formatDate(certificate.surveillance_date)}</span>
                 </div>
 
                 {/* Expired Date/Recertification */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Expired Date/Recertification:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{formatDate(certificate.expiry_date)}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{formatDate(certificate.expiry_date)}</span>
                 </div>
 
                 {/* Certification Body */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3 border-b border-gray-200">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Certification Body:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{certificate.certification_body}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{certificate.certification_body}</span>
                 </div>
 
                 {/* Accreditation Body */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start py-3">
                   <span className="text-sm text-gray-600 mb-1 sm:mb-0">Accreditation Body:</span>
-                  <span className="text-sm sm:text-right font-semibold text-gray-900 sm:ml-4">{certificate.accreditation_body}</span>
+                  <span className="text-sm sm:text-right text-gray-900 sm:ml-4">{certificate.accreditation_body}</span>
                 </div>
               </div>
             </CardContent>
@@ -95,10 +95,11 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
 
           {/* QR Code Info */}
           <div className="max-w-2xl mx-auto mt-6">
-            <div className="bg-slate-100 rounded-lg p-4 flex items-start gap-3">
-              <Smartphone className="w-5 h-5 text-slate-700 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-slate-700 leading-relaxed">
-                This information was retrieved by scanning a QR code on your certificate
+            <div className="bg-gray-50 rounded-lg p-4 flex items-start gap-3">
+              <Smartphone className="w-6 h-6 text-blue-600 flex-shrink-0" />
+              <p className="text-sm text-gray-700 leading-relaxed">
+                This information was retrieved by<br />
+                scanning a QR code on your certificate
               </p>
             </div>
           </div>
