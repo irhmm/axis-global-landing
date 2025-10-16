@@ -116,7 +116,7 @@ const Navigation = () => {
                   setIsMobileMenuOpen(false);
                   setIsVerifyDialogOpen(true);
                 }}
-                className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-full text-sm uppercase tracking-wide text-left"
+                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-6 py-3.5 rounded-xl text-sm uppercase tracking-wide text-center shadow-lg hover:shadow-xl transition-all duration-300 w-full border border-red-500/30"
               >
                 Certificate Check
               </button>
