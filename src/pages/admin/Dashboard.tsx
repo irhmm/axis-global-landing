@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { FileText, Plus, TrendingUp } from "lucide-react";
+import { FileText, Plus, TrendingUp, Award, Sparkles, FileType } from "lucide-react";
+import { CERTIFICATE_TEMPLATES } from "@/constants/templates";
+import { CertificateTemplate } from "@/types/certificate";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
     totalCertificates: 0,
+    templateStats: [] as { template: CertificateTemplate; count: number }[],
   });
 
   useEffect(() => {
@@ -16,12 +20,30 @@ export default function Dashboard() {
   }, []);
 
   const fetchStats = async () => {
+    // Get total certificates
     const { count } = await supabase
       .from("certificates")
       .select("*", { count: "exact", head: true });
 
+    // Get template statistics
+    const { data: certificates } = await supabase
+      .from("certificates")
+      .select("template_type");
+
+    const templateCounts: Record<string, number> = {};
+    certificates?.forEach((cert) => {
+      const template = cert.template_type || 'americo';
+      templateCounts[template] = (templateCounts[template] || 0) + 1;
+    });
+
+    const templateStats = CERTIFICATE_TEMPLATES.map((template) => ({
+      template: template.value,
+      count: templateCounts[template.value] || 0,
+    }));
+
     setStats({
       totalCertificates: count || 0,
+      templateStats,
     });
   };
 
@@ -80,22 +102,97 @@ export default function Dashboard() {
           </Card>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest updates to your certificates</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <Link to="/admin/certificates">
-                <Button variant="outline" className="w-full justify-start">
-                  <FileText className="w-4 h-4 mr-2" />
-                  View All Certificates
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Certificate Templates</CardTitle>
+              <CardDescription>Available templates and their usage statistics</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {CERTIFICATE_TEMPLATES.map((template) => {
+                  const templateStat = stats.templateStats.find(
+                    (s) => s.template === template.value
+                  );
+                  const count = templateStat?.count || 0;
+                  const isDisabled = template.value !== 'americo';
+
+                  const getIcon = () => {
+                    switch (template.value) {
+                      case 'americo':
+                        return Award;
+                      case 'modern':
+                        return Sparkles;
+                      case 'classic':
+                        return FileType;
+                      default:
+                        return FileText;
+                    }
+                  };
+
+                  const Icon = getIcon();
+
+                  return (
+                    <div
+                      key={template.value}
+                      className={`flex items-center justify-between p-4 border rounded-lg transition-colors ${
+                        isDisabled
+                          ? 'bg-muted/50 opacity-60'
+                          : 'hover:bg-muted/50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${template.color}`}>
+                          <Icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-semibold">{template.name}</h4>
+                            {isDisabled && (
+                              <Badge variant="secondary" className="text-xs">
+                                Coming Soon
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {template.description}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold">{count}</div>
+                        <p className="text-xs text-muted-foreground">certificates</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Activity</CardTitle>
+              <CardDescription>Latest updates to your certificates</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Link to="/admin/certificates">
+                  <Button variant="outline" className="w-full justify-start">
+                    <FileText className="w-4 h-4 mr-2" />
+                    View All Certificates
+                  </Button>
+                </Link>
+                <Link to="/admin/certificates/new">
+                  <Button variant="outline" className="w-full justify-start">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create New Certificate
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </AdminLayout>
   );
