@@ -130,10 +130,10 @@ const Navigation = () => {
                                   </div>
                                 </div>
 
-                                {/* Right Column - Accreditation Details */}
-                                <div className="pl-4 bg-accent/30 rounded-r-md flex items-start justify-center py-4">
+                                {/* Right Column - Accreditation Logo */}
+                                <div className="pl-4 bg-accent/30 rounded-r-md flex items-center justify-center">
                                 {selectedAffiliate ? (
-                                  <div className="w-full h-full flex items-center justify-center px-2">
+                                  <div className="w-full h-full flex items-center justify-center p-4">
                                     {(() => {
                                       const cert = affiliationMenu.certificateAffiliate.find(
                                         c => c.name === selectedAffiliate
@@ -141,22 +141,12 @@ const Navigation = () => {
                                       
                                       if (cert?.accreditation) {
                                         return (
-                                          <div className="w-full space-y-3">
-                                            <div className="text-center">
-                                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1">
-                                                Accreditation Body
-                                              </p>
-                                              <p className="text-base font-bold text-primary">
-                                                {cert.accreditation}
-                                              </p>
-                                            </div>
-                                            <div className="rounded-lg overflow-hidden bg-white dark:bg-white p-2 border border-border/30 shadow-sm">
-                                              <img 
-                                                src={cert.logo} 
-                                                alt={`${cert.accreditation} Logo`}
-                                                className="w-full h-14 object-contain"
-                                              />
-                                            </div>
+                                          <div className="w-full max-w-[200px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20 shadow-md">
+                                            <img 
+                                              src={cert.logo} 
+                                              alt={`${cert.accreditation} Logo`}
+                                              className="w-full h-24 object-contain"
+                                            />
                                           </div>
                                         );
                                       } else {
@@ -171,9 +161,9 @@ const Navigation = () => {
                                     })()}
                                   </div>
                                 ) : (
-                                  <div className="text-center py-8 px-4">
+                                  <div className="text-center py-12 px-4">
                                     <p className="text-sm text-muted-foreground">
-                                      Hover over a certificate to see details
+                                      Hover over a certificate to see accreditation logo
                                     </p>
                                   </div>
                                 )}
@@ -300,10 +290,10 @@ const Navigation = () => {
                                 </div>
                               </div>
 
-                              {/* Right Column - Accreditation Details */}
-                              <div className="pl-2 bg-accent/30 rounded-r-md flex items-start justify-center py-2">
+                              {/* Right Column - Accreditation Logo */}
+                              <div className="pl-2 bg-accent/30 rounded-r-md flex items-center justify-center">
                                 {selectedAffiliate ? (
-                                  <div className="w-full h-full flex items-center justify-center px-1">
+                                  <div className="w-full h-full flex items-center justify-center p-3">
                                     {(() => {
                                       const cert = affiliationMenu.certificateAffiliate.find(
                                         c => c.name === selectedAffiliate
@@ -311,22 +301,12 @@ const Navigation = () => {
                                       
                                       if (cert?.accreditation) {
                                         return (
-                                          <div className="w-full space-y-2">
-                                            <div className="text-center">
-                                              <p className="text-[9px] font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">
-                                                Accreditation
-                                              </p>
-                                              <p className="text-xs font-bold text-primary">
-                                                {cert.accreditation}
-                                              </p>
-                                            </div>
-                                            <div className="rounded-md overflow-hidden bg-white dark:bg-white p-1.5 border border-border/30 shadow-sm">
-                                              <img 
-                                                src={cert.logo} 
-                                                alt={`${cert.accreditation} Logo`}
-                                                className="w-full h-10 object-contain"
-                                              />
-                                            </div>
+                                          <div className="w-full rounded-lg overflow-hidden bg-white dark:bg-white p-2 border border-border/20 shadow-md">
+                                            <img 
+                                              src={cert.logo} 
+                                              alt={`${cert.accreditation} Logo`}
+                                              className="w-full h-16 object-contain"
+                                            />
                                           </div>
                                         );
                                       } else {
@@ -341,9 +321,9 @@ const Navigation = () => {
                                     })()}
                                   </div>
                                 ) : (
-                                  <div className="text-center py-4 px-1">
-                                    <p className="text-[9px] text-muted-foreground leading-tight">
-                                      Tap certificate to see details
+                                  <div className="text-center py-8 px-1">
+                                    <p className="text-[10px] text-muted-foreground leading-tight">
+                                      Tap certificate to see accreditation logo
                                     </p>
                                   </div>
                                 )}
