@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Clock } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
@@ -66,6 +66,14 @@ const Footer = () => {
               <li className="flex items-center gap-2 text-sm text-background/80">
                 <Mail size={16} className="flex-shrink-0" />
                 <span>axisglobalcertification@gmail.com</span>
+              </li>
+              <li className="flex items-start gap-2 text-sm text-background/80 mt-3 pt-3 border-t border-background/20">
+                <Clock size={16} className="mt-1 flex-shrink-0" />
+                <div>
+                  <p className="font-semibold">Jam Operasional</p>
+                  <p className="text-xs text-background/70 mt-0.5">Senin - Jumat</p>
+                  <p className="text-xs text-background/70">09:00 - 17:00 WIB</p>
+                </div>
               </li>
             </ul>
             <div className="flex gap-3 mt-4">
