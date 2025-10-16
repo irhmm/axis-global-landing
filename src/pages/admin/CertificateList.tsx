@@ -255,9 +255,9 @@ export default function CertificateList() {
                     <TableHead>Certificate Number</TableHead>
                     <TableHead>Company</TableHead>
                     <TableHead>Standard</TableHead>
-                    <TableHead>Template</TableHead>
-                    <TableHead>Issue Date</TableHead>
-                    <TableHead>Expiry Date</TableHead>
+                    <TableHead className="text-center">Template</TableHead>
+                    <TableHead className="text-center">Issue Date</TableHead>
+                    <TableHead className="text-center">Expiry Date</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -276,13 +276,13 @@ export default function CertificateList() {
                           <TableCell className="font-medium">{cert.certificate_number}</TableCell>
                           <TableCell>{cert.company_name}</TableCell>
                           <TableCell>{cert.certificate_standard}</TableCell>
-                          <TableCell>
+                          <TableCell className="text-center">
                             <Badge variant="secondary" className={templateMeta.color}>
                               {templateMeta.name}
                             </Badge>
                           </TableCell>
-                          <TableCell>{formatDate(cert.issue_date)}</TableCell>
-                          <TableCell>{formatDate(cert.expiry_date)}</TableCell>
+                          <TableCell className="text-center">{formatDate(cert.issue_date)}</TableCell>
+                          <TableCell className="text-center">{formatDate(cert.expiry_date)}</TableCell>
                           <TableCell className="text-right">
                             <div className="flex justify-end gap-2">
                               <Link to={`/verify?cert=${cert.certificate_number}`} target="_blank">
