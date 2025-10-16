@@ -151,61 +151,67 @@ export default function CertificateList() {
         {/* Template Selection Section */}
         <div className="space-y-4">
           <div>
-            <h1 className="text-3xl font-bold">Create New Certificate</h1>
-            <p className="text-muted-foreground mt-1">
-              Select a template to get started
+            <h2 className="text-2xl font-bold">Certificate Templates</h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Available templates and their usage statistics
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="space-y-3">
             {CERTIFICATE_TEMPLATES.map((template) => {
               const isDisabled = template.value !== 'americo';
               const Icon = getTemplateIcon(template.value);
               const count = templateStats[template.value] || 0;
 
-              const TemplateCard = (
-                <Card className={`p-6 transition-all ${
+              const TemplateItem = (
+                <Card className={`transition-all ${
                   isDisabled
                     ? 'opacity-60 cursor-not-allowed'
-                    : 'hover:shadow-lg hover:border-primary/50 cursor-pointer'
+                    : 'hover:shadow-md hover:border-primary/50 cursor-pointer'
                 }`}>
-                  <div className="flex items-start justify-between mb-4">
-                    <div className={`p-3 rounded-lg ${template.color} bg-opacity-10`}>
+                  <div className="flex items-center gap-4 p-4">
+                    {/* Icon */}
+                    <div className={`p-3 rounded-full ${template.color} bg-opacity-10 flex-shrink-0`}>
                       <Icon className={`w-6 h-6 ${template.color.replace('bg-', 'text-')}`} />
                     </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold">{count}</p>
+
+                    {/* Template Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-semibold text-base">{template.name}</h3>
+                        {isDisabled && (
+                          <Badge variant="secondary" className="text-xs">
+                            Coming Soon
+                          </Badge>
+                        )}
+                        {!isDisabled && (
+                          <Badge variant="outline" className="text-xs">
+                            + Click to Create
+                          </Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-muted-foreground truncate">
+                        {template.description}
+                      </p>
+                    </div>
+
+                    {/* Count */}
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-3xl font-bold">{count}</p>
                       <p className="text-xs text-muted-foreground">certificates</p>
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold">{template.name}</h3>
-                      {isDisabled && (
-                        <Badge variant="secondary" className="text-xs">
-                          Coming Soon
-                        </Badge>
-                      )}
-                      {!isDisabled && (
-                        <Badge variant="outline" className="text-xs">
-                          <Plus className="w-3 h-3 mr-1" />
-                          Click to Create
-                        </Badge>
-                      )}
-                    </div>
-                    <p className="text-sm text-muted-foreground">{template.description}</p>
                   </div>
                 </Card>
               );
 
               return isDisabled ? (
-                <div key={template.value}>{TemplateCard}</div>
+                <div key={template.value}>{TemplateItem}</div>
               ) : (
                 <Link 
                   key={template.value} 
                   to={`/admin/certificates/new?template=${template.value}`}
                 >
-                  {TemplateCard}
+                  {TemplateItem}
                 </Link>
               );
             })}
