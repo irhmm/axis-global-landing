@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,11 +20,16 @@ export default function CertificateForm() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  
+  // Get template from URL query params
+  const [searchParams] = useSearchParams();
+  const templateParam = searchParams.get('template') as CertificateTemplate | null;
+  
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<Partial<CertificateFormData>>({
     certification_body: "Americo",
     accreditation_body: "UAF",
-    template_type: "americo",
+    template_type: templateParam || "americo",
   });
 
   const isEditMode = !!id;

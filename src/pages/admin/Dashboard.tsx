@@ -132,13 +132,12 @@ export default function Dashboard() {
 
                   const Icon = getIcon();
 
-                  return (
+                  const TemplateCard = (
                     <div
-                      key={template.value}
-                      className={`flex items-center justify-between p-4 border rounded-lg transition-colors ${
+                      className={`flex items-center justify-between p-4 border rounded-lg transition-all ${
                         isDisabled
-                          ? 'bg-muted/50 opacity-60'
-                          : 'hover:bg-muted/50'
+                          ? 'bg-muted/50 opacity-60 cursor-not-allowed'
+                          : 'hover:bg-muted/50 hover:shadow-md hover:border-primary/50 cursor-pointer'
                       }`}
                     >
                       <div className="flex items-center gap-3">
@@ -153,6 +152,12 @@ export default function Dashboard() {
                                 Coming Soon
                               </Badge>
                             )}
+                            {!isDisabled && (
+                              <Badge variant="outline" className="text-xs">
+                                <Plus className="w-3 h-3 mr-1" />
+                                Click to Create
+                              </Badge>
+                            )}
                           </div>
                           <p className="text-sm text-muted-foreground">
                             {template.description}
@@ -164,6 +169,17 @@ export default function Dashboard() {
                         <p className="text-xs text-muted-foreground">certificates</p>
                       </div>
                     </div>
+                  );
+
+                  return isDisabled ? (
+                    <div key={template.value}>{TemplateCard}</div>
+                  ) : (
+                    <Link 
+                      key={template.value} 
+                      to={`/admin/certificates/new?template=${template.value}`}
+                    >
+                      {TemplateCard}
+                    </Link>
                   );
                 })}
               </div>
