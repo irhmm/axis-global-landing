@@ -143,14 +143,6 @@ export default function CertificateVerification() {
           <Navigation />
           <div className="flex-1 bg-gradient-to-b from-background to-muted/20 px-4 py-12">
             <div className="max-w-4xl mx-auto">
-              {/* Header */}
-              <div className="text-center mb-8">
-                <h1 className="text-4xl md:text-5xl font-bold mb-2" style={{ color: "#667eea" }}>
-                  Americo
-                </h1>
-                <p className="text-lg text-muted-foreground">Certificate Verification System</p>
-              </div>
-
               {/* Loading State */}
               {loading && (
                 <div className="flex justify-center py-12">
