@@ -19,6 +19,7 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVerifyDialogOpen, setIsVerifyDialogOpen] = useState(false);
   const [isAffiliationOpen, setIsAffiliationOpen] = useState(false);
+  const [selectedAffiliate, setSelectedAffiliate] = useState<string | null>(null);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
 
@@ -89,36 +90,89 @@ const Navigation = () => {
                         <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
                           {link.label}
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="bg-white dark:bg-gray-900 shadow-xl border border-border">
-                          <div className="w-[500px] p-6">
-                            {/* Certificate Affiliate Section */}
-                            <div className="mb-6">
-                              <h3 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+                        <NavigationMenuContent 
+                          className="bg-background shadow-xl border border-border"
+                          onMouseLeave={() => setSelectedAffiliate(null)}
+                        >
+                          <div className="w-[700px]">
+                            {/* Certificate Affiliate Section - 2 Columns */}
+                            <div className="p-6">
+                              <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
                                 Sertificate Affiliate
                               </h3>
-                              <div className="grid gap-2">
-                                {affiliationMenu.certificateAffiliate.map((cert, idx) => (
-                                  <Link
-                                    key={idx}
-                                    to="/affiliasi"
-                                    className="block px-3 py-2 rounded-md hover:bg-accent transition-colors group"
-                                  >
-                                    <div className="flex items-center justify-between">
-                                      <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                                        {cert.name}
-                                        {cert.accreditation && (
-                                          <span className="text-muted-foreground ml-2">- {cert.accreditation}</span>
-                                        )}
-                                      </span>
+                              <div className="grid grid-cols-2 gap-0">
+                                {/* Left Column - Certificate Names */}
+                                <div className="pr-4 border-r border-border">
+                                  <div className="space-y-1">
+                                    {affiliationMenu.certificateAffiliate.map((cert, idx) => (
+                                      <div
+                                        key={idx}
+                                        onMouseEnter={() => setSelectedAffiliate(cert.name)}
+                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all cursor-pointer ${
+                                          selectedAffiliate === cert.name
+                                            ? 'bg-primary/10 text-primary'
+                                            : 'hover:bg-accent'
+                                        }`}
+                                      >
+                                        <span className="text-sm font-medium">
+                                          • {cert.name}
+                                        </span>
+                                        <ChevronRight className="w-4 h-4" />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                {/* Right Column - Accreditation Details */}
+                                <div className="pl-4 bg-accent/30 rounded-r-md flex items-start justify-center py-4">
+                                  {selectedAffiliate ? (
+                                    <div className="w-full px-2">
+                                      {(() => {
+                                        const cert = affiliationMenu.certificateAffiliate.find(
+                                          c => c.name === selectedAffiliate
+                                        );
+                                        
+                                        if (cert?.accreditation) {
+                                          return (
+                                            <div className="space-y-4">
+                                              <div>
+                                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+                                                  Accreditation Body
+                                                </p>
+                                                <p className="text-lg font-bold text-primary">
+                                                  {cert.accreditation}
+                                                </p>
+                                              </div>
+                                              <div className="border-2 border-dashed border-border rounded-lg h-24 flex items-center justify-center bg-muted/50">
+                                                <span className="text-sm text-muted-foreground">Logo Placeholder</span>
+                                              </div>
+                                            </div>
+                                          );
+                                        } else {
+                                          return (
+                                            <div className="text-center py-6">
+                                              <p className="text-sm text-muted-foreground">
+                                                No accreditation available
+                                              </p>
+                                            </div>
+                                          );
+                                        }
+                                      })()}
                                     </div>
-                                  </Link>
-                                ))}
+                                  ) : (
+                                    <div className="text-center py-8 px-4">
+                                      <p className="text-sm text-muted-foreground">
+                                        Hover over a certificate to see details
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             </div>
 
                             {/* Other Certifications Section */}
-                            <div className="pt-4 border-t border-border">
-                              <div className="grid gap-2">
+                            <div className="px-6 pb-6 pt-2 border-t border-border">
+                              <div className="space-y-1">
                                 {affiliationMenu.otherCertifications.map((cert, idx) => (
                                   <Link
                                     key={idx}
@@ -126,7 +180,7 @@ const Navigation = () => {
                                     className="block px-3 py-2 rounded-md hover:bg-accent transition-colors group"
                                   >
                                     <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                                      {cert}
+                                      • {cert}
                                     </span>
                                   </Link>
                                 ))}
