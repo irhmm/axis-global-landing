@@ -100,7 +100,7 @@ export default function VerifyCertificateDialog({
           <div className="space-y-3 group">
             <Label
               htmlFor="clientName"
-              className="text-sm font-semibold text-foreground flex items-center gap-2.5"
+              className="text-sm font-dm-sans font-semibold text-muted-foreground flex items-center gap-2.5 tracking-wide"
             >
               <span className="w-2 h-2 rounded-full bg-primary shadow-sm"></span>
               Client Name
@@ -124,7 +124,7 @@ export default function VerifyCertificateDialog({
           <div className="space-y-3 group">
             <Label
               htmlFor="certificateNumber"
-              className="text-sm font-semibold text-foreground flex items-center gap-2.5"
+              className="text-sm font-dm-sans font-semibold text-muted-foreground flex items-center gap-2.5 tracking-wide"
             >
               <span className="w-2 h-2 rounded-full bg-primary shadow-sm"></span>
               Certificate Number
