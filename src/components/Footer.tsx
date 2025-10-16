@@ -38,6 +38,18 @@ const Footer = () => {
               <li><Link to="/affiliasi" className="text-sm text-background/80 hover:text-primary transition-colors">Afiliasi</Link></li>
               <li><Link to="/about" className="text-sm text-background/80 hover:text-primary transition-colors">Tentang Kami</Link></li>
               <li><Link to="/contact" className="text-sm text-background/80 hover:text-primary transition-colors">Kontak</Link></li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Layanan</h4>
+            <ul className="space-y-2">
+              <li className="text-sm text-background/80">Sertifikasi ISO 9001</li>
+              <li className="text-sm text-background/80">Sertifikasi ISO 14001</li>
+              <li className="text-sm text-background/80">Sertifikasi ISO 45001</li>
+              <li className="text-sm text-background/80">Sertifikasi Halal</li>
+              <li className="text-sm text-background/80">Sertifikasi Haji & Umrah</li>
               
               {/* Auth Links */}
               <li className="pt-2 mt-2 border-t border-background/20">
@@ -61,18 +73,6 @@ const Footer = () => {
                   </Link>
                 )}
               </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-base md:text-lg font-semibold mb-4">Layanan</h4>
-            <ul className="space-y-2">
-              <li className="text-sm text-background/80">Sertifikasi ISO 9001</li>
-              <li className="text-sm text-background/80">Sertifikasi ISO 14001</li>
-              <li className="text-sm text-background/80">Sertifikasi ISO 45001</li>
-              <li className="text-sm text-background/80">Sertifikasi Halal</li>
-              <li className="text-sm text-background/80">Sertifikasi Haji & Umrah</li>
             </ul>
           </div>
 
