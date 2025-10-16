@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import VerifyCertificateDialog from "@/components/VerifyCertificateDialog";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,9 +41,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between gap-4 h-full">
           {/* Logo - Left */}
           <Link to="/" className="flex items-center gap-2.5 md:gap-3 flex-shrink-0">
-            <div className="w-11 h-11 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center shadow-sm">
-              <span className="text-primary-foreground font-bold text-lg md:text-xl">AG</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="Axis Global Sertifikasi Logo" 
+              className="w-11 h-11 md:w-12 md:h-12 object-contain"
+            />
             <div className="hidden sm:block">
               <h1 className="text-base md:text-lg font-bold text-foreground leading-tight">Axis Global</h1>
               <p className="text-xs text-muted-foreground -mt-0.5">Certification</p>
