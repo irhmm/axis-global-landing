@@ -116,7 +116,7 @@ export default function VerifyCertificateDialog({
               onChange={(e) =>
                 setSearchForm({ ...searchForm, clientName: e.target.value })
               }
-              className="h-12 sm:h-14 text-base border-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 rounded-xl shadow-sm hover:shadow-md bg-background/50 backdrop-blur-sm"
+              className="h-12 sm:h-14 text-base border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300 rounded-lg shadow-sm hover:shadow-md bg-background/80 backdrop-blur-sm"
               disabled={isLoading}
             />
           </div>
@@ -140,7 +140,7 @@ export default function VerifyCertificateDialog({
                   certificateNumber: e.target.value,
                 })
               }
-              className="h-12 sm:h-14 text-base border-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 rounded-xl shadow-sm hover:shadow-md bg-background/50 backdrop-blur-sm"
+              className="h-12 sm:h-14 text-base border border-border focus:border-primary focus-visible:ring-0 focus-visible:ring-offset-0 transition-all duration-300 rounded-lg shadow-sm hover:shadow-md bg-background/80 backdrop-blur-sm"
               disabled={isLoading}
             />
           </div>
