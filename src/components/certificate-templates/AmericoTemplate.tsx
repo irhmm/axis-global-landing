@@ -1,6 +1,6 @@
 import { Certificate } from "@/types/certificate";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, FileCheck } from "lucide-react";
+import { CheckCircle, Smartphone } from "lucide-react";
 import { format } from "date-fns";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -95,11 +95,11 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
 
           {/* QR Code Info */}
           <div className="max-w-2xl mx-auto mt-6">
-            <div className="bg-blue-50 rounded-lg p-4 flex items-center justify-center gap-3">
-              <FileCheck className="w-5 h-5 text-blue-600 flex-shrink-0" />
-              <div className="text-center">
+            <div className="bg-gray-100 rounded-lg p-4 flex items-center gap-3">
+              <Smartphone className="w-5 h-5 text-gray-700 flex-shrink-0" />
+              <div>
                 <p className="text-sm text-gray-700 leading-relaxed">
-                  This information was retrieved by<br className="hidden sm:inline" />
+                  This information was retrieved by<br />
                   scanning a QR code on your certificate
                 </p>
               </div>
