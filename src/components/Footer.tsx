@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, Clock } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { useAuth } from "@/hooks/useAuth";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <footer className="bg-foreground text-background">
@@ -36,6 +38,29 @@ const Footer = () => {
               <li><Link to="/affiliasi" className="text-sm text-background/80 hover:text-primary transition-colors">Afiliasi</Link></li>
               <li><Link to="/about" className="text-sm text-background/80 hover:text-primary transition-colors">Tentang Kami</Link></li>
               <li><Link to="/contact" className="text-sm text-background/80 hover:text-primary transition-colors">Kontak</Link></li>
+              
+              {/* Auth Links */}
+              <li className="pt-2 mt-2 border-t border-background/20">
+                {user ? (
+                  <>
+                    {isAdmin && (
+                      <Link to="/admin/dashboard" className="text-sm text-background/80 hover:text-primary transition-colors block mb-2">
+                        Dashboard
+                      </Link>
+                    )}
+                    <button 
+                      onClick={() => signOut()} 
+                      className="text-sm text-background/80 hover:text-primary transition-colors text-left"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link to="/auth" className="text-sm text-background/80 hover:text-primary transition-colors">
+                    Login
+                  </Link>
+                )}
+              </li>
             </ul>
           </div>
 

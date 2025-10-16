@@ -65,40 +65,16 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
-            <button
-              onClick={() => setIsVerifyDialogOpen(true)}
-              className="text-sm xl:text-base font-medium transition-colors hover:text-primary whitespace-nowrap"
-            >
-              Verify Certificate
-            </button>
           </div>
 
-          {/* Auth Buttons - Right Desktop */}
-          <div className="hidden lg:flex items-center gap-2.5 flex-shrink-0">
-            {user ? (
-              <>
-                {isAdmin && (
-                  <Link to="/admin/dashboard">
-                    <Button variant="outline" size="sm" className="rounded-full px-5 font-medium">
-                      Dashboard
-                    </Button>
-                  </Link>
-                )}
-                <Button 
-                  size="sm" 
-                  className="rounded-full px-5 font-medium"
-                  onClick={() => signOut()}
-                >
-                  Logout
-                </Button>
-              </>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" className="rounded-full px-6 font-medium">
-                  Login
-                </Button>
-              </Link>
-            )}
+          {/* Certificate Check Button - Right */}
+          <div className="hidden lg:flex items-center flex-shrink-0">
+            <button
+              onClick={() => setIsVerifyDialogOpen(true)}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2.5 rounded-full text-sm uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Certificate Check
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -140,39 +116,10 @@ const Navigation = () => {
                   setIsMobileMenuOpen(false);
                   setIsVerifyDialogOpen(true);
                 }}
-                className="text-sm font-medium transition-colors hover:text-primary py-1.5 text-left"
+                className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-full text-sm uppercase tracking-wide text-left"
               >
-                Verify Certificate
+                Certificate Check
               </button>
-              <div className="flex flex-col gap-2 mt-2 pt-3 border-t border-border">
-                {user ? (
-                  <>
-                    {isAdmin && (
-                      <Link to="/admin/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button variant="outline" size="sm" className="w-full rounded-full font-medium">
-                          Dashboard
-                        </Button>
-                      </Link>
-                    )}
-                    <Button 
-                      size="sm" 
-                      className="w-full rounded-full font-medium"
-                      onClick={() => {
-                        signOut();
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      Logout
-                    </Button>
-                  </>
-                ) : (
-                  <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button size="sm" className="w-full rounded-full font-medium">
-                      Login
-                    </Button>
-                  </Link>
-                )}
-              </div>
             </div>
           </div>
         )}
