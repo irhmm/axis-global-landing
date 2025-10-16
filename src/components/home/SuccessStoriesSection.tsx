@@ -76,6 +76,9 @@ const successStories: Story[] = [
 
 const SuccessStoriesSection = () => {
   const [selectedImage, setSelectedImage] = useState<Story | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  
+  const displayedStories = showAll ? successStories : successStories.slice(0, 4);
 
   return (
     <section className="py-20 bg-gradient-to-b from-background to-secondary/5">
@@ -89,8 +92,8 @@ const SuccessStoriesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {successStories.map((story, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {displayedStories.map((story, index) => (
             <div
               key={index}
               className="group relative overflow-hidden rounded-lg cursor-pointer animate-fade-in shadow-lg hover:shadow-xl transition-all duration-300"
@@ -115,6 +118,17 @@ const SuccessStoriesSection = () => {
             </div>
           ))}
         </div>
+
+        {!showAll && successStories.length > 4 && (
+          <div className="text-center mt-10">
+            <button
+              onClick={() => setShowAll(true)}
+              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
+            >
+              Lihat Selengkapnya ({successStories.length - 4} Foto Lainnya)
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}
