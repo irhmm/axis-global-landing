@@ -79,33 +79,33 @@ export default function VerifyCertificateDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden border-0 shadow-2xl">
-        <DialogHeader className="bg-gradient-to-r from-red-600 to-red-700 text-white py-6 px-8 rounded-t-lg">
-          <DialogTitle className="text-2xl font-bold tracking-tight">
-            Check Certificate Status
+      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden border-0 shadow-2xl backdrop-blur-sm">
+        <DialogHeader className="bg-gradient-to-br from-background via-muted/30 to-muted/50 py-8 px-8 border-b border-border/50">
+          <DialogTitle className="text-2xl sm:text-3xl font-semibold tracking-tight text-muted-foreground">
+            Certificate Verification
           </DialogTitle>
-          <p className="text-red-50 text-sm mt-2 font-normal">
-            Enter your company details to verify your certification
+          <p className="text-muted-foreground/70 text-sm sm:text-base mt-3 font-light">
+            Verify the authenticity of your certification credentials
           </p>
         </DialogHeader>
 
-        <form onSubmit={handleSearch} className="p-8 space-y-6 bg-gradient-to-b from-background to-muted/20">
+        <form onSubmit={handleSearch} className="p-6 sm:p-8 space-y-6 bg-gradient-to-b from-background via-background to-muted/10">
           {error && (
-            <div className="flex items-center gap-3 p-4 bg-destructive/10 border-l-4 border-destructive rounded-lg text-destructive text-sm shadow-sm animate-in slide-in-from-top-2">
-              <AlertCircle className="h-5 w-5 flex-shrink-0" />
+            <div className="flex items-center gap-3 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm shadow-lg animate-in slide-in-from-top-2 backdrop-blur-sm">
+              <AlertCircle className="h-5 w-5 flex-shrink-0 animate-pulse" />
               <p className="font-medium">{error}</p>
             </div>
           )}
 
-          <div className="space-y-3">
+          <div className="space-y-3 group">
             <Label
               htmlFor="clientName"
-              className="text-sm font-semibold text-foreground flex items-center gap-2"
+              className="text-sm font-semibold text-foreground flex items-center gap-2.5"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              <span className="w-2 h-2 rounded-full bg-primary shadow-sm"></span>
               Client Name
             </Label>
-            <p className="text-xs text-muted-foreground -mt-1 ml-3.5">
+            <p className="text-xs text-muted-foreground ml-4 leading-relaxed">
               Please enter first 3 letters only of your company name
             </p>
             <Input
@@ -116,17 +116,17 @@ export default function VerifyCertificateDialog({
               onChange={(e) =>
                 setSearchForm({ ...searchForm, clientName: e.target.value })
               }
-              className="h-12 text-base border-2 focus:border-red-600 transition-all"
+              className="h-12 sm:h-14 text-base border-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 rounded-xl shadow-sm hover:shadow-md bg-background/50 backdrop-blur-sm"
               disabled={isLoading}
             />
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 group">
             <Label
               htmlFor="certificateNumber"
-              className="text-sm font-semibold text-foreground flex items-center gap-2"
+              className="text-sm font-semibold text-foreground flex items-center gap-2.5"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+              <span className="w-2 h-2 rounded-full bg-primary shadow-sm"></span>
               Certificate Number
             </Label>
             <Input
@@ -140,31 +140,33 @@ export default function VerifyCertificateDialog({
                   certificateNumber: e.target.value,
                 })
               }
-              className="h-12 text-base border-2 focus:border-red-600 transition-all"
+              className="h-12 sm:h-14 text-base border-2 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-300 rounded-xl shadow-sm hover:shadow-md bg-background/50 backdrop-blur-sm"
               disabled={isLoading}
             />
           </div>
 
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white py-6 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02]"
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-6 sm:py-7 text-base sm:text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] rounded-xl mt-8 relative overflow-hidden group"
             disabled={isLoading}
           >
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
             {isLoading ? (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 relative z-10">
                 <span className="animate-spin">⏳</span>
-                Checking...
+                Verifying Certificate...
               </span>
             ) : (
-              "CHECK STATUS"
+              <span className="relative z-10">VERIFY CERTIFICATE</span>
             )}
           </Button>
 
-          <div className="pt-6 border-t border-border/50">
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border/50">
-              <Smartphone className="h-5 w-5 flex-shrink-0 text-red-600" />
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">Quick tip:</span> Scan the QR code on your certificate for instant verification
+          <div className="pt-6 border-t border-border/30">
+            <div className="flex items-start gap-3 p-4 sm:p-5 rounded-xl bg-muted/30 border border-border/30 backdrop-blur-sm hover:bg-muted/40 transition-colors duration-300">
+              <Smartphone className="h-5 w-5 flex-shrink-0 text-primary mt-0.5" />
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <span className="font-semibold text-foreground block mb-1">Quick tip:</span>
+                Scan the QR code on your certificate for instant verification
               </p>
             </div>
           </div>
