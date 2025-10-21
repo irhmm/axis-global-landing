@@ -1,12 +1,12 @@
 import { Network, Target, Users, Handshake, Globe, Leaf, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import expertAuditorsImg from "@/assets/features/expert-auditors.jpg";
-import transparentImg from "@/assets/features/transparent.jpg";
-import performanceImg from "@/assets/features/performance.jpg";
-import partnershipImg from "@/assets/features/partnership.jpg";
-import globalStandardImg from "@/assets/features/global-standard.jpg";
-import sustainabilityImg from "@/assets/features/sustainability.jpg";
+import expertAuditorsImg from "@/assets/features/expert-team-real.jpg";
+import transparentImg from "@/assets/features/transparent-real.jpg";
+import performanceImg from "@/assets/features/performance-real.jpg";
+import partnershipImg from "@/assets/features/partnership-real.jpg";
+import globalStandardImg from "@/assets/features/global-real.jpg";
+import sustainabilityImg from "@/assets/features/sustainability-real.jpg";
 
 const features = [
   {
@@ -95,11 +95,12 @@ const AboutSection = () => {
                 >
                   <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
                     {/* Image Section - Top */}
-                    <div className="relative h-20 md:h-28 overflow-hidden">
+                    <div className="relative h-20 md:h-28 overflow-hidden bg-muted/20">
                       <img 
                         src={feature.image} 
                         alt={feature.title} 
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="eager"
                       />
                       {/* Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
