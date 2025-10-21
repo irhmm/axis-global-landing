@@ -544,7 +544,7 @@ const Navigation = () => {
 
                               {/* Right Column - Description */}
                               <div className="pl-2 rounded-r-md flex items-start justify-start">
-                                {selectedService ? (
+                                {selectedService && (
                                   <div className="w-full p-2 bg-white rounded-lg border border-border">
                                     {(() => {
                                       const iso = servicesMenu.isoStandards.find(
@@ -559,12 +559,6 @@ const Navigation = () => {
                                         );
                                       }
                                     })()}
-                                  </div>
-                                ) : (
-                                  <div className="text-center py-8 px-1">
-                                    <p className="text-[10px] text-muted-foreground leading-tight">
-                                      Pilih ISO untuk melihat penjelasan
-                                    </p>
                                   </div>
                                 )}
                               </div>
