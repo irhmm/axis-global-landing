@@ -21,7 +21,7 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-lg font-bold leading-tight">Axis Global</h3>
-                <p className="text-xs text-background/70">Certification</p>
+                <p className="text-xs text-background/70">PT AXIS Global Sertifikasi</p>
               </div>
             </div>
             <p className="text-sm text-background/80 leading-relaxed">
