@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck } from "lucide-react";
+import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck, Building2 } from "lucide-react";
 import { CERTIFICATE_TEMPLATES } from "@/constants/templates";
 import { CertificateTemplate } from "@/types/certificate";
 
@@ -121,7 +121,7 @@ export default function Dashboard() {
                     (s) => s.template === template.value
                   );
                   const count = templateStat?.count || 0;
-                  const isDisabled = template.value !== 'americo' && template.value !== 'siscert';
+                  const isDisabled = template.value !== 'americo' && template.value !== 'siscert' && template.value !== 'equal';
 
                   const getIcon = () => {
                     switch (template.value) {
@@ -129,6 +129,8 @@ export default function Dashboard() {
                         return Award;
                       case 'siscert':
                         return BadgeCheck;
+                      case 'equal':
+                        return Building2;
                       case 'modern':
                         return Sparkles;
                       case 'classic':
