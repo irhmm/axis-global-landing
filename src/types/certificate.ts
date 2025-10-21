@@ -1,4 +1,4 @@
-export type CertificateTemplate = 'americo' | 'modern' | 'classic' | 'siscert';
+export type CertificateTemplate = 'americo' | 'modern' | 'classic' | 'siscert' | 'equal';
 
 export interface TemplateMetadata {
   value: CertificateTemplate;
@@ -32,6 +32,18 @@ export interface Certificate {
   ea_code?: string;
   scope?: string;
   status?: string;
+  // Additional fields for Equal template
+  trading_name?: string;
+  main_site_address?: string;
+  other_sites?: string;
+  website?: string;
+  certification_criteria?: string;
+  certification_approval_date?: string;
+  original_audit_date?: string;
+  certification_expiration_date?: string;
+  isic_code?: string;
+  managing_partner?: string;
+  managing_practice?: string;
 }
 
 export type AppRole = 'admin' | 'user';

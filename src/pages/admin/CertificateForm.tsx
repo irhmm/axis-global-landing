@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import { QrCode } from "lucide-react";
 import { AmericoForm } from "@/components/admin/forms/AmericoForm";
 import { SisCertForm } from "@/components/admin/forms/SisCertForm";
+import { EqualForm } from "@/components/admin/forms/EqualForm";
 
 export default function CertificateForm() {
   const { id } = useParams();
@@ -42,6 +43,14 @@ export default function CertificateForm() {
       return {
         ...base,
         certification_body: "SIS Certifications",
+        status: "active",
+      };
+    }
+    
+    if (template === 'equal') {
+      return {
+        ...base,
+        certification_body: "Equal Assurance",
         status: "active",
       };
     }
@@ -92,6 +101,18 @@ export default function CertificateForm() {
         ea_code: data.ea_code,
         scope: data.scope,
         status: data.status,
+        // Equal fields
+        trading_name: data.trading_name,
+        main_site_address: data.main_site_address,
+        other_sites: data.other_sites,
+        website: data.website,
+        certification_criteria: data.certification_criteria,
+        certification_approval_date: data.certification_approval_date ? new Date(data.certification_approval_date) : undefined,
+        original_audit_date: data.original_audit_date ? new Date(data.original_audit_date) : undefined,
+        certification_expiration_date: data.certification_expiration_date ? new Date(data.certification_expiration_date) : undefined,
+        isic_code: data.isic_code,
+        managing_partner: data.managing_partner,
+        managing_practice: data.managing_practice,
       });
     } catch (error) {
       toast({

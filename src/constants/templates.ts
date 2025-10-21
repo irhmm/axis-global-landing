@@ -14,6 +14,12 @@ export const CERTIFICATE_TEMPLATES: TemplateMetadata[] = [
     color: 'bg-red-600',
   },
   {
+    value: 'equal',
+    name: 'Template Equal',
+    description: 'Professional design untuk Equal Assurance certification',
+    color: 'bg-teal-500',
+  },
+  {
     value: 'modern',
     name: 'Template Modern',
     description: 'Clean dan minimalist design (Coming Soon)',

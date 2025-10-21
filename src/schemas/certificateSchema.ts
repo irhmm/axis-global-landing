@@ -9,7 +9,7 @@ export const certificateSchema = z.object({
   expiry_date: z.date({ required_error: "Expiry date is required" }),
   certification_body: z.string().min(1, "Certification body is required").max(100),
   accreditation_body: z.string().min(1, "Accreditation body is required").max(100),
-  template_type: z.enum(['americo', 'modern', 'classic', 'siscert']).default('americo'),
+  template_type: z.enum(['americo', 'modern', 'classic', 'siscert', 'equal']).default('americo'),
   // Optional fields for SIS Cert template
   address: z.string().max(500).optional(),
   certified_location: z.string().max(500).optional(),
@@ -21,6 +21,18 @@ export const certificateSchema = z.object({
   ea_code: z.string().max(50).optional(),
   scope: z.string().max(2000).optional(),
   status: z.string().optional().default('active'),
+  // Optional fields for Equal template
+  trading_name: z.string().max(200).optional(),
+  main_site_address: z.string().max(500).optional(),
+  other_sites: z.string().max(1000).optional(),
+  website: z.string().max(200).optional(),
+  certification_criteria: z.string().max(100).optional(),
+  certification_approval_date: z.date().optional(),
+  original_audit_date: z.date().optional(),
+  certification_expiration_date: z.date().optional(),
+  isic_code: z.string().max(100).optional(),
+  managing_partner: z.string().max(200).optional(),
+  managing_practice: z.string().max(200).optional(),
 });
 
 export type CertificateFormData = z.infer<typeof certificateSchema>;

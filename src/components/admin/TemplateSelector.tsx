@@ -1,4 +1,4 @@
-import { Award, Sparkles, FileText, BadgeCheck } from "lucide-react";
+import { Award, Sparkles, FileText, BadgeCheck, Building2 } from "lucide-react";
 import { CertificateTemplate } from "@/types/certificate";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -29,6 +29,15 @@ const templateOptions = [
     color: 'text-red-600',
     bgColor: 'bg-red-50 dark:bg-red-950/20',
     borderColor: 'border-red-200 dark:border-red-800',
+  },
+  {
+    value: 'equal' as CertificateTemplate,
+    name: 'Template Equal',
+    description: 'Professional Equal Assurance design',
+    icon: Building2,
+    color: 'text-teal-500',
+    bgColor: 'bg-teal-50 dark:bg-teal-950/20',
+    borderColor: 'border-teal-200 dark:border-teal-800',
   },
   {
     value: 'modern' as CertificateTemplate,
@@ -63,7 +72,7 @@ export function TemplateSelector({ value, onChange, disabled = false }: Template
       </div>
       
       <RadioGroup value={value} onValueChange={onChange} disabled={disabled}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {templateOptions.map((template) => {
             const Icon = template.icon;
             const isSelected = value === template.value;
