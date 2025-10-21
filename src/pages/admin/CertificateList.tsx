@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
 import { supabase } from "@/integrations/supabase/client";
 import { Certificate } from "@/types/certificate";
-import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType } from "lucide-react";
+import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType, BadgeCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { getTemplateMetadata, CERTIFICATE_TEMPLATES } from "@/constants/templates";
@@ -141,6 +141,7 @@ export default function CertificateList() {
 
   const getTemplateIcon = (template: string) => {
     if (template === 'americo') return Award;
+    if (template === 'siscert') return BadgeCheck;
     if (template === 'modern') return Sparkles;
     return FileType;
   };
@@ -159,7 +160,7 @@ export default function CertificateList() {
 
           <div className="space-y-2.5">
             {CERTIFICATE_TEMPLATES.map((template) => {
-              const isDisabled = template.value !== 'americo';
+              const isDisabled = template.value !== 'americo' && template.value !== 'siscert';
               const Icon = getTemplateIcon(template.value);
               const count = templateStats[template.value] || 0;
 
