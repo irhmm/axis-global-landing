@@ -514,7 +514,7 @@ const Navigation = () => {
 
       <VerifyCertificateDialog
         open={isVerifyDialogOpen}
-        onClose={() => setIsVerifyDialogOpen(false)}
+        onOpenChange={setIsVerifyDialogOpen}
       />
     </nav>
   );

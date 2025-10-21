@@ -172,14 +172,19 @@ const Services = () => {
                   {isoServices.map((service, index) => (
                     <Card
                       key={index}
-                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50"
+                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-fade-in opacity-0"
+                      style={{ 
+                        animationDelay: `${index * 80}ms`,
+                        animationFillMode: 'forwards'
+                      }}
                     >
                       <CardHeader>
                         <div className="flex items-start justify-between mb-4">
-                          <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <div className="relative w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
                             <service.icon className="text-white" size={24} />
+                            <div className="absolute inset-0 rounded-lg bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge variant="secondary" className="text-xs group-hover:scale-105 transition-transform">
                             {service.code}
                           </Badge>
                         </div>
@@ -211,14 +216,19 @@ const Services = () => {
                   {specialServices.map((service, index) => (
                     <Card
                       key={index}
-                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50"
+                      className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-scale-in opacity-0"
+                      style={{ 
+                        animationDelay: `${index * 100}ms`,
+                        animationFillMode: 'forwards'
+                      }}
                     >
                       <CardHeader>
                         <div className="flex items-start justify-between mb-4">
-                          <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all">
+                          <div className="relative w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                             <service.icon className="text-white" size={28} />
+                            <div className="absolute inset-0 rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
-                          <Badge variant="secondary">
+                          <Badge variant="secondary" className="group-hover:scale-105 transition-transform">
                             {service.code}
                           </Badge>
                         </div>
