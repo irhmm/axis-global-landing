@@ -84,7 +84,7 @@ const Contact = () => {
                     <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                       Email
                     </h3>
-                    <a href="mailto:axisglobalcertification@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm md:text-base block mb-1">
+                    <a href="mailto:axisglobalcertification@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-xs md:text-sm block break-words">
                       axisglobalcertification@gmail.com
                     </a>
                   </div>
