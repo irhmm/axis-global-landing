@@ -72,7 +72,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between gap-4 h-full">
           {/* Logo - Left */}
-          <Link to="/" className="flex items-center gap-2 md:gap-2.5 flex-shrink-0 transition-transform hover:scale-105">
+          <Link to="/" className="flex items-center gap-1.5 md:gap-2 flex-shrink-0 transition-transform hover:scale-105">
             <img 
               src={logo} 
               alt="PT AXIS Global Sertifikasi Logo" 
