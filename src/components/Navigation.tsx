@@ -206,7 +206,7 @@ const Navigation = () => {
                                   if (cert?.accreditation) {
                                     return (
                                       <div 
-                                        className="absolute left-[330px] top-0 w-auto max-w-[280px] z-[100] bg-white dark:bg-gray-900 shadow-2xl border border-border rounded-lg p-4"
+                                        className="absolute left-[330px] top-0 w-auto max-w-[280px] z-[100] bg-card shadow-2xl border border-border rounded-lg p-4"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
                                         <div className="w-full max-w-[240px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20">
@@ -297,7 +297,7 @@ const Navigation = () => {
                                   if (iso) {
                                     return (
                                       <div 
-                                        className="absolute left-[330px] top-0 w-auto max-w-[380px] z-[100] bg-white dark:bg-gray-900 shadow-2xl border border-border rounded-lg p-4"
+                                        className="absolute left-[330px] top-0 w-auto max-w-[380px] z-[100] bg-card shadow-2xl border border-border rounded-lg p-4"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
                                         <p className="text-sm text-muted-foreground leading-relaxed">
