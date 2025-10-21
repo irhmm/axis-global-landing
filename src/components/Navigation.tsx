@@ -303,9 +303,9 @@ const Navigation = () => {
                                 </div>
 
                                 {/* Right Column - Description */}
-                                <div className="pl-4 rounded-r-md flex items-center justify-center">
+                                <div className="pl-4 rounded-r-md flex items-start justify-start">
                                   {selectedService ? (
-                                    <div className="w-full h-full flex flex-col justify-center p-4">
+                                    <div className="w-full p-3 bg-white rounded-lg border border-border">
                                       {(() => {
                                         const iso = servicesMenu.isoStandards.find(
                                           s => s.code === selectedService
@@ -313,17 +313,9 @@ const Navigation = () => {
                                         
                                         if (iso) {
                                           return (
-                                            <div className="space-y-2">
-                                              <h4 className="text-base font-bold text-primary">
-                                                {iso.code}
-                                              </h4>
-                                              <p className="text-sm font-semibold text-foreground">
-                                                {iso.title}
-                                              </p>
-                                              <p className="text-xs text-muted-foreground leading-relaxed">
-                                                {iso.description}
-                                              </p>
-                                            </div>
+                                            <p className="text-sm text-muted-foreground leading-snug">
+                                              {iso.description}
+                                            </p>
                                           );
                                         }
                                       })()}
@@ -331,7 +323,7 @@ const Navigation = () => {
                                   ) : (
                                     <div className="text-center py-12 px-4">
                                       <p className="text-sm text-muted-foreground">
-                                        Hover over an ISO standard to see details
+                                        Arahkan kursor ke ISO untuk melihat penjelasan
                                       </p>
                                     </div>
                                   )}
@@ -551,9 +543,9 @@ const Navigation = () => {
                               </div>
 
                               {/* Right Column - Description */}
-                              <div className="pl-2 rounded-r-md flex items-center justify-center">
+                              <div className="pl-2 rounded-r-md flex items-start justify-start">
                                 {selectedService ? (
-                                  <div className="w-full h-full flex flex-col justify-center p-3">
+                                  <div className="w-full p-2 bg-white rounded-lg border border-border">
                                     {(() => {
                                       const iso = servicesMenu.isoStandards.find(
                                         s => s.code === selectedService
@@ -561,17 +553,9 @@ const Navigation = () => {
                                       
                                       if (iso) {
                                         return (
-                                          <div className="space-y-1.5">
-                                            <h4 className="text-xs font-bold text-primary">
-                                              {iso.code}
-                                            </h4>
-                                            <p className="text-[10px] font-semibold text-foreground leading-tight">
-                                              {iso.title}
-                                            </p>
-                                            <p className="text-[9px] text-muted-foreground leading-relaxed">
-                                              {iso.description}
-                                            </p>
-                                          </div>
+                                          <p className="text-[10px] text-muted-foreground leading-snug">
+                                            {iso.description}
+                                          </p>
                                         );
                                       }
                                     })()}
@@ -579,7 +563,7 @@ const Navigation = () => {
                                 ) : (
                                   <div className="text-center py-8 px-1">
                                     <p className="text-[10px] text-muted-foreground leading-tight">
-                                      Tap ISO standard to see details
+                                      Pilih ISO untuk melihat penjelasan
                                     </p>
                                   </div>
                                 )}
