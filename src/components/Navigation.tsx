@@ -159,7 +159,7 @@ const Navigation = () => {
                   <NavigationMenu key={link.path}>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent hover:text-red-600 focus:bg-transparent focus:text-red-600 data-[active]:bg-transparent data-[active]:text-red-600 data-[state=open]:bg-transparent data-[state=open]:text-red-600">
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
@@ -267,7 +267,7 @@ const Navigation = () => {
                   <NavigationMenu key={link.path}>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent hover:text-red-600 focus:bg-transparent focus:text-red-600 data-[active]:bg-transparent data-[active]:text-red-600 data-[state=open]:bg-transparent data-[state=open]:text-red-600">
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
