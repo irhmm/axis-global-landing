@@ -249,12 +249,20 @@ export default function CertificateForm() {
             />
           )}
 
+          {formData.template_type === 'equal' && (
+            <EqualForm
+              formData={formData}
+              setFormData={setFormData}
+              isEditMode={isEditMode}
+            />
+          )}
+
           {/* Coming Soon for other templates */}
-          {formData.template_type !== 'americo' && formData.template_type !== 'siscert' && (
+          {formData.template_type !== 'americo' && formData.template_type !== 'siscert' && formData.template_type !== 'equal' && (
             <Card className="border-border/50 shadow-sm">
               <CardContent className="py-12 text-center">
                 <p className="text-muted-foreground">
-                  This template is coming soon. Please select Americo or SIS Cert template.
+                  This template is coming soon. Please select Americo, SIS Cert, or Equal template.
                 </p>
               </CardContent>
             </Card>
