@@ -493,7 +493,7 @@ const Navigation = () => {
                     </div>
                     {isAdmin && (
                       <Link
-                        to="/admin"
+                        to="/admin/dashboard"
                         className="text-sm font-medium text-foreground hover:text-destructive py-1.5 transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
