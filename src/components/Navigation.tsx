@@ -163,16 +163,16 @@ const Navigation = () => {
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
-                          className="bg-background shadow-xl border border-border"
+                          className="bg-background shadow-xl border border-border !overflow-visible"
                           onMouseLeave={() => setSelectedAffiliate(null)}
                         >
-                          <div className="w-auto">
+                          <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
                             {/* Certificate Affiliate Section */}
-                            <div className="p-6 relative">
+                            <div className="p-6 relative" style={{ overflow: 'visible' }}>
                               <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
                                 Sertificate Affiliate
                               </h3>
-                              <div className="relative">
+                              <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - Certificate Names */}
                                 <div className="w-[320px]">
                                   <div className="space-y-1">
@@ -205,7 +205,10 @@ const Navigation = () => {
                                   
                                   if (cert?.accreditation) {
                                     return (
-                                      <div className="absolute left-[330px] top-0 w-auto max-w-[280px] z-50 bg-white dark:bg-card shadow-2xl border border-border rounded-lg p-4">
+                                      <div 
+                                        className="absolute left-[330px] top-0 w-auto max-w-[280px] z-[100] bg-white dark:bg-gray-900 shadow-2xl border border-border rounded-lg p-4"
+                                        style={{ pointerEvents: 'auto', position: 'absolute' }}
+                                      >
                                         <div className="w-full max-w-[240px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20">
                                           <img 
                                             src={cert.logo} 
@@ -254,15 +257,15 @@ const Navigation = () => {
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
-                          className="bg-background shadow-xl border border-border"
+                          className="bg-background shadow-xl border border-border !overflow-visible"
                           onMouseLeave={() => setSelectedService(null)}
                         >
-                          <div className="w-auto">
-                            <div className="p-6 relative">
+                          <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
+                            <div className="p-6 relative" style={{ overflow: 'visible' }}>
                               <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
                                 ISO Certification Services
                               </h3>
-                              <div className="relative">
+                              <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - ISO List */}
                                 <div className="w-[320px]">
                                   <div className="space-y-1">
@@ -293,7 +296,10 @@ const Navigation = () => {
                                   
                                   if (iso) {
                                     return (
-                                      <div className="absolute left-[330px] top-0 w-auto max-w-[380px] z-50 bg-white dark:bg-card shadow-2xl border border-border rounded-lg p-4">
+                                      <div 
+                                        className="absolute left-[330px] top-0 w-auto max-w-[380px] z-[100] bg-white dark:bg-gray-900 shadow-2xl border border-border rounded-lg p-4"
+                                        style={{ pointerEvents: 'auto', position: 'absolute' }}
+                                      >
                                         <p className="text-sm text-muted-foreground leading-relaxed">
                                           {iso.description}
                                         </p>
