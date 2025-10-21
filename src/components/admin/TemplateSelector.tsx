@@ -1,4 +1,4 @@
-import { Award, Sparkles, FileText } from "lucide-react";
+import { Award, Sparkles, FileText, BadgeCheck } from "lucide-react";
 import { CertificateTemplate } from "@/types/certificate";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -19,6 +19,15 @@ const templateOptions = [
     color: 'text-purple-500',
     bgColor: 'bg-purple-50 dark:bg-purple-950/20',
     borderColor: 'border-purple-200 dark:border-purple-800',
+  },
+  {
+    value: 'siscert' as CertificateTemplate,
+    name: 'Template SIS Cert',
+    description: 'Clean design dengan badge system',
+    icon: BadgeCheck,
+    color: 'text-red-600',
+    bgColor: 'bg-red-50 dark:bg-red-950/20',
+    borderColor: 'border-red-200 dark:border-red-800',
   },
   {
     value: 'modern' as CertificateTemplate,

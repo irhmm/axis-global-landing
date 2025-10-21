@@ -1,4 +1,4 @@
-export type CertificateTemplate = 'americo' | 'modern' | 'classic';
+export type CertificateTemplate = 'americo' | 'modern' | 'classic' | 'siscert';
 
 export interface TemplateMetadata {
   value: CertificateTemplate;
@@ -21,6 +21,17 @@ export interface Certificate {
   created_at: string;
   updated_at: string;
   created_by?: string;
+  // Additional fields for SIS Cert template
+  address?: string;
+  certified_location?: string;
+  country?: string;
+  issue?: string;
+  first_issue_date?: string;
+  latest_issue_date?: string;
+  recertification_date?: string;
+  ea_code?: string;
+  scope?: string;
+  status?: string;
 }
 
 export type AppRole = 'admin' | 'user';

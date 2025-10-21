@@ -8,6 +8,12 @@ export const CERTIFICATE_TEMPLATES: TemplateMetadata[] = [
     color: 'bg-purple-500',
   },
   {
+    value: 'siscert',
+    name: 'Template SIS Cert',
+    description: 'Clean design dengan badge system untuk SIS Certifications',
+    color: 'bg-red-600',
+  },
+  {
     value: 'modern',
     name: 'Template Modern',
     description: 'Clean dan minimalist design (Coming Soon)',

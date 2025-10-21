@@ -17,45 +17,75 @@ export type Database = {
       certificates: {
         Row: {
           accreditation_body: string
+          address: string | null
           certificate_number: string
           certificate_standard: string
           certification_body: string
+          certified_location: string | null
           company_name: string
+          country: string | null
           created_at: string
           created_by: string | null
+          ea_code: string | null
           expiry_date: string
+          first_issue_date: string | null
           id: string
+          issue: string | null
           issue_date: string
+          latest_issue_date: string | null
+          recertification_date: string | null
+          scope: string | null
+          status: string | null
           surveillance_date: string
           template_type: Database["public"]["Enums"]["certificate_template"]
           updated_at: string
         }
         Insert: {
           accreditation_body?: string
+          address?: string | null
           certificate_number: string
           certificate_standard: string
           certification_body?: string
+          certified_location?: string | null
           company_name: string
+          country?: string | null
           created_at?: string
           created_by?: string | null
+          ea_code?: string | null
           expiry_date: string
+          first_issue_date?: string | null
           id?: string
+          issue?: string | null
           issue_date: string
+          latest_issue_date?: string | null
+          recertification_date?: string | null
+          scope?: string | null
+          status?: string | null
           surveillance_date: string
           template_type?: Database["public"]["Enums"]["certificate_template"]
           updated_at?: string
         }
         Update: {
           accreditation_body?: string
+          address?: string | null
           certificate_number?: string
           certificate_standard?: string
           certification_body?: string
+          certified_location?: string | null
           company_name?: string
+          country?: string | null
           created_at?: string
           created_by?: string | null
+          ea_code?: string | null
           expiry_date?: string
+          first_issue_date?: string | null
           id?: string
+          issue?: string | null
           issue_date?: string
+          latest_issue_date?: string | null
+          recertification_date?: string | null
+          scope?: string | null
+          status?: string | null
           surveillance_date?: string
           template_type?: Database["public"]["Enums"]["certificate_template"]
           updated_at?: string
@@ -98,7 +128,7 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
-      certificate_template: "americo" | "modern" | "classic"
+      certificate_template: "americo" | "modern" | "classic" | "siscert"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -227,7 +257,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
-      certificate_template: ["americo", "modern", "classic"],
+      certificate_template: ["americo", "modern", "classic", "siscert"],
     },
   },
 } as const
