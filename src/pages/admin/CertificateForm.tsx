@@ -39,32 +39,11 @@ export default function CertificateForm() {
     }
     
     if (template === 'siscert') {
-      // Pre-filled example data based on SIS Cert template
-      const today = new Date();
-      const nextYear = new Date(today);
-      nextYear.setFullYear(today.getFullYear() + 3);
-      const surveillanceDate = new Date(today);
-      surveillanceDate.setFullYear(today.getFullYear() + 1);
-      
       return {
         ...base,
-        certificate_number: "SIS-QMS-2024-001",
-        company_name: "PT. Contoh Perusahaan Indonesia",
-        certificate_standard: "ISO 9001:2015",
         certification_body: "SIS Certifications",
         accreditation_body: "KAN",
         status: "active",
-        address: "Jl. Contoh No. 123, Jakarta Selatan",
-        certified_location: "Head Office: Jl. Contoh No. 123, Jakarta Selatan, Indonesia",
-        country: "Indonesia",
-        issue: "ISSUE NO.1",
-        issue_date: today,
-        expiry_date: nextYear,
-        surveillance_date: surveillanceDate,
-        first_issue_date: today,
-        latest_issue_date: today,
-        ea_code: "EA 28",
-        scope: "Design, Development, Production and Distribution of Quality Management System Services",
       };
     }
     
