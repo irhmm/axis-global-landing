@@ -168,36 +168,35 @@ const Navigation = () => {
                         >
                           <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
                             {/* Certificate Affiliate Section */}
-                            <div className="p-6 relative" style={{ overflow: 'visible' }}>
-                              <h3 className="text-base font-bold text-foreground mb-5 uppercase tracking-wider bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center gap-2">
-                                <Award className="w-4 h-4 text-primary" />
+                            <div className="p-5 relative" style={{ overflow: 'visible' }}>
+                              <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wide">
                                 Sertificate Affiliate
                               </h3>
                               <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - Certificate Names */}
-                                <div className="w-[320px]">
-                                  <div className="space-y-2">
+                                <div className="w-[300px]">
+                                  <div className="space-y-1">
                                     {affiliationMenu.certificateAffiliate.map((cert, idx) => (
                                       <div
                                         key={idx}
                                         onMouseEnter={() => cert.accreditation && setSelectedAffiliate(cert.name)}
-                                        className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${
+                                        className={`group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all duration-200 ${
                                           cert.accreditation ? 'cursor-pointer' : 'cursor-default'
                                         } ${
                                           selectedAffiliate === cert.name
-                                            ? 'bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-l-4 border-primary shadow-sm'
-                                            : cert.accreditation ? 'hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]' : ''
+                                            ? 'bg-primary/10 border-l-2 border-primary'
+                                            : cert.accreditation ? 'hover:bg-accent/50' : ''
                                         }`}
                                       >
-                                        <Shield className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                        <Shield className={`w-3.5 h-3.5 flex-shrink-0 ${
                                           selectedAffiliate === cert.name ? 'text-primary' : 'text-muted-foreground'
                                         }`} />
-                                        <span className={`text-sm font-semibold flex-grow ${
+                                        <span className={`text-sm font-medium flex-grow ${
                                           selectedAffiliate === cert.name ? 'text-primary' : 'text-foreground'
                                         }`}>
                                           {cert.name}
                                         </span>
-                                        {cert.accreditation && <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />}
+                                        {cert.accreditation && <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-200" />}
                                       </div>
                                     ))}
                                   </div>
@@ -212,17 +211,17 @@ const Navigation = () => {
                                   if (cert?.accreditation) {
                                     return (
                                       <div 
-                                        className="absolute left-[340px] top-0 w-auto max-w-[300px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
+                                        className="absolute left-[320px] top-0 w-auto max-w-[280px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
-                                        <h4 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide text-center">
+                                        <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide text-center">
                                           Accredited by {cert.accreditation}
                                         </h4>
-                                        <div className="w-full max-w-[240px] mx-auto rounded-xl overflow-hidden bg-white dark:bg-white p-4 shadow-lg border border-border/20 hover:shadow-xl transition-shadow duration-300">
+                                        <div className="w-full max-w-[240px] mx-auto rounded-lg overflow-hidden bg-white dark:bg-white p-3 shadow-md border border-border/20 transition-shadow duration-200">
                                           <img 
                                             src={cert.logo} 
                                             alt={`${cert.accreditation} Logo`}
-                                            className="w-full h-24 object-contain animate-in fade-in-0 zoom-in-95 duration-500"
+                                            className="w-full h-20 object-contain"
                                           />
                                         </div>
                                       </div>
@@ -234,26 +233,23 @@ const Navigation = () => {
                             </div>
 
                             {/* Other Certifications Section */}
-                            <div className="px-6 pb-6 pt-4">
-                              <div className="relative mb-5">
-                                <div className="absolute inset-0 flex items-center">
-                                  <div className="w-full border-t border-border/50"></div>
-                                </div>
-                                <div className="relative flex justify-center">
-                                  <span className="bg-background px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                            <div className="px-5 pb-5 pt-3 border-t border-border/50">
+                              <div className="relative mb-3">
+                                <div className="relative flex justify-start">
+                                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                                     Other Certifications
                                   </span>
                                 </div>
                               </div>
-                              <div className="space-y-2">
+                              <div className="space-y-1">
                                 {affiliationMenu.otherCertifications.map((cert, idx) => (
                                   <Link
                                     key={idx}
                                     to="/affiliasi"
-                                    className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]"
+                                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-accent/50"
                                   >
-                                    <CheckCircle className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
-                                    <span className="text-sm font-semibold text-foreground">{cert}</span>
+                                    <CheckCircle className="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground" />
+                                    <span className="text-sm font-medium text-foreground">{cert}</span>
                                   </Link>
                                 ))}
                               </div>
@@ -279,34 +275,33 @@ const Navigation = () => {
                           onMouseLeave={() => setSelectedService(null)}
                         >
                           <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
-                            <div className="p-6 relative" style={{ overflow: 'visible' }}>
-                              <h3 className="text-base font-bold text-foreground mb-5 uppercase tracking-wider bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center gap-2">
-                                <Award className="w-4 h-4 text-primary" />
+                            <div className="p-5 relative" style={{ overflow: 'visible' }}>
+                              <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wide">
                                 ISO Certification Services
                               </h3>
                               <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - ISO List */}
-                                <div className="w-[320px]">
-                                  <div className="space-y-2">
+                                <div className="w-[300px]">
+                                  <div className="space-y-1">
                                     {servicesMenu.isoStandards.map((iso, idx) => (
                                       <div
                                         key={idx}
                                         onMouseEnter={() => setSelectedService(iso.code)}
-                                        className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out cursor-pointer ${
+                                        className={`group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all duration-200 cursor-pointer ${
                                           selectedService === iso.code
-                                            ? 'bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-l-4 border-primary shadow-sm'
-                                            : 'hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]'
+                                            ? 'bg-primary/10 border-l-2 border-primary'
+                                            : 'hover:bg-accent/50'
                                         }`}
                                       >
-                                        <CheckCircle className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                        <CheckCircle className={`w-3.5 h-3.5 flex-shrink-0 ${
                                           selectedService === iso.code ? 'text-primary' : 'text-muted-foreground'
                                         }`} />
-                                        <span className={`text-sm font-semibold flex-grow ${
+                                        <span className={`text-sm font-medium flex-grow ${
                                           selectedService === iso.code ? 'text-primary' : 'text-foreground'
                                         }`}>
                                           {iso.code}
                                         </span>
-                                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+                                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-200" />
                                       </div>
                                     ))}
                                   </div>
@@ -321,10 +316,10 @@ const Navigation = () => {
                                   if (iso) {
                                     return (
                                       <div 
-                                        className="absolute left-[340px] top-0 w-auto min-w-[500px] max-w-[550px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
+                                        className="absolute left-[320px] top-0 w-auto min-w-[450px] max-w-[500px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
-                                        <h4 className="text-base font-bold text-foreground mb-3">{iso.title}</h4>
+                                        <h4 className="text-sm font-semibold text-foreground mb-2">{iso.title}</h4>
                                         <p className="text-sm text-muted-foreground leading-relaxed">
                                           {iso.description}
                                         </p>
