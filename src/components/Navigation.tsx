@@ -390,7 +390,7 @@ const Navigation = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => setIsAffiliationOpen(!isAffiliationOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary py-1.5 transition-colors"
+                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary active:text-red-600 py-1.5 transition-colors"
                       >
                         {link.label}
                         <ChevronDown
@@ -502,7 +502,7 @@ const Navigation = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary py-1.5 transition-colors"
+                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary active:text-red-600 py-1.5 transition-colors"
                       >
                         {link.label}
                         <ChevronDown
