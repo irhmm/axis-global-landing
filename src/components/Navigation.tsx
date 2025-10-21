@@ -166,15 +166,15 @@ const Navigation = () => {
                           className="bg-background shadow-xl border border-border"
                           onMouseLeave={() => setSelectedAffiliate(null)}
                         >
-                          <div className="w-[700px]">
-                            {/* Certificate Affiliate Section - 2 Columns */}
-                            <div className="p-6">
+                          <div className="w-auto">
+                            {/* Certificate Affiliate Section */}
+                            <div className="p-6 relative">
                               <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
                                 Sertificate Affiliate
                               </h3>
-                              <div className="grid grid-cols-2 gap-0">
+                              <div className="relative">
                                 {/* Left Column - Certificate Names */}
-                                <div className="pr-4 border-r border-border">
+                                <div className="w-[320px]">
                                   <div className="space-y-1">
                                     {affiliationMenu.certificateAffiliate.map((cert, idx) => (
                                       <div
@@ -197,44 +197,27 @@ const Navigation = () => {
                                   </div>
                                 </div>
 
-                                {/* Right Column - Accreditation Logo */}
-                                <div className="pl-4 rounded-r-md flex items-center justify-center">
-                                {selectedAffiliate ? (
-                                  <div className="w-full h-full flex items-center justify-center p-4">
-                                    {(() => {
-                                      const cert = affiliationMenu.certificateAffiliate.find(
-                                        c => c.name === selectedAffiliate
-                                      );
-                                      
-                                      if (cert?.accreditation) {
-                                        return (
-                                          <div className="w-full max-w-[200px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20 shadow-md">
-                                            <img 
-                                              src={cert.logo} 
-                                              alt={`${cert.accreditation} Logo`}
-                                              className="w-full h-24 object-contain"
-                                            />
-                                          </div>
-                                        );
-                                      } else {
-                                        return (
-                                          <div className="text-center py-6">
-                                            <p className="text-sm text-muted-foreground">
-                                              No accreditation available
-                                            </p>
-                                          </div>
-                                        );
-                                      }
-                                    })()}
-                                  </div>
-                                ) : (
-                                  <div className="text-center py-12 px-4">
-                                    <p className="text-sm text-muted-foreground">
-                                      Hover over a certificate to see accreditation logo
-                                    </p>
-                                  </div>
-                                )}
-                                </div>
+                                {/* Right Column - Floating Popup */}
+                                {selectedAffiliate && (() => {
+                                  const cert = affiliationMenu.certificateAffiliate.find(
+                                    c => c.name === selectedAffiliate
+                                  );
+                                  
+                                  if (cert?.accreditation) {
+                                    return (
+                                      <div className="absolute left-[330px] top-0 w-auto max-w-[280px] z-50 bg-white dark:bg-card shadow-2xl border border-border rounded-lg p-4">
+                                        <div className="w-full max-w-[240px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20">
+                                          <img 
+                                            src={cert.logo} 
+                                            alt={`${cert.accreditation} Logo`}
+                                            className="w-full h-24 object-contain"
+                                          />
+                                        </div>
+                                      </div>
+                                    );
+                                  }
+                                  return null;
+                                })()}
                               </div>
                             </div>
 
@@ -274,14 +257,14 @@ const Navigation = () => {
                           className="bg-background shadow-xl border border-border"
                           onMouseLeave={() => setSelectedService(null)}
                         >
-                          <div className="w-[700px]">
-                            <div className="p-6">
+                          <div className="w-auto">
+                            <div className="p-6 relative">
                               <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
                                 ISO Certification Services
                               </h3>
-                              <div className="grid grid-cols-2 gap-0">
+                              <div className="relative">
                                 {/* Left Column - ISO List */}
-                                <div className="pr-4 border-r border-border">
+                                <div className="w-[320px]">
                                   <div className="space-y-1">
                                     {servicesMenu.isoStandards.map((iso, idx) => (
                                       <div
@@ -302,32 +285,23 @@ const Navigation = () => {
                                   </div>
                                 </div>
 
-                                {/* Right Column - Description */}
-                                <div className="pl-4 rounded-r-md flex items-start justify-start">
-                                  {selectedService ? (
-                                    <div className="w-full p-3 bg-white rounded-lg border border-border">
-                                      {(() => {
-                                        const iso = servicesMenu.isoStandards.find(
-                                          s => s.code === selectedService
-                                        );
-                                        
-                                        if (iso) {
-                                          return (
-                                            <p className="text-sm text-muted-foreground leading-snug">
-                                              {iso.description}
-                                            </p>
-                                          );
-                                        }
-                                      })()}
-                                    </div>
-                                  ) : (
-                                    <div className="text-center py-12 px-4">
-                                      <p className="text-sm text-muted-foreground">
-                                        Arahkan kursor ke ISO untuk melihat penjelasan
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
+                                {/* Right Column - Floating Popup Description */}
+                                {selectedService && (() => {
+                                  const iso = servicesMenu.isoStandards.find(
+                                    s => s.code === selectedService
+                                  );
+                                  
+                                  if (iso) {
+                                    return (
+                                      <div className="absolute left-[330px] top-0 w-auto max-w-[380px] z-50 bg-white dark:bg-card shadow-2xl border border-border rounded-lg p-4">
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                          {iso.description}
+                                        </p>
+                                      </div>
+                                    );
+                                  }
+                                  return null;
+                                })()}
                               </div>
                             </div>
                           </div>
