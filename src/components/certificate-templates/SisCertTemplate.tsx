@@ -49,14 +49,14 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
               className="flex items-center gap-2 text-primary-foreground hover:bg-primary-foreground/10 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105"
             >
               <ChevronLeft className="w-5 h-5" />
-              <span className="hidden sm:inline font-medium">Kembali</span>
+              <span className="hidden sm:inline font-medium">Back</span>
             </button>
             <button
               onClick={() => navigate('/')}
               className="flex items-center gap-2 text-primary-foreground hover:bg-primary-foreground/10 px-3 py-2 rounded-lg transition-all duration-200 hover:scale-105"
             >
               <Home className="w-5 h-5" />
-              <span className="hidden sm:inline font-medium">Beranda</span>
+              <span className="hidden sm:inline font-medium">Home</span>
             </button>
           </div>
         </div>
@@ -75,11 +75,11 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
           </div>
           <div className="inline-block mb-4">
             <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm">
-              Verifikasi Sertifikat
+              Certificate Verification
             </Badge>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 tracking-tight">
-            Detail Sertifikat
+            Certificate Details
           </h1>
         </div>
 
@@ -109,7 +109,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   {certificate.company_name}
                 </h2>
                 <div className="mt-4 inline-flex items-center gap-2 bg-accent/50 px-4 py-2 rounded-full">
-                  <span className="text-sm font-medium text-muted-foreground">No. Sertifikat:</span>
+                  <span className="text-sm font-medium text-muted-foreground">Certificate No.:</span>
                   <span className="text-sm font-bold text-foreground">{certificate.certificate_number}</span>
                 </div>
               </div>
@@ -119,13 +119,13 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                 <div className="bg-muted/30 rounded-xl p-6 space-y-4 border border-border/50">
                   <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                     <div className="w-1.5 h-6 bg-primary rounded-full"></div>
-                    Informasi Lokasi
+                    Location Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {certificate.address && (
                       <div className="space-y-2">
                         <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                          Alamat
+                          Address
                         </label>
                         <p className="text-sm md:text-base text-foreground leading-relaxed">
                           {certificate.address}
@@ -135,7 +135,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                     {certificate.certified_location && (
                       <div className="space-y-2">
                         <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                          Lokasi Sertifikasi
+                          Certification Location
                         </label>
                         <p className="text-sm md:text-base text-foreground leading-relaxed">
                           {certificate.certified_location}
@@ -145,7 +145,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                     {certificate.country && (
                       <div className="space-y-2">
                         <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                          Negara
+                          Country
                         </label>
                         <p className="text-sm md:text-base text-foreground font-medium">
                           {certificate.country}
@@ -170,13 +170,13 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
               <div className="bg-muted/30 rounded-xl p-6 space-y-4 border border-border/50">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                   <div className="w-1.5 h-6 bg-primary rounded-full"></div>
-                  Informasi Tanggal
+                  Date Information
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {certificate.first_issue_date && (
                     <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                       <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                        Tanggal Penerbitan Pertama
+                        First Issue Date
                       </label>
                       <p className="text-sm md:text-base text-foreground font-semibold">
                         {formatDate(certificate.first_issue_date)}
@@ -186,7 +186,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   {certificate.latest_issue_date && (
                     <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                       <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                        Tanggal Penerbitan Terbaru
+                        Latest Issue Date
                       </label>
                       <p className="text-sm md:text-base text-foreground font-semibold">
                         {formatDate(certificate.latest_issue_date)}
@@ -195,7 +195,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   )}
                   <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                      Tanggal Kadaluarsa
+                      Expiry Date
                     </label>
                     <p className="text-sm md:text-base text-foreground font-semibold">
                       {formatDate(certificate.expiry_date)}
@@ -204,7 +204,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   {certificate.recertification_date && (
                     <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                       <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                        Tanggal Re-Sertifikasi
+                        Recertification Date
                       </label>
                       <p className="text-sm md:text-base text-foreground font-semibold">
                         {formatDate(certificate.recertification_date)}
@@ -213,7 +213,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   )}
                   <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                      Surveillance Berikutnya
+                      Next Surveillance
                     </label>
                     <p className="text-sm md:text-base text-foreground font-semibold">
                       {formatDate(certificate.surveillance_date)}
@@ -221,7 +221,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   </div>
                   <div className="bg-card rounded-lg p-4 border border-border/50 hover:border-primary/50 transition-colors">
                     <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider block mb-2">
-                      EA Code/Kategori
+                      EA Code/Category
                     </label>
                     <p className="text-sm md:text-base text-foreground font-semibold">
                       {certificate.ea_code || 'N/A'}
@@ -235,7 +235,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                 <div className="bg-muted/30 rounded-xl p-6 space-y-4 border border-border/50">
                   <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                     <div className="w-1.5 h-6 bg-primary rounded-full"></div>
-                    Ruang Lingkup
+                    Scope
                   </h3>
                   <div className="bg-card rounded-lg p-5 border border-border/50">
                     <p className="text-sm md:text-base text-foreground leading-relaxed whitespace-pre-wrap">
@@ -249,7 +249,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
               <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
                 <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                   <div className="w-1.5 h-6 bg-primary rounded-full"></div>
-                  Badan Sertifikasi
+                  Certification Body
                 </h3>
                 <p className="text-base md:text-lg text-foreground font-bold">
                   {certificate.certification_body}
