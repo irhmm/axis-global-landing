@@ -270,10 +270,10 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm md:text-base text-foreground leading-relaxed">
-                      <span className="font-semibold">Verifikasi Sertifikat:</span> Scan QR code atau kunjungi website kami untuk memverifikasi keaslian sertifikat ini.
+                      <span className="font-semibold">Certificate Verification:</span> Scan the QR code or visit our website to verify the authenticity of this certificate.
                     </p>
                     <p className="text-xs md:text-sm text-muted-foreground mt-1">
-                      Untuk informasi lebih lanjut, hubungi tim support kami.
+                      For more information, please contact our support team.
                     </p>
                   </div>
                 </div>
