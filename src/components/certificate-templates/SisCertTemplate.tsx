@@ -81,10 +81,6 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 tracking-tight">
             Detail Sertifikat
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Informasi lengkap untuk sertifikat{" "}
-            <span className="font-semibold text-primary">{certificate.certificate_number}</span>
-          </p>
         </div>
 
         {/* Certificate Card */}
