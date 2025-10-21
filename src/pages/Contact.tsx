@@ -45,40 +45,79 @@ const Contact = () => {
         </section>
 
         {/* Contact Info Cards */}
-        <section className="py-12 bg-secondary">
+        <section className="py-12 md:py-16 bg-gradient-to-br from-secondary via-secondary/80 to-background">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="hover:shadow-primary transition-all animate-slide-up">
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Phone className="text-primary" size={28} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              <div
+                className="group animate-slide-up cursor-pointer"
+              >
+                <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                  
+                  <div className="relative p-6 md:p-8 text-center">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                      <Phone className="text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      Telepon
+                    </h3>
+                    <a href="tel:+6281268746727" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+                      +62 812 6874 6727
+                    </a>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Telepon</h3>
-                  <p className="text-muted-foreground text-sm">+62 812 6874 6727</p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-              <Card className="hover:shadow-primary transition-all animate-slide-up" style={{ animationDelay: "100ms" }}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Mail className="text-primary" size={28} />
+              <div
+                className="group animate-slide-up cursor-pointer"
+                style={{ animationDelay: "100ms" }}
+              >
+                <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                  
+                  <div className="relative p-6 md:p-8 text-center">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                      <Mail className="text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      Email
+                    </h3>
+                    <a href="mailto:axisglobalcertification@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm md:text-base block mb-1">
+                      axisglobalcertification@gmail.com
+                    </a>
+                    <p className="text-muted-foreground text-sm md:text-base">
+                      axiscertificate.com
+                    </p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Email</h3>
-                  <p className="text-muted-foreground text-sm mb-1">axisglobalcertification@gmail.com</p>
-                  <p className="text-muted-foreground text-sm">axiscertificate.com</p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-              <Card className="hover:shadow-primary transition-all animate-slide-up" style={{ animationDelay: "200ms" }}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="text-primary" size={28} />
+              <div
+                className="group animate-slide-up cursor-pointer"
+                style={{ animationDelay: "200ms" }}
+              >
+                <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                  {/* Glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
+                  
+                  <div className="relative p-6 md:p-8 text-center">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg">
+                      <Clock className="text-primary group-hover:scale-110 transition-transform duration-300" size={32} />
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      Jam Kerja
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base mb-1">
+                      Senin - Jumat
+                    </p>
+                    <p className="text-muted-foreground text-sm md:text-base font-medium">
+                      09:00 - 17:00 WIB
+                    </p>
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">Jam Kerja</h3>
-                  <p className="text-muted-foreground text-sm mb-1">Senin - Jumat</p>
-                  <p className="text-muted-foreground text-sm">09:00 - 17:00 WIB</p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </section>
