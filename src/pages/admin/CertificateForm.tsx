@@ -2,21 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { certificateSchema, CertificateFormData } from "@/schemas/certificateSchema";
 import { CertificateTemplate } from "@/types/certificate";
 import { TemplateSelector } from "@/components/admin/TemplateSelector";
 import { format } from "date-fns";
-import { CalendarIcon, QrCode } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { QrCode } from "lucide-react";
+import { AmericoForm } from "@/components/admin/forms/AmericoForm";
+import { SisCertForm } from "@/components/admin/forms/SisCertForm";
 
 export default function CertificateForm() {
   const { id } = useParams();
@@ -28,11 +23,36 @@ export default function CertificateForm() {
   const templateParam = searchParams.get('template') as CertificateTemplate | null;
   
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState<Partial<CertificateFormData>>({
-    certification_body: "Americo",
-    accreditation_body: "UAF",
-    template_type: templateParam || "americo",
-  });
+  
+  // Get default values based on template
+  const getDefaultValues = (template: CertificateTemplate): Partial<CertificateFormData> => {
+    const base = {
+      template_type: template,
+    };
+    
+    if (template === 'americo') {
+      return {
+        ...base,
+        certification_body: "Americo",
+        accreditation_body: "UAF",
+      };
+    }
+    
+    if (template === 'siscert') {
+      return {
+        ...base,
+        certification_body: "SIS Certifications",
+        accreditation_body: "KAN",
+        status: "active",
+      };
+    }
+    
+    return base;
+  };
+
+  const [formData, setFormData] = useState<Partial<CertificateFormData>>(
+    getDefaultValues(templateParam || "americo")
+  );
 
   const isEditMode = !!id;
 
@@ -172,373 +192,50 @@ export default function CertificateForm() {
             <Card className="border-border/50 shadow-sm">
               <CardHeader className="pb-3">
                 <CardTitle className="text-lg">Template Selection</CardTitle>
-                <CardDescription className="text-sm">Choose the visual design for this certificate</CardDescription>
+                <CardDescription className="text-sm">
+                  {isEditMode 
+                    ? "Template cannot be changed for existing certificates" 
+                    : "Choose the visual design for this certificate"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <TemplateSelector
                   value={(formData.template_type as CertificateTemplate) || "americo"}
-                  onChange={(value) => setFormData({ ...formData, template_type: value })}
+                  onChange={(value) => {
+                    if (!isEditMode) {
+                      setFormData({ ...getDefaultValues(value), template_type: value });
+                    }
+                  }}
+                  disabled={isEditMode}
                 />
               </CardContent>
             </Card>
           )}
 
-          <Card className="border-border/50 shadow-sm">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Certificate Details</CardTitle>
-              <CardDescription className="text-sm">Enter the certificate information below</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="certificate_number" className="text-sm font-medium">Certificate Number *</Label>
-                  <Input
-                    id="certificate_number"
-                    value={formData.certificate_number || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, certificate_number: e.target.value })
-                    }
-                    className="h-10 border-border/50 focus:border-primary"
-                    required
-                  />
-                </div>
+          {/* Render template-specific form */}
+          {formData.template_type === 'americo' && (
+            <AmericoForm
+              formData={formData}
+              setFormData={setFormData}
+              isEditMode={isEditMode}
+            />
+          )}
 
-                <div className="space-y-1.5">
-                  <Label htmlFor="company_name" className="text-sm font-medium">Company Name *</Label>
-                  <Input
-                    id="company_name"
-                    value={formData.company_name || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company_name: e.target.value })
-                    }
-                    className="h-10 border-border/50 focus:border-primary"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="certificate_standard" className="text-sm font-medium">Certificate Standard *</Label>
-                  <Input
-                    id="certificate_standard"
-                    value={formData.certificate_standard || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, certificate_standard: e.target.value })
-                    }
-                    placeholder="e.g., ISO 9001:2015"
-                    className="h-10 border-border/50 focus:border-primary"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Issue Date *</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full h-10 justify-start text-left font-normal border-border/50",
-                          !formData.issue_date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {formData.issue_date ? (
-                          format(formData.issue_date, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 z-50" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={formData.issue_date}
-                        onSelect={(date) => setFormData({ ...formData, issue_date: date })}
-                        initialFocus
-                        className="pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Surveillance Date *</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full h-10 justify-start text-left font-normal border-border/50",
-                          !formData.surveillance_date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {formData.surveillance_date ? (
-                          format(formData.surveillance_date, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 z-50" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={formData.surveillance_date}
-                        onSelect={(date) =>
-                          setFormData({ ...formData, surveillance_date: date })
-                        }
-                        initialFocus
-                        className="pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label className="text-sm font-medium">Expiry Date *</Label>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
-                        className={cn(
-                          "w-full h-10 justify-start text-left font-normal border-border/50",
-                          !formData.expiry_date && "text-muted-foreground"
-                        )}
-                      >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {formData.expiry_date ? (
-                          format(formData.expiry_date, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 z-50" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={formData.expiry_date}
-                        onSelect={(date) => setFormData({ ...formData, expiry_date: date })}
-                        initialFocus
-                        className="pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="certification_body" className="text-sm font-medium">Certification Body *</Label>
-                  <Input
-                    id="certification_body"
-                    value={formData.certification_body || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, certification_body: e.target.value })
-                    }
-                    className="h-10 border-border/50 focus:border-primary"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <Label htmlFor="accreditation_body" className="text-sm font-medium">Accreditation Body *</Label>
-                  <Input
-                    id="accreditation_body"
-                    value={formData.accreditation_body || ""}
-                    onChange={(e) =>
-                      setFormData({ ...formData, accreditation_body: e.target.value })
-                    }
-                    className="h-10 border-border/50 focus:border-primary"
-                    required
-                  />
-                 </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Additional Fields for SIS Cert Template */}
           {formData.template_type === 'siscert' && (
+            <SisCertForm
+              formData={formData}
+              setFormData={setFormData}
+              isEditMode={isEditMode}
+            />
+          )}
+
+          {/* Coming Soon for other templates */}
+          {formData.template_type !== 'americo' && formData.template_type !== 'siscert' && (
             <Card className="border-border/50 shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Additional SIS Cert Fields</CardTitle>
-                <CardDescription className="text-sm">Optional fields specific to SIS Cert template</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5 md:col-span-2">
-                    <Label htmlFor="address" className="text-sm font-medium">Address</Label>
-                    <Textarea
-                      id="address"
-                      value={formData.address || ""}
-                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      placeholder="Full address of the organization"
-                      className="min-h-[80px] border-border/50 focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5 md:col-span-2">
-                    <Label htmlFor="certified_location" className="text-sm font-medium">Certified Location</Label>
-                    <Textarea
-                      id="certified_location"
-                      value={formData.certified_location || ""}
-                      onChange={(e) => setFormData({ ...formData, certified_location: e.target.value })}
-                      placeholder="Location that is certified"
-                      className="min-h-[80px] border-border/50 focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="country" className="text-sm font-medium">Country</Label>
-                    <Input
-                      id="country"
-                      value={formData.country || ""}
-                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      placeholder="e.g., Indonesia"
-                      className="h-10 border-border/50 focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="issue" className="text-sm font-medium">Issue</Label>
-                    <Input
-                      id="issue"
-                      value={formData.issue || ""}
-                      onChange={(e) => setFormData({ ...formData, issue: e.target.value })}
-                      placeholder="e.g., ISSUE NO.1"
-                      className="h-10 border-border/50 focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label className="text-sm font-medium">First Issue Date</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-full h-10 justify-start text-left font-normal border-border/50",
-                            !formData.first_issue_date && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.first_issue_date ? (
-                            format(formData.first_issue_date, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 z-50" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.first_issue_date}
-                          onSelect={(date) => setFormData({ ...formData, first_issue_date: date })}
-                          initialFocus
-                          className="pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label className="text-sm font-medium">Latest Issue Date</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-full h-10 justify-start text-left font-normal border-border/50",
-                            !formData.latest_issue_date && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.latest_issue_date ? (
-                            format(formData.latest_issue_date, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 z-50" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.latest_issue_date}
-                          onSelect={(date) => setFormData({ ...formData, latest_issue_date: date })}
-                          initialFocus
-                          className="pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label className="text-sm font-medium">Re-Certification Date</Label>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-full h-10 justify-start text-left font-normal border-border/50",
-                            !formData.recertification_date && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4" />
-                          {formData.recertification_date ? (
-                            format(formData.recertification_date, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0 z-50" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={formData.recertification_date}
-                          onSelect={(date) => setFormData({ ...formData, recertification_date: date })}
-                          initialFocus
-                          className="pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="ea_code" className="text-sm font-medium">EA Code/Category</Label>
-                    <Input
-                      id="ea_code"
-                      value={formData.ea_code || ""}
-                      onChange={(e) => setFormData({ ...formData, ea_code: e.target.value })}
-                      placeholder="e.g., EA 28"
-                      className="h-10 border-border/50 focus:border-primary"
-                    />
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <Label htmlFor="status" className="text-sm font-medium">Status</Label>
-                    <Select
-                      value={formData.status || 'active'}
-                      onValueChange={(value) => setFormData({ ...formData, status: value })}
-                    >
-                      <SelectTrigger className="h-10 border-border/50">
-                        <SelectValue placeholder="Select status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="active">Active</SelectItem>
-                        <SelectItem value="inactive">Inactive</SelectItem>
-                        <SelectItem value="suspended">Suspended</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-1.5 md:col-span-2">
-                    <Label htmlFor="scope" className="text-sm font-medium">Scope</Label>
-                    <Textarea
-                      id="scope"
-                      value={formData.scope || ""}
-                      onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                      placeholder="Detailed scope of certification"
-                      className="min-h-[120px] border-border/50 focus:border-primary"
-                    />
-                  </div>
-                </div>
+              <CardContent className="py-12 text-center">
+                <p className="text-muted-foreground">
+                  This template is coming soon. Please select Americo or SIS Cert template.
+                </p>
               </CardContent>
             </Card>
           )}

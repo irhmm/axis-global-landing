@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 interface TemplateSelectorProps {
   value: CertificateTemplate;
   onChange: (value: CertificateTemplate) => void;
+  disabled?: boolean;
 }
 
 const templateOptions = [
@@ -51,7 +52,7 @@ const templateOptions = [
   },
 ];
 
-export function TemplateSelector({ value, onChange }: TemplateSelectorProps) {
+export function TemplateSelector({ value, onChange, disabled = false }: TemplateSelectorProps) {
   return (
     <div className="space-y-4">
       <div>
@@ -61,11 +62,12 @@ export function TemplateSelector({ value, onChange }: TemplateSelectorProps) {
         </p>
       </div>
       
-      <RadioGroup value={value} onValueChange={onChange}>
+      <RadioGroup value={value} onValueChange={onChange} disabled={disabled}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {templateOptions.map((template) => {
             const Icon = template.icon;
             const isSelected = value === template.value;
+            const isDisabled = disabled || template.disabled;
             
             return (
               <div key={template.value} className="relative">
@@ -73,13 +75,13 @@ export function TemplateSelector({ value, onChange }: TemplateSelectorProps) {
                   value={template.value}
                   id={template.value}
                   className="sr-only"
-                  disabled={template.disabled}
+                  disabled={isDisabled}
                 />
                 <Label
                   htmlFor={template.value}
                   className={cn(
                     "cursor-pointer",
-                    template.disabled && "cursor-not-allowed opacity-50"
+                    isDisabled && "cursor-not-allowed opacity-50"
                   )}
                 >
                   <Card
@@ -87,7 +89,7 @@ export function TemplateSelector({ value, onChange }: TemplateSelectorProps) {
                       "p-4 transition-all hover:shadow-md",
                       template.bgColor,
                       isSelected && `ring-2 ring-offset-2 ${template.borderColor.replace('border-', 'ring-')}`,
-                      template.disabled && "pointer-events-none"
+                      isDisabled && "pointer-events-none"
                     )}
                   >
                     <div className="flex flex-col items-center text-center space-y-3">
