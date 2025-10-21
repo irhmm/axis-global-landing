@@ -72,15 +72,15 @@ const Navigation = () => {
       <div className="container mx-auto px-4 h-full">
         <div className="flex items-center justify-between gap-4 h-full">
           {/* Logo - Left */}
-          <Link to="/" className="flex items-center gap-2.5 md:gap-3 flex-shrink-0">
+          <Link to="/" className="flex items-center gap-3 md:gap-4 flex-shrink-0 transition-transform hover:scale-105">
             <img 
               src={logo} 
-              alt="Axis Global Sertifikasi Logo" 
-              className="w-11 h-11 md:w-12 md:h-12 object-contain"
+              alt="PT AXIS Global Sertifikasi Logo" 
+              className="w-14 h-14 md:w-16 md:h-16 object-contain drop-shadow-lg"
             />
             <div className="hidden sm:block">
-              <h1 className="text-base md:text-lg font-bold text-foreground leading-tight">Axis Global</h1>
-              <p className="text-xs text-muted-foreground -mt-0.5">Certification</p>
+              <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight tracking-wide">AXIS Global</h1>
+              <p className="text-xs md:text-sm text-muted-foreground -mt-0.5">PT AXIS Global Sertifikasi</p>
             </div>
           </Link>
 
