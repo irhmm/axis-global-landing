@@ -54,7 +54,7 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
       </header>
 
       {/* Logo Section */}
-      <div className="bg-[#4A9DAB] py-8">
+      <div className="bg-[#00A3AD] py-8">
         <div className="container mx-auto px-4">
           <img 
             src={equalLogo} 
@@ -91,7 +91,7 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
             {/* Certificate Number */}
             <div className="space-y-2">
               <h3 className="text-base font-semibold text-foreground">Certificate Number(s):</h3>
-              <p className="text-base text-[#4A9DAB] font-medium">{certificate.certificate_number}</p>
+              <p className="text-base text-[#00A3AD] font-medium">{certificate.certificate_number}</p>
             </div>
 
             {/* Trading Name */}
@@ -126,7 +126,7 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
                   href={certificate.website.startsWith('http') ? certificate.website : `https://${certificate.website}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-base text-[#4A9DAB] hover:underline"
+                  className="text-base text-[#00A3AD] hover:underline"
                 >
                   {certificate.website}
                 </a>
