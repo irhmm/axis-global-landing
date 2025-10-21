@@ -2,27 +2,35 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Target, Eye, Heart, Users, Award, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import integrityImg from "@/assets/values/integrity.jpg";
+import professionalismImg from "@/assets/values/professionalism.jpg";
+import collaborationImg from "@/assets/values/collaboration.jpg";
+import improvementImg from "@/assets/values/improvement.jpg";
 
 const values = [
   {
     icon: Heart,
     title: "Integritas",
     description: "Menjunjung tinggi kejujuran dan transparansi dalam setiap layanan yang kami berikan.",
+    image: integrityImg,
   },
   {
     icon: Award,
     title: "Profesionalisme",
     description: "Tim konsultan bersertifikat dengan pengalaman dan keahlian di bidangnya.",
+    image: professionalismImg,
   },
   {
     icon: Users,
     title: "Kolaboratif",
     description: "Bekerja sama dengan klien untuk mencapai tujuan sertifikasi bersama.",
+    image: collaborationImg,
   },
   {
     icon: TrendingUp,
     title: "Continuous Improvement",
     description: "Selalu berinovasi dan meningkatkan kualitas layanan kami.",
+    image: improvementImg,
   },
 ];
 
@@ -115,19 +123,40 @@ const About = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {values.map((value, index) => (
-                <Card
+                <div
                   key={index}
-                  className="group text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up"
+                  className="animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardContent className="p-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                      <value.icon className="text-white" size={24} />
+                  <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Image Section - Top */}
+                    <div className="relative h-20 md:h-28 overflow-hidden bg-muted/20">
+                      <img 
+                        src={value.image} 
+                        alt={value.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="eager"
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+                      
+                      {/* Icon Overlay */}
+                      <div className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <value.icon className="text-white w-4 h-4 md:w-5 md:h-5" />
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
-                    <p className="text-sm text-muted-foreground">{value.description}</p>
-                  </CardContent>
-                </Card>
+                    
+                    {/* Content Section - Bottom */}
+                    <div className="relative p-3 md:p-5 flex flex-col items-center text-center">
+                      <h3 className="text-sm md:text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2 md:mb-3">
+                        {value.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                        {value.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
