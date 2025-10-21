@@ -87,9 +87,6 @@ const Contact = () => {
                     <a href="mailto:axisglobalcertification@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm md:text-base block mb-1">
                       axisglobalcertification@gmail.com
                     </a>
-                    <p className="text-muted-foreground text-sm md:text-base">
-                      axiscertificate.com
-                    </p>
                   </div>
                 </div>
               </div>
