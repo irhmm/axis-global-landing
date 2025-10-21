@@ -25,6 +25,8 @@ const Navigation = () => {
   const [isVerifyDialogOpen, setIsVerifyDialogOpen] = useState(false);
   const [isAffiliationOpen, setIsAffiliationOpen] = useState(false);
   const [selectedAffiliate, setSelectedAffiliate] = useState<string | null>(null);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<string | null>(null);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
 
@@ -42,6 +44,71 @@ const Navigation = () => {
       "Sertifikasi Kemenaker",
       "Sertifikasi BNSP",
       "Sertifikasi Halal Kemenag"
+    ]
+  };
+
+  const servicesMenu = {
+    isoStandards: [
+      { 
+        code: "ISO 37001", 
+        title: "Anti-Bribery Management Systems",
+        description: "Sistem Manajemen Anti-Penyuapan untuk mencegah, mendeteksi, dan mengatasi risiko suap dalam organisasi. Membantu membangun budaya integritas dan transparansi bisnis yang beretika."
+      },
+      { 
+        code: "ISO 21001", 
+        title: "Educational Organizations Management",
+        description: "Sistem Manajemen Organisasi Pendidikan untuk meningkatkan kualitas dan efektivitas layanan pendidikan. Memastikan kepuasan peserta didik dan stakeholder pendidikan."
+      },
+      { 
+        code: "ISO 27001", 
+        title: "Information Security Management",
+        description: "Sistem Manajemen Keamanan Informasi untuk melindungi data dan informasi sensitif organisasi. Mengelola risiko keamanan informasi secara sistematis dan terstruktur."
+      },
+      { 
+        code: "ISO 45001", 
+        title: "Occupational Health & Safety",
+        description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja untuk menciptakan lingkungan kerja yang aman. Mengurangi risiko kecelakaan kerja dan meningkatkan kesejahteraan karyawan."
+      },
+      { 
+        code: "ISO 14001", 
+        title: "Environmental Management Systems",
+        description: "Sistem Manajemen Lingkungan untuk mengelola tanggung jawab lingkungan secara sistematis. Meningkatkan kinerja lingkungan dan meminimalkan dampak operasional terhadap lingkungan."
+      },
+      { 
+        code: "ISO 9001", 
+        title: "Quality Management Systems",
+        description: "Sistem Manajemen Mutu untuk meningkatkan kepuasan pelanggan dan kualitas produk/layanan. Standar internasional yang paling banyak diterapkan di berbagai industri."
+      },
+      { 
+        code: "ISO 22000", 
+        title: "Food Safety Management Systems",
+        description: "Sistem Manajemen Keamanan Pangan untuk memastikan keamanan produk pangan sepanjang rantai pasokan. Melindungi konsumen dari bahaya kontaminasi makanan."
+      },
+      { 
+        code: "ISO 50001", 
+        title: "Energy Management Systems",
+        description: "Sistem Manajemen Energi untuk meningkatkan efisiensi energi dan mengurangi biaya operasional. Mendukung keberlanjutan dan pengurangan emisi karbon perusahaan."
+      },
+      { 
+        code: "ISO 22716", 
+        title: "Cosmetics Good Manufacturing Practice",
+        description: "Pedoman Praktik Manufaktur Kosmetik yang Baik untuk menjamin kualitas dan keamanan produk kosmetik. Memastikan produk kosmetik aman untuk konsumen."
+      },
+      { 
+        code: "ISO 13485", 
+        title: "Medical Devices Quality Management",
+        description: "Sistem Manajemen Mutu Alat Kesehatan untuk memastikan keamanan dan efektivitas perangkat medis. Memenuhi persyaratan regulasi internasional untuk alat kesehatan."
+      },
+      { 
+        code: "ISO/IEC 17025", 
+        title: "Testing & Calibration Laboratories",
+        description: "Standar untuk Laboratorium Pengujian dan Kalibrasi yang kompeten dan konsisten. Memastikan hasil pengujian dan kalibrasi yang akurat dan dapat dipercaya."
+      },
+      { 
+        code: "ISO 22301", 
+        title: "Business Continuity Management",
+        description: "Sistem Manajemen Kontinuitas Bisnis untuk memastikan operasi bisnis tetap berjalan saat terjadi gangguan. Melindungi organisasi dari dampak insiden yang tidak terduga."
+      }
     ]
   };
 
@@ -185,6 +252,90 @@ const Navigation = () => {
                                     </span>
                                   </Link>
                                 ))}
+                              </div>
+                            </div>
+                          </div>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
+                  </NavigationMenu>
+                );
+              }
+
+              if (link.path === "/services") {
+                return (
+                  <NavigationMenu key={link.path}>
+                    <NavigationMenuList>
+                      <NavigationMenuItem>
+                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent focus:bg-transparent data-[active]:bg-transparent data-[state=open]:bg-transparent">
+                          {link.label}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent 
+                          className="bg-background shadow-xl border border-border"
+                          onMouseLeave={() => setSelectedService(null)}
+                        >
+                          <div className="w-[700px]">
+                            <div className="p-6">
+                              <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
+                                ISO Certification Services
+                              </h3>
+                              <div className="grid grid-cols-2 gap-0">
+                                {/* Left Column - ISO List */}
+                                <div className="pr-4 border-r border-border">
+                                  <div className="space-y-1">
+                                    {servicesMenu.isoStandards.map((iso, idx) => (
+                                      <div
+                                        key={idx}
+                                        onMouseEnter={() => setSelectedService(iso.code)}
+                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all cursor-pointer ${
+                                          selectedService === iso.code
+                                            ? 'bg-primary/10 text-primary'
+                                            : 'hover:bg-accent'
+                                        }`}
+                                      >
+                                        <span className="text-sm font-medium">
+                                          • {iso.code}
+                                        </span>
+                                        <ChevronRight className="w-4 h-4" />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+
+                                {/* Right Column - Description */}
+                                <div className="pl-4 rounded-r-md flex items-center justify-center">
+                                  {selectedService ? (
+                                    <div className="w-full h-full flex flex-col justify-center p-4">
+                                      {(() => {
+                                        const iso = servicesMenu.isoStandards.find(
+                                          s => s.code === selectedService
+                                        );
+                                        
+                                        if (iso) {
+                                          return (
+                                            <div className="space-y-2">
+                                              <h4 className="text-base font-bold text-primary">
+                                                {iso.code}
+                                              </h4>
+                                              <p className="text-sm font-semibold text-foreground">
+                                                {iso.title}
+                                              </p>
+                                              <p className="text-xs text-muted-foreground leading-relaxed">
+                                                {iso.description}
+                                              </p>
+                                            </div>
+                                          );
+                                        }
+                                      })()}
+                                    </div>
+                                  ) : (
+                                    <div className="text-center py-12 px-4">
+                                      <p className="text-sm text-muted-foreground">
+                                        Hover over an ISO standard to see details
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -346,6 +497,93 @@ const Navigation = () => {
                                   </span>
                                 </Link>
                               ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (link.path === "/services") {
+                  return (
+                    <div key={link.path}>
+                      <button
+                        onClick={() => setIsServicesOpen(!isServicesOpen)}
+                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary py-1.5 transition-colors"
+                      >
+                        {link.label}
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${
+                            isServicesOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      {isServicesOpen && (
+                        <div className="mt-2 bg-background border border-border rounded-lg overflow-hidden">
+                          <div className="p-4">
+                            <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+                              ISO Certification Services
+                            </p>
+                            <div className="grid grid-cols-2 gap-0">
+                              {/* Left Column - ISO List */}
+                              <div className="pr-2 border-r border-border">
+                                <div className="space-y-1">
+                                  {servicesMenu.isoStandards.map((iso, idx) => (
+                                    <div
+                                      key={idx}
+                                      onClick={() => setSelectedService(
+                                        selectedService === iso.code ? null : iso.code
+                                      )}
+                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all cursor-pointer ${
+                                        selectedService === iso.code
+                                          ? 'bg-primary/10 text-primary'
+                                          : 'active:bg-accent'
+                                      }`}
+                                    >
+                                      <span className="text-xs font-medium">
+                                        • {iso.code}
+                                      </span>
+                                      <ChevronRight className="w-3 h-3" />
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Right Column - Description */}
+                              <div className="pl-2 rounded-r-md flex items-center justify-center">
+                                {selectedService ? (
+                                  <div className="w-full h-full flex flex-col justify-center p-3">
+                                    {(() => {
+                                      const iso = servicesMenu.isoStandards.find(
+                                        s => s.code === selectedService
+                                      );
+                                      
+                                      if (iso) {
+                                        return (
+                                          <div className="space-y-1.5">
+                                            <h4 className="text-xs font-bold text-primary">
+                                              {iso.code}
+                                            </h4>
+                                            <p className="text-[10px] font-semibold text-foreground leading-tight">
+                                              {iso.title}
+                                            </p>
+                                            <p className="text-[9px] text-muted-foreground leading-relaxed">
+                                              {iso.description}
+                                            </p>
+                                          </div>
+                                        );
+                                      }
+                                    })()}
+                                  </div>
+                                ) : (
+                                  <div className="text-center py-8 px-1">
+                                    <p className="text-[10px] text-muted-foreground leading-tight">
+                                      Tap ISO standard to see details
+                                    </p>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
