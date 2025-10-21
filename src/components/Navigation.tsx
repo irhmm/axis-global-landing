@@ -321,16 +321,11 @@ const Navigation = () => {
                                   if (iso) {
                                     return (
                                       <div 
-                                        className="absolute left-[340px] top-0 w-auto max-w-[400px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
+                                        className="absolute left-[340px] top-0 w-auto min-w-[500px] max-w-[550px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
-                                        <div className="flex items-center gap-2 mb-3">
-                                          <div className="bg-primary/10 px-3 py-1 rounded-full">
-                                            <span className="text-xs font-bold text-primary">{iso.code}</span>
-                                          </div>
-                                        </div>
-                                        <h4 className="text-sm font-bold text-foreground mb-3">{iso.title}</h4>
-                                        <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+                                        <h4 className="text-base font-bold text-foreground mb-3">{iso.title}</h4>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
                                           {iso.description}
                                         </p>
                                       </div>
