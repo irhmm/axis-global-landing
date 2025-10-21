@@ -129,20 +129,25 @@ const ServicesSection = () => {
                   className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity duration-300">
-                      <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Image Section - Top */}
+                    <div className="relative h-24 md:h-32 overflow-hidden">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+                      
+                      {/* Icon Overlay */}
+                      <div className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <service.icon className="text-white w-4 h-4 md:w-5 md:h-5" />
+                      </div>
                     </div>
                     
-                    {/* Glow effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
-                    
-                    <div className="relative flex flex-col h-full items-center text-center">
-                      <div className="relative w-10 h-10 md:w-14 md:h-14 mb-2 md:mb-4 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-primary/30 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <service.icon className="text-white w-5 h-5 md:w-6 md:h-6" />
-                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
+                    {/* Content Section - Bottom */}
+                    <div className="relative p-3 md:p-6 flex flex-col items-center text-center">
                       <h3 className="text-sm md:text-lg lg:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2 md:mb-3">
                         {service.title}
                       </h3>
@@ -164,20 +169,25 @@ const ServicesSection = () => {
                   className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity duration-300">
-                      <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                  <div className="relative h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Image Section - Top */}
+                    <div className="relative h-24 md:h-32 overflow-hidden">
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background" />
+                      
+                      {/* Icon Overlay */}
+                      <div className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-8 md:w-10 md:h-10 rounded-lg bg-primary/90 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                        <service.icon className="text-white w-4 h-4 md:w-5 md:h-5" />
+                      </div>
                     </div>
                     
-                    {/* Glow effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
-                    
-                    <div className="relative flex flex-col h-full items-center text-center">
-                      <div className="relative w-10 h-10 md:w-14 md:h-14 mb-2 md:mb-4 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-primary/30 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        <service.icon className="text-white w-5 h-5 md:w-6 md:h-6" />
-                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
+                    {/* Content Section - Bottom */}
+                    <div className="relative p-3 md:p-6 flex flex-col items-center text-center">
                       <h3 className="text-sm md:text-lg lg:text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 mb-2 md:mb-3">
                         {service.title}
                       </h3>
