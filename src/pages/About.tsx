@@ -43,9 +43,9 @@ const team = [
     expertise: "Sertifikasi Halal & Food Safety",
   },
   {
-    name: "Dewi Kartika, S.H.",
-    position: "Legal & Licensing Consultant",
-    expertise: "Perizinan Haji & Umrah",
+    name: "Rina Wijaya, S.T.",
+    position: "Environment Consultant",
+    expertise: "ISO 14001 & Sustainability",
   },
 ];
 
@@ -75,7 +75,7 @@ const About = () => {
               <h2 className="mb-6">Siapa Kami</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                 <strong className="text-foreground">Axis Global Certification</strong> adalah perusahaan konsultan profesional yang berfokus pada 
-                penyediaan layanan sertifikasi ISO, Halal, serta perizinan Haji & Umrah. Didirikan oleh tim berpengalaman 
+                penyediaan layanan sertifikasi ISO dan Halal. Didirikan oleh tim berpengalaman 
                 di bidang sistem manajemen dan konsultasi bisnis, kami berkomitmen membantu perusahaan Indonesia untuk 
                 mencapai standar kualitas internasional.
               </p>

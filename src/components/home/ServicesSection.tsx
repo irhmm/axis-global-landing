@@ -11,7 +11,6 @@ import iso22000Img from "@/assets/services/iso-22000.jpg";
 import iso50001Img from "@/assets/services/iso-50001.jpg";
 import halalImg from "@/assets/services/halal.jpg";
 import ispoImg from "@/assets/services/ispo.jpg";
-import hajjUmrahImg from "@/assets/services/hajj-umrah.jpg";
 import trainingImg from "@/assets/services/training.jpg";
 
 const isoServices = [
@@ -67,12 +66,6 @@ const specialServices = [
     image: ispoImg,
   },
   {
-    icon: PlaneTakeoff,
-    title: "Haji & Umrah",
-    description: "Lisensi penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
-    image: hajjUmrahImg,
-  },
-  {
     icon: GraduationCap,
     title: "Pelatihan & Sertifikasi",
     description: "Program pelatihan dan sertifikasi profesional untuk meningkatkan kompetensi SDM.",
@@ -99,7 +92,7 @@ const ServicesSection = () => {
         <div className="text-center mb-12 md:mb-16 animate-fade-in">
           <h2 className="section-title text-foreground mb-4 md:mb-6">Layanan Kami</h2>
           <p className="section-subtitle max-w-3xl mx-auto">
-            Solusi lengkap sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
+            Solusi lengkap sertifikasi ISO, Halal, dan ISPO dengan standar internasional
           </p>
         </div>
 

@@ -23,15 +23,6 @@ const affiliations = [
     ],
   },
   {
-    name: "Kementerian Agama Republik Indonesia",
-    description: "Kementerian yang mengatur dan memberikan izin penyelenggaraan perjalanan ibadah haji dan umrah.",
-    benefits: [
-      "Lisensi resmi PPIU dan Haji Khusus",
-      "Pendampingan sesuai regulasi kemenag",
-      "Akses ke sistem ONH Plus",
-    ],
-  },
-  {
     name: "Badan Standardisasi Nasional (BSN)",
     description: "Lembaga pemerintah yang bertanggung jawab di bidang standardisasi nasional Indonesia (SNI).",
     benefits: [
@@ -82,12 +73,12 @@ const Affiliasi = () => {
         {/* Stats Section */}
         <section className="py-12 bg-secondary">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center animate-slide-up">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="text-primary" size={32} />
                 </div>
-                <div className="text-4xl font-bold text-primary mb-2">6+</div>
+                <div className="text-4xl font-bold text-primary mb-2">5+</div>
                 <p className="text-muted-foreground">Lembaga Partner</p>
               </div>
               <div className="text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
@@ -159,7 +150,7 @@ const Affiliasi = () => {
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Dipercaya oleh Berbagai Industri</h2>
             <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Dari manufaktur, food & beverage, hingga travel haji umrah - kami telah membantu ratusan perusahaan mendapatkan sertifikasi yang mereka butuhkan
+              Dari manufaktur, food & beverage, hingga berbagai industri lainnya - kami telah membantu ratusan perusahaan mendapatkan sertifikasi yang mereka butuhkan
             </p>
             <div className="flex flex-wrap justify-center gap-8">
               {["Manufaktur", "Food & Beverage", "Travel & Tour", "Konstruksi", "Kesehatan", "Pendidikan", "Logistik", "Hospitality"].map((industry, index) => (

@@ -95,12 +95,6 @@ const specialServices = [
     description: "Untuk produk dan proses sesuai syariat Islam, diakui oleh BPJPH dan MUI.",
   },
   {
-    icon: PlaneTakeoff,
-    code: "Haji & Umrah",
-    title: "Sertifikasi Haji & Umrah",
-    description: "Lisensi untuk penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
-  },
-  {
     icon: GraduationCap,
     code: "Auditor",
     title: "Auditor Sertifikasi",
@@ -127,7 +121,7 @@ const Services = () => {
               Layanan Sertifikasi Profesional
             </h1>
             <p className="text-base md:text-xl max-w-3xl mx-auto opacity-90">
-              Solusi lengkap untuk kebutuhan sertifikasi ISO, Halal, ISPO, dan Haji & Umrah dengan standar internasional
+              Solusi lengkap untuk kebutuhan sertifikasi ISO, Halal, dan ISPO dengan standar internasional
             </p>
           </div>
         </section>

@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-sm text-background/80 leading-relaxed">
-              Konsultan profesional untuk sertifikasi ISO, Halal, Haji & Umrah. Membantu bisnis Anda mencapai standar internasional.
+              Konsultan profesional untuk sertifikasi ISO dan Halal. Membantu bisnis Anda mencapai standar internasional.
             </p>
           </div>
 
@@ -49,7 +49,7 @@ const Footer = () => {
               <li className="text-sm text-background/80">Sertifikasi ISO 14001</li>
               <li className="text-sm text-background/80">Sertifikasi ISO 45001</li>
               <li className="text-sm text-background/80">Sertifikasi Halal</li>
-              <li className="text-sm text-background/80">Sertifikasi Haji & Umrah</li>
+              <li className="text-sm text-background/80">Sertifikasi ISPO</li>
               
               {/* Auth Links */}
               <li className="pt-2 mt-2 border-t border-background/20">

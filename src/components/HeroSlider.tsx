@@ -14,7 +14,7 @@ const slides = [
   {
     image: hero2,
     title: "Global Standards",
-    subtitle: "Achieve ISO, Halal & Umrah Certification Excellence",
+    subtitle: "Achieve ISO and Halal Certification Excellence",
   },
   {
     image: hero3,

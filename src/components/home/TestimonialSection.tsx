@@ -16,15 +16,15 @@ const testimonials = [
     rating: 5,
   },
   {
-    name: "PT. Global Wisata Tour",
-    role: "CEO",
-    content: "Axis Global membantu kami mendapatkan lisensi penyelenggara haji & umrah dengan mudah. Highly recommended untuk yang ingin memulai bisnis travel haji umrah!",
-    rating: 5,
-  },
-  {
     name: "PT. Industri Sejahtera",
     role: "HSE Manager",
     content: "Implementasi ISO 45001 berjalan lancar berkat bimbingan tim Axis Global. Sangat memahami kebutuhan industri kami.",
+    rating: 5,
+  },
+  {
+    name: "PT. Karya Mandiri Sejahtera",
+    role: "Quality Manager",
+    content: "Proses audit dan sertifikasi ISO 14001 sangat terstruktur dan profesional. Tim Axis Global sangat membantu dalam meningkatkan sistem manajemen lingkungan kami.",
     rating: 5,
   },
 ];
