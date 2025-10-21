@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronRight, Award, CheckCircle, Shield } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, CheckCircle, Shield, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import VerifyCertificateDialog from "@/components/VerifyCertificateDialog";
@@ -12,102 +12,95 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import logo from "@/assets/logo.png";
-import uafLogo from "@/assets/accreditation/uaf.png";
-import iasLogo from "@/assets/accreditation/ias.png";
-import kanLogo from "@/assets/accreditation/kan.webp";
-import nordLogo from "@/assets/accreditation/tuv-nord.jpg";
-import egacLogo from "@/assets/accreditation/egac.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVerifyDialogOpen, setIsVerifyDialogOpen] = useState(false);
-  const [isAffiliationOpen, setIsAffiliationOpen] = useState(false);
-  const [selectedAffiliate, setSelectedAffiliate] = useState<string | null>(null);
+  const [isTrainingOpen, setIsTrainingOpen] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
+  const [selectedTrainingISO, setSelectedTrainingISO] = useState<string | null>(null);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
 
-  const affiliationMenu = {
-    certificateAffiliate: [
-      { name: "Americo", accreditation: "UAF", logo: uafLogo },
-      { name: "Siscert", accreditation: "IAS", logo: iasLogo },
-      { name: "TSI", accreditation: "KAN", logo: kanLogo },
-      { name: "TUV", accreditation: "NORD", logo: nordLogo },
-      { name: "BSi" },
-      { name: "UKS", accreditation: "EGAC", logo: egacLogo },
-      { name: "Sucofindo", accreditation: "KAN", logo: kanLogo }
-    ],
-    otherCertifications: [
-      "Sertifikasi Kemenaker",
-      "Sertifikasi BNSP",
-      "Sertifikasi Halal Kemenag"
-    ]
-  };
+  const isoStandards = [
+    {
+      code: "ISO 37001",
+      title: "Anti-Bribery Management Systems",
+      description: "Sistem Manajemen Anti-Penyuapan untuk mencegah, mendeteksi, dan mengatasi risiko suap dalam organisasi. Membantu membangun budaya integritas dan transparansi bisnis yang beretika."
+    },
+    {
+      code: "ISO 21001",
+      title: "Educational Organizations Management",
+      description: "Sistem Manajemen Organisasi Pendidikan untuk meningkatkan kualitas layanan pendidikan. Memastikan pembelajaran yang efektif dan pengembangan berkelanjutan bagi peserta didik."
+    },
+    {
+      code: "ISO 27001",
+      title: "Information Security Management",
+      description: "Sistem Manajemen Keamanan Informasi untuk melindungi data dan informasi sensitif organisasi. Mencakup kontrol keamanan cyber, privasi data, dan manajemen risiko informasi."
+    },
+    {
+      code: "ISO 45001",
+      title: "Occupational Health & Safety",
+      description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja (K3) untuk menciptakan lingkungan kerja yang aman. Mencegah kecelakaan kerja dan penyakit akibat kerja melalui pendekatan sistematis."
+    },
+    {
+      code: "ISO 14001",
+      title: "Environmental Management Systems",
+      description: "Sistem Manajemen Lingkungan untuk mengelola dampak lingkungan organisasi secara berkelanjutan. Meningkatkan efisiensi sumber daya dan memenuhi komitmen keberlanjutan lingkungan."
+    },
+    {
+      code: "ISO 9001",
+      title: "Quality Management Systems",
+      description: "Sistem Manajemen Mutu untuk memastikan konsistensi kualitas produk dan layanan. Meningkatkan kepuasan pelanggan melalui perbaikan berkelanjutan dan efisiensi operasional."
+    },
+    {
+      code: "ISO 22000",
+      title: "Food Safety Management",
+      description: "Sistem Manajemen Keamanan Pangan untuk industri makanan dan minuman. Memastikan keamanan produk pangan dari bahan baku hingga konsumen akhir sesuai standar HACCP."
+    },
+    {
+      code: "ISO 50001",
+      title: "Energy Management Systems",
+      description: "Sistem Manajemen Energi untuk meningkatkan efisiensi penggunaan energi. Mengurangi biaya operasional dan jejak karbon melalui optimalisasi konsumsi energi organisasi."
+    },
+    {
+      code: "ISO 22716",
+      title: "Cosmetics Good Manufacturing Practice",
+      description: "Standar GMP Kosmetik untuk memastikan produksi kosmetik yang aman dan berkualitas. Mencakup kontrol higiene, dokumentasi, dan sistem mutu produksi kosmetik."
+    },
+    {
+      code: "ISO 13485",
+      title: "Medical Devices Quality Management",
+      description: "Sistem Manajemen Mutu Alat Kesehatan untuk manufaktur dan distribusi perangkat medis. Memenuhi persyaratan regulasi dan keamanan produk alat kesehatan."
+    },
+    {
+      code: "ISO/IEC 17025",
+      title: "Testing & Calibration Laboratories",
+      description: "Standar Kompetensi Laboratorium Pengujian dan Kalibrasi. Memastikan hasil pengujian yang akurat, valid, dan diakui secara internasional untuk laboratorium teknis."
+    },
+    {
+      code: "ISO 22301",
+      title: "Business Continuity Management",
+      description: "Sistem Manajemen Kontinuitas Bisnis untuk menghadapi gangguan operasional. Memastikan organisasi dapat terus beroperasi saat terjadi bencana atau insiden kritis."
+    }
+  ];
 
-  const servicesMenu = {
-    isoStandards: [
-      { 
-        code: "ISO 37001", 
-        title: "Anti-Bribery Management Systems",
-        description: "Sistem Manajemen Anti-Penyuapan untuk mencegah, mendeteksi, dan mengatasi risiko suap dalam organisasi. Membantu membangun budaya integritas dan transparansi bisnis yang beretika."
+  const trainingMenu = {
+    programs: [
+      {
+        type: "Awareness ISO",
+        description: "Program pelatihan pengenalan dan pemahaman dasar standar ISO untuk seluruh karyawan dalam organisasi",
+        icon: BookOpen,
       },
-      { 
-        code: "ISO 21001", 
-        title: "Educational Organizations Management",
-        description: "Sistem Manajemen Organisasi Pendidikan untuk meningkatkan kualitas dan efektivitas layanan pendidikan. Memastikan kepuasan peserta didik dan stakeholder pendidikan."
-      },
-      { 
-        code: "ISO 27001", 
-        title: "Information Security Management",
-        description: "Sistem Manajemen Keamanan Informasi untuk melindungi data dan informasi sensitif organisasi. Mengelola risiko keamanan informasi secara sistematis dan terstruktur."
-      },
-      { 
-        code: "ISO 45001", 
-        title: "Occupational Health & Safety",
-        description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja untuk menciptakan lingkungan kerja yang aman. Mengurangi risiko kecelakaan kerja dan meningkatkan kesejahteraan karyawan."
-      },
-      { 
-        code: "ISO 14001", 
-        title: "Environmental Management Systems",
-        description: "Sistem Manajemen Lingkungan untuk mengelola tanggung jawab lingkungan secara sistematis. Meningkatkan kinerja lingkungan dan meminimalkan dampak operasional terhadap lingkungan."
-      },
-      { 
-        code: "ISO 9001", 
-        title: "Quality Management Systems",
-        description: "Sistem Manajemen Mutu untuk meningkatkan kepuasan pelanggan dan kualitas produk/layanan. Standar internasional yang paling banyak diterapkan di berbagai industri."
-      },
-      { 
-        code: "ISO 22000", 
-        title: "Food Safety Management Systems",
-        description: "Sistem Manajemen Keamanan Pangan untuk memastikan keamanan produk pangan sepanjang rantai pasokan. Melindungi konsumen dari bahaya kontaminasi makanan."
-      },
-      { 
-        code: "ISO 50001", 
-        title: "Energy Management Systems",
-        description: "Sistem Manajemen Energi untuk meningkatkan efisiensi energi dan mengurangi biaya operasional. Mendukung keberlanjutan dan pengurangan emisi karbon perusahaan."
-      },
-      { 
-        code: "ISO 22716", 
-        title: "Cosmetics Good Manufacturing Practice",
-        description: "Pedoman Praktik Manufaktur Kosmetik yang Baik untuk menjamin kualitas dan keamanan produk kosmetik. Memastikan produk kosmetik aman untuk konsumen."
-      },
-      { 
-        code: "ISO 13485", 
-        title: "Medical Devices Quality Management",
-        description: "Sistem Manajemen Mutu Alat Kesehatan untuk memastikan keamanan dan efektivitas perangkat medis. Memenuhi persyaratan regulasi internasional untuk alat kesehatan."
-      },
-      { 
-        code: "ISO/IEC 17025", 
-        title: "Testing & Calibration Laboratories",
-        description: "Standar untuk Laboratorium Pengujian dan Kalibrasi yang kompeten dan konsisten. Memastikan hasil pengujian dan kalibrasi yang akurat dan dapat dipercaya."
-      },
-      { 
-        code: "ISO 22301", 
-        title: "Business Continuity Management",
-        description: "Sistem Manajemen Kontinuitas Bisnis untuk memastikan operasi bisnis tetap berjalan saat terjadi gangguan. Melindungi organisasi dari dampak insiden yang tidak terduga."
+      {
+        type: "Lead Auditor",
+        description: "Program pelatihan auditor utama untuk melakukan audit sistem manajemen sesuai standar internasional",
+        icon: GraduationCap,
       }
     ]
   };
@@ -122,7 +115,7 @@ const Navigation = () => {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/affiliasi", label: "Affiliation" },
+    { path: "/training", label: "Training" },
     { path: "/services", label: "Services" },
     { path: "/about", label: "About" },
     { path: "/contact", label: "Contact" },
@@ -154,7 +147,7 @@ const Navigation = () => {
           {/* Desktop Navigation - Center */}
           <div className="hidden lg:flex items-center justify-center gap-5 xl:gap-7 flex-1">
             {navLinks.map((link) => {
-              if (link.path === "/affiliasi") {
+              if (link.path === "/training") {
                 return (
                   <NavigationMenu key={link.path}>
                     <NavigationMenuList>
@@ -164,94 +157,105 @@ const Navigation = () => {
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
                           className="bg-background shadow-xl border border-border !overflow-visible"
-                          onMouseLeave={() => setSelectedAffiliate(null)}
+                          onMouseLeave={() => {
+                            setSelectedProgram(null);
+                            setSelectedTrainingISO(null);
+                          }}
                         >
                           <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
-                            {/* Certificate Affiliate Section */}
                             <div className="p-5 relative" style={{ overflow: 'visible' }}>
                               <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wide">
-                                Sertificate Affiliate
+                                Training Programs
                               </h3>
                               <div className="relative" style={{ overflow: 'visible' }}>
-                                {/* Left Column - Certificate Names */}
-                                <div className="w-[300px]">
-                                  <div className="space-y-1">
-                                    {affiliationMenu.certificateAffiliate.map((cert, idx) => (
-                                      <div
-                                        key={idx}
-                                        onMouseEnter={() => cert.accreditation && setSelectedAffiliate(cert.name)}
-                                        className={`group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all duration-200 ${
-                                          cert.accreditation ? 'cursor-pointer' : 'cursor-default'
-                                        } ${
-                                          selectedAffiliate === cert.name
-                                            ? 'bg-primary/10 border-l-2 border-primary'
-                                            : cert.accreditation ? 'hover:bg-accent/50' : ''
-                                        }`}
-                                      >
-                                        <Shield className={`w-3.5 h-3.5 flex-shrink-0 ${
-                                          selectedAffiliate === cert.name ? 'text-primary' : 'text-muted-foreground'
-                                        }`} />
-                                        <span className={`text-sm font-medium flex-grow ${
-                                          selectedAffiliate === cert.name ? 'text-primary' : 'text-foreground'
-                                        }`}>
-                                          {cert.name}
-                                        </span>
-                                        {cert.accreditation && <ChevronRight className="w-3.5 h-3.5 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-200" />}
-                                      </div>
-                                    ))}
+                                {/* Left Column - Training Programs */}
+                                <div className="w-[350px]">
+                                  <div className="space-y-3">
+                                    {trainingMenu.programs.map((program) => {
+                                      const IconComponent = program.icon;
+                                      return (
+                                        <div
+                                          key={program.type}
+                                          onMouseEnter={() => setSelectedProgram(program.type)}
+                                          className={`group flex items-start gap-3 px-4 py-3 rounded-lg transition-all duration-200 cursor-pointer ${
+                                            selectedProgram === program.type
+                                              ? 'bg-primary/10 border-l-2 border-primary'
+                                              : 'hover:bg-accent/50'
+                                          }`}
+                                        >
+                                          <IconComponent className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                                            selectedProgram === program.type ? 'text-primary' : 'text-muted-foreground'
+                                          }`} />
+                                          <div className="flex-1">
+                                            <p className={`text-sm font-semibold mb-1 ${
+                                              selectedProgram === program.type ? 'text-primary' : 'text-foreground'
+                                            }`}>
+                                              {program.type}
+                                            </p>
+                                            <p className="text-xs text-muted-foreground leading-relaxed">{program.description}</p>
+                                          </div>
+                                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform duration-200 mt-1" />
+                                        </div>
+                                      );
+                                    })}
                                   </div>
                                 </div>
 
-                                {/* Right Column - Floating Popup */}
-                                {selectedAffiliate && (() => {
-                                  const cert = affiliationMenu.certificateAffiliate.find(
-                                    c => c.name === selectedAffiliate
-                                  );
-                                  
-                                  if (cert?.accreditation) {
-                                    return (
-                                      <div 
-                                        className="absolute left-[320px] top-0 w-auto max-w-[280px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
-                                        style={{ pointerEvents: 'auto', position: 'absolute' }}
-                                      >
-                                        <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide text-center">
-                                          Accredited by {cert.accreditation}
-                                        </h4>
-                                        <div className="w-full max-w-[240px] mx-auto rounded-lg overflow-hidden bg-white dark:bg-white p-3 shadow-md border border-border/20 transition-shadow duration-200">
-                                          <img 
-                                            src={cert.logo} 
-                                            alt={`${cert.accreditation} Logo`}
-                                            className="w-full h-20 object-contain"
-                                          />
-                                        </div>
-                                      </div>
-                                    );
-                                  }
-                                  return null;
-                                })()}
-                              </div>
-                            </div>
-
-                            {/* Other Certifications Section */}
-                            <div className="px-5 pb-5 pt-3 border-t border-border/50">
-                              <div className="relative mb-3">
-                                <div className="relative flex justify-start">
-                                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                                    Other Certifications
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="space-y-1">
-                                {affiliationMenu.otherCertifications.map((cert, idx) => (
-                                  <Link
-                                    key={idx}
-                                    to="/affiliasi"
-                                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg transition-all duration-200 hover:bg-accent/50"
+                                {/* Middle Column - ISO Standards List */}
+                                {selectedProgram && (
+                                  <div 
+                                    className="absolute left-[370px] top-0 w-[500px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
+                                    style={{ pointerEvents: 'auto', position: 'absolute' }}
                                   >
-                                    <CheckCircle className="w-3.5 h-3.5 flex-shrink-0 text-muted-foreground" />
-                                    <span className="text-sm font-medium text-foreground">{cert}</span>
-                                  </Link>
-                                ))}
+                                    <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">
+                                      ISO Standards - {selectedProgram}
+                                    </h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                      {isoStandards.map((iso) => (
+                                        <div
+                                          key={iso.code}
+                                          onMouseEnter={() => setSelectedTrainingISO(iso.code)}
+                                          className={`group flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                                            selectedTrainingISO === iso.code
+                                              ? 'bg-primary/10 border-l-2 border-primary'
+                                              : 'hover:bg-accent/50'
+                                          }`}
+                                        >
+                                          <CheckCircle className={`w-3.5 h-3.5 flex-shrink-0 ${
+                                            selectedTrainingISO === iso.code ? 'text-primary' : 'text-muted-foreground'
+                                          }`} />
+                                          <span className={`text-sm font-medium ${
+                                            selectedTrainingISO === iso.code ? 'text-primary' : 'text-foreground'
+                                          }`}>
+                                            {iso.code}
+                                          </span>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Right Column - ISO Description */}
+                                {selectedTrainingISO && (
+                                  <div 
+                                    className="absolute left-[890px] top-0 w-auto min-w-[320px] max-w-[360px] z-[100] bg-muted shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
+                                    style={{ pointerEvents: 'auto', position: 'absolute' }}
+                                  >
+                                    {(() => {
+                                      const iso = isoStandards.find((s) => s.code === selectedTrainingISO);
+                                      return iso ? (
+                                        <div>
+                                          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full mb-3">
+                                            <CheckCircle className="h-4 w-4 text-primary" />
+                                            <span className="text-sm font-semibold text-primary">{iso.code}</span>
+                                          </div>
+                                          <h4 className="text-base font-semibold text-foreground mb-2">{iso.title}</h4>
+                                          <p className="text-sm text-muted-foreground leading-relaxed">{iso.description}</p>
+                                        </div>
+                                      ) : null;
+                                    })()}
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
@@ -283,7 +287,7 @@ const Navigation = () => {
                                 {/* Left Column - ISO List */}
                                 <div className="w-[300px]">
                                   <div className="space-y-1">
-                                    {servicesMenu.isoStandards.map((iso, idx) => (
+                                    {isoStandards.map((iso, idx) => (
                                       <div
                                         key={idx}
                                         onMouseEnter={() => setSelectedService(iso.code)}
@@ -309,7 +313,7 @@ const Navigation = () => {
 
                                 {/* Right Column - Floating Popup Description */}
                                 {selectedService && (() => {
-                                  const iso = servicesMenu.isoStandards.find(
+                                  const iso = isoStandards.find(
                                     s => s.code === selectedService
                                   );
                                   
@@ -385,213 +389,124 @@ const Navigation = () => {
           <div className="lg:hidden absolute left-0 right-0 top-full bg-background shadow-lg border-t border-border z-50 animate-fade-in">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
               {navLinks.map((link) => {
-                if (link.path === "/affiliasi") {
+                if (link.path === "/training") {
                   return (
-                    <div key={link.path}>
-                      <button
-                        onClick={() => setIsAffiliationOpen(!isAffiliationOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors"
-                      >
+                    <Collapsible key={link.path} open={isTrainingOpen} onOpenChange={setIsTrainingOpen}>
+                      <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors">
                         {link.label}
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            isAffiliationOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {isAffiliationOpen && (
-                        <div className="mt-2 bg-background border border-border rounded-lg overflow-hidden">
-                          {/* Certificate Affiliate Section - 2 Columns */}
-                          <div className="p-4">
-                            <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
-                              Sertificate Affiliate
-                            </p>
-                            <div className="grid grid-cols-2 gap-0">
-                              {/* Left Column - Certificate Names */}
-                              <div className="pr-2 border-r border-border">
-                                <div className="space-y-1">
-                                  {affiliationMenu.certificateAffiliate.map((cert, idx) => (
-                                    <div
-                                      key={idx}
-                                      onClick={() => cert.accreditation && setSelectedAffiliate(
-                                        selectedAffiliate === cert.name ? null : cert.name
-                                      )}
-                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all ${
-                                        cert.accreditation ? 'cursor-pointer' : 'cursor-default'
-                                      } ${
-                                        selectedAffiliate === cert.name
-                                          ? 'bg-primary/10 text-primary'
-                                          : cert.accreditation ? 'active:bg-accent' : ''
-                                      }`}
-                                    >
-                                      <span className="text-xs font-medium">
-                                        • {cert.name}
-                                      </span>
-                                      {cert.accreditation && <ChevronRight className="w-3 h-3" />}
-                                    </div>
-                                  ))}
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isTrainingOpen ? 'rotate-180' : ''}`} />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="pl-4 mt-2 space-y-2">
+                        {trainingMenu.programs.map((program) => {
+                          const IconComponent = program.icon;
+                          const programKey = program.type.toLowerCase().replace(/\s+/g, '-');
+                          const [isProgramOpen, setIsProgramOpen] = useState(false);
+                          
+                          return (
+                            <Collapsible key={program.type} open={isProgramOpen} onOpenChange={setIsProgramOpen}>
+                              <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary py-1.5 transition-colors">
+                                <div className="flex items-center gap-2">
+                                  <IconComponent className="h-4 w-4" />
+                                  <span>{program.type}</span>
                                 </div>
-                              </div>
-
-                              {/* Right Column - Accreditation Logo */}
-                              <div className="pl-2 rounded-r-md flex items-center justify-center">
-                                {selectedAffiliate ? (
-                                  <div className="w-full h-full flex items-center justify-center p-3">
-                                    {(() => {
-                                      const cert = affiliationMenu.certificateAffiliate.find(
-                                        c => c.name === selectedAffiliate
-                                      );
-                                      
-                                      if (cert?.accreditation) {
-                                        return (
-                                          <div className="w-full rounded-lg overflow-hidden bg-white dark:bg-white p-2 border border-border/20 shadow-md">
-                                            <img 
-                                              src={cert.logo} 
-                                              alt={`${cert.accreditation} Logo`}
-                                              className="w-full h-16 object-contain"
-                                            />
-                                          </div>
-                                        );
-                                      } else {
-                                        return (
-                                          <div className="text-center py-3">
-                                            <p className="text-[9px] text-muted-foreground">
-                                              No accreditation
-                                            </p>
-                                          </div>
-                                        );
-                                      }
-                                    })()}
-                                  </div>
-                                ) : (
-                                  <div className="text-center py-8 px-1">
-                                    <p className="text-[10px] text-muted-foreground leading-tight">
-                                      Tap certificate to see accreditation logo
-                                    </p>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Other Certifications Section */}
-                          <div className="px-4 pb-4 pt-2 border-t border-border">
-                            <div className="space-y-1">
-                              {affiliationMenu.otherCertifications.map((cert, idx) => (
-                                <Link
-                                  key={idx}
-                                  to="/affiliasi"
-                                  onClick={() => setIsMobileMenuOpen(false)}
-                                  className="block px-2 py-2 rounded-md active:bg-accent transition-colors"
-                                >
-                                  <span className="text-xs font-medium text-foreground">
-                                    • {cert}
-                                  </span>
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                                <ChevronDown className={`h-4 w-4 transition-transform ${isProgramOpen ? 'rotate-180' : ''}`} />
+                              </CollapsibleTrigger>
+                              <CollapsibleContent className="pl-6 mt-1 space-y-1">
+                                {isoStandards.map((iso) => (
+                                  <Link
+                                    key={`${programKey}-${iso.code}`}
+                                    to="/training"
+                                    className="flex items-center gap-2 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    <CheckCircle className="h-3 w-3" />
+                                    <span>{iso.code}</span>
+                                  </Link>
+                                ))}
+                              </CollapsibleContent>
+                            </Collapsible>
+                          );
+                        })}
+                      </CollapsibleContent>
+                    </Collapsible>
                   );
                 }
 
                 if (link.path === "/services") {
                   return (
-                    <div key={link.path}>
-                      <button
-                        onClick={() => setIsServicesOpen(!isServicesOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors"
-                      >
+                    <Collapsible key={link.path} open={isServicesOpen} onOpenChange={setIsServicesOpen}>
+                      <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors">
                         {link.label}
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            isServicesOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      {isServicesOpen && (
-                        <div className="mt-2 bg-background border border-border rounded-lg overflow-hidden">
-                          <div className="p-4">
-                            <p className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
-                              ISO Certification Services
-                            </p>
-                            <div className="grid grid-cols-2 gap-0">
-                              {/* Left Column - ISO List */}
-                              <div className="pr-2 border-r border-border">
-                                <div className="space-y-1">
-                                  {servicesMenu.isoStandards.map((iso, idx) => (
-                                    <div
-                                      key={idx}
-                                      onClick={() => setSelectedService(
-                                        selectedService === iso.code ? null : iso.code
-                                      )}
-                                      className={`flex items-center justify-between px-2 py-2 rounded-md transition-all cursor-pointer ${
-                                        selectedService === iso.code
-                                          ? 'bg-primary/10 text-primary'
-                                          : 'active:bg-accent'
-                                      }`}
-                                    >
-                                      <span className="text-xs font-medium">
-                                        • {iso.code}
-                                      </span>
-                                      <ChevronRight className="w-3 h-3" />
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-
-                              {/* Right Column - Description */}
-                              <div className="pl-2 rounded-r-md flex items-start justify-start">
-                                {selectedService && (
-                                  <div className="w-full p-2 bg-white rounded-lg border border-border">
-                                    {(() => {
-                                      const iso = servicesMenu.isoStandards.find(
-                                        s => s.code === selectedService
-                                      );
-                                      
-                                      if (iso) {
-                                        return (
-                                          <p className="text-[10px] text-muted-foreground leading-snug">
-                                            {iso.description}
-                                          </p>
-                                        );
-                                      }
-                                    })()}
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                        <ChevronDown className={`h-4 w-4 transition-transform ${isServicesOpen ? 'rotate-180' : ''}`} />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="pl-4 mt-2 space-y-2">
+                        {isoStandards.map((iso) => (
+                          <Link
+                            key={iso.code}
+                            to="/services"
+                            className="flex items-center gap-2 py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <CheckCircle className="h-3 w-3" />
+                            <span>{iso.code}</span>
+                          </Link>
+                        ))}
+                      </CollapsibleContent>
+                    </Collapsible>
                   );
                 }
-
+                
                 return (
                   <Link
                     key={link.path}
                     to={link.path}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className={`text-sm font-medium transition-colors hover:text-primary py-1.5 ${
-                      isActive(link.path) ? "text-primary font-semibold" : "text-foreground"
+                    className={`text-sm font-medium py-1.5 transition-colors hover:text-destructive active:bg-destructive/10 active:text-destructive ${
+                      isActive(link.path) ? "text-destructive font-semibold" : "text-foreground"
                     }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {link.label}
                   </Link>
                 );
               })}
+              
               <button
                 onClick={() => {
-                  setIsMobileMenuOpen(false);
                   setIsVerifyDialogOpen(true);
+                  setIsMobileMenuOpen(false);
                 }}
-                className="bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white font-bold px-6 py-3.5 rounded-xl text-sm uppercase tracking-wide text-center shadow-lg hover:shadow-xl transition-all duration-300 w-full border border-red-400/50"
+                className="w-full bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-700 hover:to-orange-600 text-white font-bold px-6 py-3 rounded-full text-sm uppercase tracking-wide shadow-lg hover:shadow-xl transition-all duration-300 mt-2"
               >
-                Verify Certificate
+                Certificate Check
               </button>
+
+              {user && (
+                <div className="pt-2 mt-2 border-t border-border">
+                  <div className="flex flex-col gap-2">
+                    <div className="text-xs text-muted-foreground px-2">
+                      {user.email}
+                    </div>
+                    {isAdmin && (
+                      <Link
+                        to="/admin"
+                        className="text-sm font-medium text-foreground hover:text-destructive py-1.5 transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
+                    <button
+                      onClick={() => {
+                        signOut();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="text-sm font-medium text-destructive hover:text-destructive/80 py-1.5 transition-colors text-left"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -599,7 +514,7 @@ const Navigation = () => {
 
       <VerifyCertificateDialog
         open={isVerifyDialogOpen}
-        onOpenChange={setIsVerifyDialogOpen}
+        onClose={() => setIsVerifyDialogOpen(false)}
       />
     </nav>
   );
