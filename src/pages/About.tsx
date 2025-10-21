@@ -26,29 +26,6 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: "Dr. Ahmad Rizki, MBA",
-    position: "CEO & Lead Consultant",
-    expertise: "ISO Management Systems, 15+ tahun pengalaman",
-  },
-  {
-    name: "Siti Nurhaliza, S.T., M.M.",
-    position: "Senior Consultant ISO",
-    expertise: "ISO 9001, ISO 14001, ISO 45001",
-  },
-  {
-    name: "Muhammad Fadhil, S.Si.",
-    position: "Halal Consultant",
-    expertise: "Sertifikasi Halal & Food Safety",
-  },
-  {
-    name: "Rina Wijaya, S.T.",
-    position: "Environment Consultant",
-    expertise: "ISO 14001 & Sustainability",
-  },
-];
-
 const About = () => {
   return (
     <div className="min-h-screen">
@@ -156,36 +133,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Team */}
-        <section className="py-12 md:py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-8 md:mb-12 animate-fade-in">
-              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-4">Tim Profesional Kami</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Didukung oleh konsultan bersertifikat dan berpengalaman di bidangnya
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-              {team.map((member, index) => (
-                <Card
-                  key={index}
-                  className="group text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border/50 animate-slide-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CardContent className="p-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                      <Users className="text-white" size={24} />
-                    </div>
-                    <h3 className="font-semibold text-lg mb-1">{member.name}</h3>
-                    <p className="text-primary text-sm font-medium mb-2">{member.position}</p>
-                    <p className="text-xs text-muted-foreground">{member.expertise}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Stats */}
         <section className="py-12 md:py-20 bg-secondary">
