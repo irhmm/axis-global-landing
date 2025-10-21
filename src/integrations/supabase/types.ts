@@ -20,7 +20,10 @@ export type Database = {
           address: string | null
           certificate_number: string
           certificate_standard: string
+          certification_approval_date: string | null
           certification_body: string
+          certification_criteria: string | null
+          certification_expiration_date: string | null
           certified_location: string | null
           company_name: string
           country: string | null
@@ -30,22 +33,33 @@ export type Database = {
           expiry_date: string
           first_issue_date: string | null
           id: string
+          isic_code: string | null
           issue: string | null
           issue_date: string
           latest_issue_date: string | null
+          main_site_address: string | null
+          managing_partner: string | null
+          managing_practice: string | null
+          original_audit_date: string | null
+          other_sites: string | null
           recertification_date: string | null
           scope: string | null
           status: string | null
           surveillance_date: string
           template_type: Database["public"]["Enums"]["certificate_template"]
+          trading_name: string | null
           updated_at: string
+          website: string | null
         }
         Insert: {
           accreditation_body?: string
           address?: string | null
           certificate_number: string
           certificate_standard: string
+          certification_approval_date?: string | null
           certification_body?: string
+          certification_criteria?: string | null
+          certification_expiration_date?: string | null
           certified_location?: string | null
           company_name: string
           country?: string | null
@@ -55,22 +69,33 @@ export type Database = {
           expiry_date: string
           first_issue_date?: string | null
           id?: string
+          isic_code?: string | null
           issue?: string | null
           issue_date: string
           latest_issue_date?: string | null
+          main_site_address?: string | null
+          managing_partner?: string | null
+          managing_practice?: string | null
+          original_audit_date?: string | null
+          other_sites?: string | null
           recertification_date?: string | null
           scope?: string | null
           status?: string | null
           surveillance_date: string
           template_type?: Database["public"]["Enums"]["certificate_template"]
+          trading_name?: string | null
           updated_at?: string
+          website?: string | null
         }
         Update: {
           accreditation_body?: string
           address?: string | null
           certificate_number?: string
           certificate_standard?: string
+          certification_approval_date?: string | null
           certification_body?: string
+          certification_criteria?: string | null
+          certification_expiration_date?: string | null
           certified_location?: string | null
           company_name?: string
           country?: string | null
@@ -80,15 +105,23 @@ export type Database = {
           expiry_date?: string
           first_issue_date?: string | null
           id?: string
+          isic_code?: string | null
           issue?: string | null
           issue_date?: string
           latest_issue_date?: string | null
+          main_site_address?: string | null
+          managing_partner?: string | null
+          managing_practice?: string | null
+          original_audit_date?: string | null
+          other_sites?: string | null
           recertification_date?: string | null
           scope?: string | null
           status?: string | null
           surveillance_date?: string
           template_type?: Database["public"]["Enums"]["certificate_template"]
+          trading_name?: string | null
           updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }
@@ -128,7 +161,12 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "user"
-      certificate_template: "americo" | "modern" | "classic" | "siscert"
+      certificate_template:
+        | "americo"
+        | "modern"
+        | "classic"
+        | "siscert"
+        | "equal"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -257,7 +295,13 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
-      certificate_template: ["americo", "modern", "classic", "siscert"],
+      certificate_template: [
+        "americo",
+        "modern",
+        "classic",
+        "siscert",
+        "equal",
+      ],
     },
   },
 } as const
