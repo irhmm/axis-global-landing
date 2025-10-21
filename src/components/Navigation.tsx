@@ -159,7 +159,7 @@ const Navigation = () => {
                   <NavigationMenu key={link.path}>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent hover:text-red-600 focus:bg-transparent focus:text-red-600 data-[active]:bg-transparent data-[active]:text-red-600 data-[state=open]:bg-transparent data-[state=open]:text-red-600">
+                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-destructive hover:text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground data-[active]:bg-destructive data-[active]:text-destructive-foreground data-[state=open]:bg-destructive data-[state=open]:text-destructive-foreground">
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
@@ -267,7 +267,7 @@ const Navigation = () => {
                   <NavigationMenu key={link.path}>
                     <NavigationMenuList>
                       <NavigationMenuItem>
-                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-transparent hover:text-red-600 focus:bg-transparent focus:text-red-600 data-[active]:bg-transparent data-[active]:text-red-600 data-[state=open]:bg-transparent data-[state=open]:text-red-600">
+                        <NavigationMenuTrigger className="text-sm xl:text-base font-medium bg-transparent hover:bg-destructive hover:text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground data-[active]:bg-destructive data-[active]:text-destructive-foreground data-[state=open]:bg-destructive data-[state=open]:text-destructive-foreground">
                           {link.label}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent 
@@ -390,7 +390,7 @@ const Navigation = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => setIsAffiliationOpen(!isAffiliationOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary active:text-red-600 py-1.5 transition-colors"
+                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors"
                       >
                         {link.label}
                         <ChevronDown
@@ -502,7 +502,7 @@ const Navigation = () => {
                     <div key={link.path}>
                       <button
                         onClick={() => setIsServicesOpen(!isServicesOpen)}
-                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-primary active:text-red-600 py-1.5 transition-colors"
+                        className="flex items-center justify-between w-full text-sm font-medium text-foreground hover:text-destructive active:bg-destructive/10 active:text-destructive py-1.5 transition-colors"
                       >
                         {link.label}
                         <ChevronDown
