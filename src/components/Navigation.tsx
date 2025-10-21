@@ -24,6 +24,7 @@ const Navigation = () => {
   const [selectedTrainingISO, setSelectedTrainingISO] = useState<string | null>(null);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [openMobilePrograms, setOpenMobilePrograms] = useState<Record<string, boolean>>({});
   const location = useLocation();
   const { user, isAdmin, signOut } = useAuth();
 
@@ -400,10 +401,14 @@ const Navigation = () => {
                         {trainingMenu.programs.map((program) => {
                           const IconComponent = program.icon;
                           const programKey = program.type.toLowerCase().replace(/\s+/g, '-');
-                          const [isProgramOpen, setIsProgramOpen] = useState(false);
+                          const isProgramOpen = openMobilePrograms[programKey] || false;
                           
                           return (
-                            <Collapsible key={program.type} open={isProgramOpen} onOpenChange={setIsProgramOpen}>
+                            <Collapsible 
+                              key={program.type} 
+                              open={isProgramOpen} 
+                              onOpenChange={(open) => setOpenMobilePrograms(prev => ({ ...prev, [programKey]: open }))}
+                            >
                               <CollapsibleTrigger className="flex items-center justify-between w-full text-sm font-medium text-muted-foreground hover:text-primary py-1.5 transition-colors">
                                 <div className="flex items-center gap-2">
                                   <IconComponent className="h-4 w-4" />
