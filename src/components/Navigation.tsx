@@ -316,7 +316,7 @@ const Navigation = () => {
                                   if (iso) {
                                     return (
                                       <div 
-                                        className="absolute left-[320px] top-0 w-auto min-w-[450px] max-w-[500px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
+                                        className="absolute left-[310px] top-0 w-auto min-w-[320px] max-w-[360px] z-[100] bg-card shadow-lg border border-border/50 rounded-xl p-5 animate-in fade-in-0 slide-in-from-left-1 duration-200"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
                                         <h4 className="text-sm font-semibold text-foreground mb-2">{iso.title}</h4>
