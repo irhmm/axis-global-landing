@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { CheckCircle, ChevronLeft, Home } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import sisCertLogo from "@/assets/siscert-logo.png";
 
 interface SisCertTemplateProps {
   certificate: Certificate;
@@ -65,6 +66,13 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
         {/* Title Section */}
         <div className="text-center mb-8 md:mb-12 animate-fade-in">
+          <div className="flex justify-center mb-6">
+            <img 
+              src={sisCertLogo} 
+              alt="SisCert Logo" 
+              className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto object-contain"
+            />
+          </div>
           <div className="inline-block mb-4">
             <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm">
               Verifikasi Sertifikat
