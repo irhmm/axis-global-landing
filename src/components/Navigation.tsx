@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight, Award, CheckCircle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import VerifyCertificateDialog from "@/components/VerifyCertificateDialog";
@@ -169,29 +169,35 @@ const Navigation = () => {
                           <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
                             {/* Certificate Affiliate Section */}
                             <div className="p-6 relative" style={{ overflow: 'visible' }}>
-                              <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
+                              <h3 className="text-base font-bold text-foreground mb-5 uppercase tracking-wider bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center gap-2">
+                                <Award className="w-4 h-4 text-primary" />
                                 Sertificate Affiliate
                               </h3>
                               <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - Certificate Names */}
                                 <div className="w-[320px]">
-                                  <div className="space-y-1">
+                                  <div className="space-y-2">
                                     {affiliationMenu.certificateAffiliate.map((cert, idx) => (
                                       <div
                                         key={idx}
                                         onMouseEnter={() => cert.accreditation && setSelectedAffiliate(cert.name)}
-                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all ${
+                                        className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${
                                           cert.accreditation ? 'cursor-pointer' : 'cursor-default'
                                         } ${
                                           selectedAffiliate === cert.name
-                                            ? 'bg-primary/10 text-primary'
-                                            : cert.accreditation ? 'hover:bg-accent' : ''
+                                            ? 'bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-l-4 border-primary shadow-sm'
+                                            : cert.accreditation ? 'hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]' : ''
                                         }`}
                                       >
-                                        <span className="text-sm font-medium">
-                                          • {cert.name}
+                                        <Shield className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                          selectedAffiliate === cert.name ? 'text-primary' : 'text-muted-foreground'
+                                        }`} />
+                                        <span className={`text-sm font-semibold flex-grow ${
+                                          selectedAffiliate === cert.name ? 'text-primary' : 'text-foreground'
+                                        }`}>
+                                          {cert.name}
                                         </span>
-                                        {cert.accreditation && <ChevronRight className="w-4 h-4" />}
+                                        {cert.accreditation && <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />}
                                       </div>
                                     ))}
                                   </div>
@@ -206,14 +212,17 @@ const Navigation = () => {
                                   if (cert?.accreditation) {
                                     return (
                                       <div 
-                                        className="absolute left-[330px] top-0 w-auto max-w-[280px] z-[100] bg-card shadow-2xl border border-border rounded-lg p-4"
+                                        className="absolute left-[340px] top-0 w-auto max-w-[300px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
-                                        <div className="w-full max-w-[240px] rounded-lg overflow-hidden bg-white dark:bg-white p-3 border border-border/20">
+                                        <h4 className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide text-center">
+                                          Accredited by {cert.accreditation}
+                                        </h4>
+                                        <div className="w-full max-w-[240px] mx-auto rounded-xl overflow-hidden bg-white dark:bg-white p-4 shadow-lg border border-border/20 hover:shadow-xl transition-shadow duration-300">
                                           <img 
                                             src={cert.logo} 
                                             alt={`${cert.accreditation} Logo`}
-                                            className="w-full h-24 object-contain"
+                                            className="w-full h-24 object-contain animate-in fade-in-0 zoom-in-95 duration-500"
                                           />
                                         </div>
                                       </div>
@@ -225,17 +234,26 @@ const Navigation = () => {
                             </div>
 
                             {/* Other Certifications Section */}
-                            <div className="px-6 pb-6 pt-2 border-t border-border">
-                              <div className="space-y-1">
+                            <div className="px-6 pb-6 pt-4">
+                              <div className="relative mb-5">
+                                <div className="absolute inset-0 flex items-center">
+                                  <div className="w-full border-t border-border/50"></div>
+                                </div>
+                                <div className="relative flex justify-center">
+                                  <span className="bg-background px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                                    Other Certifications
+                                  </span>
+                                </div>
+                              </div>
+                              <div className="space-y-2">
                                 {affiliationMenu.otherCertifications.map((cert, idx) => (
                                   <Link
                                     key={idx}
                                     to="/affiliasi"
-                                    className="block px-3 py-2 rounded-md hover:bg-accent transition-colors group"
+                                    className="group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]"
                                   >
-                                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                                      • {cert}
-                                    </span>
+                                    <CheckCircle className="w-4 h-4 flex-shrink-0 text-muted-foreground" />
+                                    <span className="text-sm font-semibold text-foreground">{cert}</span>
                                   </Link>
                                 ))}
                               </div>
@@ -262,27 +280,33 @@ const Navigation = () => {
                         >
                           <div className="w-auto" style={{ position: 'relative', overflow: 'visible' }}>
                             <div className="p-6 relative" style={{ overflow: 'visible' }}>
-                              <h3 className="text-sm font-semibold text-muted-foreground mb-4 uppercase tracking-wide">
+                              <h3 className="text-base font-bold text-foreground mb-5 uppercase tracking-wider bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent flex items-center gap-2">
+                                <Award className="w-4 h-4 text-primary" />
                                 ISO Certification Services
                               </h3>
                               <div className="relative" style={{ overflow: 'visible' }}>
                                 {/* Left Column - ISO List */}
                                 <div className="w-[320px]">
-                                  <div className="space-y-1">
+                                  <div className="space-y-2">
                                     {servicesMenu.isoStandards.map((iso, idx) => (
                                       <div
                                         key={idx}
                                         onMouseEnter={() => setSelectedService(iso.code)}
-                                        className={`flex items-center justify-between px-3 py-2 rounded-md transition-all cursor-pointer ${
+                                        className={`group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out cursor-pointer ${
                                           selectedService === iso.code
-                                            ? 'bg-primary/10 text-primary'
-                                            : 'hover:bg-accent'
+                                            ? 'bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-l-4 border-primary shadow-sm'
+                                            : 'hover:bg-gradient-to-r hover:from-accent/50 hover:to-accent hover:shadow-md hover:scale-[1.02]'
                                         }`}
                                       >
-                                        <span className="text-sm font-medium">
-                                          • {iso.code}
+                                        <CheckCircle className={`w-4 h-4 flex-shrink-0 transition-colors ${
+                                          selectedService === iso.code ? 'text-primary' : 'text-muted-foreground'
+                                        }`} />
+                                        <span className={`text-sm font-semibold flex-grow ${
+                                          selectedService === iso.code ? 'text-primary' : 'text-foreground'
+                                        }`}>
+                                          {iso.code}
                                         </span>
-                                        <ChevronRight className="w-4 h-4" />
+                                        <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                                       </div>
                                     ))}
                                   </div>
@@ -297,10 +321,16 @@ const Navigation = () => {
                                   if (iso) {
                                     return (
                                       <div 
-                                        className="absolute left-[330px] top-0 w-auto max-w-[380px] z-[100] bg-card shadow-2xl border border-border rounded-lg p-4"
+                                        className="absolute left-[340px] top-0 w-auto max-w-[400px] z-[100] bg-gradient-to-br from-card via-card to-card/95 shadow-[0_20px_70px_-15px_rgba(0,0,0,0.3)] border border-border/30 rounded-2xl p-6 backdrop-blur-sm animate-in fade-in-0 slide-in-from-left-2 duration-300"
                                         style={{ pointerEvents: 'auto', position: 'absolute' }}
                                       >
-                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                        <div className="flex items-center gap-2 mb-3">
+                                          <div className="bg-primary/10 px-3 py-1 rounded-full">
+                                            <span className="text-xs font-bold text-primary">{iso.code}</span>
+                                          </div>
+                                        </div>
+                                        <h4 className="text-sm font-bold text-foreground mb-3">{iso.title}</h4>
+                                        <p className="text-sm text-muted-foreground leading-relaxed text-justify">
                                           {iso.description}
                                         </p>
                                       </div>
