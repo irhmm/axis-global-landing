@@ -3,37 +3,53 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import iso9001Img from "@/assets/services/iso-9001.jpg";
+import iso14001Img from "@/assets/services/iso-14001.jpg";
+import iso27001Img from "@/assets/services/iso-27001.jpg";
+import iso45001Img from "@/assets/services/iso-45001.jpg";
+import iso22000Img from "@/assets/services/iso-22000.jpg";
+import iso50001Img from "@/assets/services/iso-50001.jpg";
+import halalImg from "@/assets/services/halal.jpg";
+import ispoImg from "@/assets/services/ispo.jpg";
+import hajjUmrahImg from "@/assets/services/hajj-umrah.jpg";
+import trainingImg from "@/assets/services/training.jpg";
 
 const isoServices = [
   {
     icon: FileCheck,
     title: "ISO 9001",
     description: "Sistem Manajemen Mutu untuk meningkatkan kualitas produk dan kepuasan pelanggan.",
+    image: iso9001Img,
   },
   {
     icon: Leaf,
     title: "ISO 14001",
     description: "Sistem Manajemen Lingkungan untuk pengelolaan lingkungan yang berkelanjutan.",
+    image: iso14001Img,
   },
   {
     icon: Lock,
     title: "ISO 27001",
     description: "Sistem Manajemen Keamanan Informasi untuk melindungi aset data perusahaan.",
+    image: iso27001Img,
   },
   {
     icon: Shield,
     title: "ISO 45001",
     description: "Sistem Manajemen Kesehatan dan Keselamatan Kerja untuk lingkungan kerja yang aman.",
+    image: iso45001Img,
   },
   {
     icon: FileCheck,
     title: "ISO 22000",
     description: "Sistem Manajemen Keamanan Pangan untuk industri makanan dan minuman.",
+    image: iso22000Img,
   },
   {
     icon: Leaf,
     title: "ISO 50001",
     description: "Sistem Manajemen Energi untuk efisiensi dan penghematan energi perusahaan.",
+    image: iso50001Img,
   },
 ];
 
@@ -42,31 +58,37 @@ const specialServices = [
     icon: Leaf,
     title: "Sertifikasi Halal",
     description: "Sertifikasi produk halal sesuai standar BPJPH dan MUI untuk pasar Muslim.",
+    image: halalImg,
   },
   {
     icon: Palmtree,
     title: "ISPO",
     description: "Sertifikasi perkebunan kelapa sawit berkelanjutan dengan standar Indonesia.",
+    image: ispoImg,
   },
   {
     icon: PlaneTakeoff,
     title: "Haji & Umrah",
     description: "Lisensi penyelenggara perjalanan ibadah haji dan umrah dari Kementerian Agama.",
+    image: hajjUmrahImg,
   },
   {
     icon: GraduationCap,
     title: "Pelatihan & Sertifikasi",
     description: "Program pelatihan dan sertifikasi profesional untuk meningkatkan kompetensi SDM.",
+    image: trainingImg,
   },
   {
     icon: Palmtree,
     title: "RSPO",
     description: "Sertifikasi kelapa sawit berkelanjutan dengan standar internasional RSPO.",
+    image: ispoImg,
   },
   {
     icon: FileCheck,
     title: "SNI",
     description: "Sertifikasi Standar Nasional Indonesia untuk produk berkualitas dan aman.",
+    image: iso9001Img,
   },
 ];
 
@@ -107,7 +129,12 @@ const ServicesSection = () => {
                   className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity duration-300">
+                      <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                    </div>
+                    
                     {/* Glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
                     
@@ -137,7 +164,12 @@ const ServicesSection = () => {
                   className="relative animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity duration-300">
+                      <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                    </div>
+                    
                     {/* Glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
                     

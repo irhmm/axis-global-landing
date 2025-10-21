@@ -1,37 +1,49 @@
 import { Network, Target, Users, Handshake, Globe, Leaf, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import expertAuditorsImg from "@/assets/features/expert-auditors.jpg";
+import transparentImg from "@/assets/features/transparent.jpg";
+import performanceImg from "@/assets/features/performance.jpg";
+import partnershipImg from "@/assets/features/partnership.jpg";
+import globalStandardImg from "@/assets/features/global-standard.jpg";
+import sustainabilityImg from "@/assets/features/sustainability.jpg";
 
 const features = [
   {
     icon: Users,
     title: "Expert Auditors & Practitioners",
     description: "Tim auditor dan praktisi bersertifikat internasional dengan pengalaman luas di berbagai industri",
+    image: expertAuditorsImg,
   },
   {
     icon: Target,
     title: "Transparent & Objective",
     description: "Proses audit yang transparan dan objektif sesuai dengan standar internasional yang berlaku",
+    image: transparentImg,
   },
   {
     icon: Network,
     title: "Performance-Driven Improvement",
     description: "Fokus pada peningkatan kinerja bisnis yang terukur, berkelanjutan, dan memberikan nilai tambah",
+    image: performanceImg,
   },
   {
     icon: Handshake,
     title: "Partnership-Oriented Service",
     description: "Pendekatan kemitraan jangka panjang untuk kesuksesan bersama dengan komitmen penuh",
+    image: partnershipImg,
   },
   {
     icon: Globe,
     title: "Globally Recognized Standard",
     description: "Sertifikasi dengan standar yang diakui secara internasional di lebih dari 30 negara",
+    image: globalStandardImg,
   },
   {
     icon: Leaf,
     title: "Sustainability-Focused",
     description: "Komitmen terhadap praktik bisnis yang berkelanjutan dan bertanggung jawab terhadap lingkungan",
+    image: sustainabilityImg,
   },
 ];
 
@@ -81,7 +93,12 @@ const AboutSection = () => {
                   className="animate-slide-up group cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative p-3 md:p-6 h-full bg-gradient-to-br from-card to-card/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 opacity-10 group-hover:opacity-15 transition-opacity duration-300">
+                      <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                    </div>
+                    
                     {/* Glow effect on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/10 rounded-xl md:rounded-2xl transition-all duration-300" />
                     
