@@ -1,10 +1,11 @@
 import { Certificate } from "@/types/certificate";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Smartphone, XCircle, AlertCircle } from "lucide-react";
+import { CheckCircle, Smartphone, XCircle, AlertCircle, Home } from "lucide-react";
 import { format } from "date-fns";
-import Navigation from "@/components/Navigation";
+import { Link } from "react-router-dom";
 import Footer from "@/components/Footer";
 import { getCertificateStatus, getStatusBadgeColor, getStatusLabel } from "@/lib/certificateStatus";
+import { Button } from "@/components/ui/button";
 
 interface AmericoTemplateProps {
   certificate: Certificate;
@@ -20,7 +21,18 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
 
   return (
     <>
-      <Navigation />
+      {/* Simple Header with Home Button */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
+        <div className="container mx-auto px-4 py-4 flex justify-end">
+          <Link to="/">
+            <Button variant="outline" size="sm" className="gap-2">
+              <Home className="w-4 h-4" />
+              Home
+            </Button>
+          </Link>
+        </div>
+      </header>
+      
       <div className="min-h-screen bg-white pt-20">
         <div className="container mx-auto px-4 py-12">
           {/* Header */}
