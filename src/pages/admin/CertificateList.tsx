@@ -227,7 +227,7 @@ export default function CertificateList() {
 
           <div className="space-y-2.5">
             {CERTIFICATE_TEMPLATES.map((template) => {
-              const isDisabled = template.value !== 'americo' && template.value !== 'siscert' && template.value !== 'equal';
+              const isDisabled = template.value !== 'americo' && template.value !== 'siscert' && template.value !== 'equal' && template.value !== 'gresolve';
               const Icon = getTemplateIcon(template.value);
               const count = templateStats[template.value] || 0;
 

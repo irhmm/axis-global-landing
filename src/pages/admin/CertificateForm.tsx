@@ -14,6 +14,7 @@ import { getPublicBaseUrl } from "@/lib/url";
 import { AmericoForm } from "@/components/admin/forms/AmericoForm";
 import { SisCertForm } from "@/components/admin/forms/SisCertForm";
 import { EqualForm } from "@/components/admin/forms/EqualForm";
+import { GresolveForm } from "@/components/admin/forms/GresolveForm";
 
 export default function CertificateForm() {
   const { id } = useParams();
@@ -53,6 +54,14 @@ export default function CertificateForm() {
         ...base,
         certification_body: "Equal Assurance",
         status: "active",
+      };
+    }
+    
+    if (template === 'gresolve') {
+      return {
+        ...base,
+        certification_body: "AXIS Global Sertifikasi",
+        accreditation_body: "UAF",
       };
     }
     
@@ -258,12 +267,20 @@ export default function CertificateForm() {
             />
           )}
 
+          {formData.template_type === 'gresolve' && (
+            <GresolveForm
+              formData={formData}
+              setFormData={setFormData}
+              isEditMode={isEditMode}
+            />
+          )}
+
           {/* Coming Soon for other templates */}
-          {formData.template_type !== 'americo' && formData.template_type !== 'siscert' && formData.template_type !== 'equal' && (
+          {formData.template_type !== 'americo' && formData.template_type !== 'siscert' && formData.template_type !== 'equal' && formData.template_type !== 'gresolve' && (
             <Card className="border-border/50 shadow-sm">
               <CardContent className="py-12 text-center">
                 <p className="text-muted-foreground">
-                  This template is coming soon. Please select Americo, SIS Cert, or Equal template.
+                  This template is coming soon. Please select Americo, SIS Cert, Equal, or Gresolve template.
                 </p>
               </CardContent>
             </Card>

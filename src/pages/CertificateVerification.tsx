@@ -5,7 +5,7 @@ import { Certificate } from "@/types/certificate";
 import { Smartphone, AlertCircle, Search } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { AmericoTemplate, SisCertTemplate, EqualTemplate } from "@/components/certificate-templates";
+import { AmericoTemplate, SisCertTemplate, EqualTemplate, GresolveTemplate } from "@/components/certificate-templates";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -116,6 +116,8 @@ export default function CertificateVerification() {
         return <SisCertTemplate certificate={certificate} />;
       case 'equal':
         return <EqualTemplate certificate={certificate} />;
+      case 'gresolve':
+        return <GresolveTemplate certificate={certificate} />;
       case 'modern':
         // Future: ModernTemplate
         return <AmericoTemplate certificate={certificate} />;

@@ -9,7 +9,7 @@ export const certificateSchema = z.object({
   expiry_date: z.date({ required_error: "Expiry date is required" }),
   certification_body: z.string().min(1, "Certification body is required").max(100),
   accreditation_body: z.string().min(1, "Accreditation body is required").max(100),
-  template_type: z.enum(['americo', 'modern', 'classic', 'siscert', 'equal']).default('americo'),
+  template_type: z.enum(['americo', 'modern', 'classic', 'siscert', 'equal', 'gresolve']).default('americo'),
   // Optional fields for SIS Cert template
   address: z.string().max(500).optional(),
   certified_location: z.string().max(500).optional(),

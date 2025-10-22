@@ -1,4 +1,4 @@
-export type CertificateTemplate = 'americo' | 'modern' | 'classic' | 'siscert' | 'equal';
+export type CertificateTemplate = 'americo' | 'modern' | 'classic' | 'siscert' | 'equal' | 'gresolve';
 
 export interface TemplateMetadata {
   value: CertificateTemplate;
