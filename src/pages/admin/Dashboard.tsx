@@ -167,7 +167,7 @@ export default function Dashboard() {
                     (s) => s.template === template.value
                   );
                   const count = templateStat?.count || 0;
-                  const isDisabled = template.value !== 'americo' && template.value !== 'siscert' && template.value !== 'equal';
+                  const isDisabled = template.value !== 'americo' && template.value !== 'siscert' && template.value !== 'equal' && template.value !== 'gresolve';
 
                   const getIcon = () => {
                     switch (template.value) {
