@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -29,7 +29,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Quick Links & Admin */}
+          {/* Quick Links */}
           <div>
             <h4 className="text-base md:text-lg font-semibold mb-4">Navigasi</h4>
             <ul className="space-y-2">
@@ -39,8 +39,11 @@ const Footer = () => {
               <li><Link to="/about" className="text-sm text-background/80 hover:text-primary transition-colors">Tentang Kami</Link></li>
               <li><Link to="/contact" className="text-sm text-background/80 hover:text-primary transition-colors">Kontak</Link></li>
             </ul>
-            
-            <h4 className="text-base md:text-lg font-semibold mb-4 mt-6">Admin</h4>
+          </div>
+
+          {/* Admin */}
+          <div>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Admin</h4>
             <ul className="space-y-2">
               {user ? (
                 <>
