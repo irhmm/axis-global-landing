@@ -39,6 +39,7 @@ export default function CertificateList() {
   const [qrDialogOpen, setQrDialogOpen] = useState(false);
   const [previewQRCode, setPreviewQRCode] = useState<string | null>(null);
   const [previewCertificate, setPreviewCertificate] = useState<Certificate | null>(null);
+  const [regeneratingQR, setRegeneratingQR] = useState(false);
   const itemsPerPage = 10;
   const { toast } = useToast();
 
@@ -187,6 +188,29 @@ export default function CertificateList() {
     setQrDialogOpen(false);
     setPreviewQRCode(null);
     setPreviewCertificate(null);
+    setRegeneratingQR(false);
+  };
+
+  const handleRegenerateQRCode = async () => {
+    if (!previewCertificate) return;
+    
+    try {
+      setRegeneratingQR(true);
+      const qrCodeDataURL = await generateQRCode(previewCertificate.certificate_number);
+      setPreviewQRCode(qrCodeDataURL);
+      toast({
+        title: "Success",
+        description: "QR code regenerated with latest domain",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to regenerate QR code",
+        variant: "destructive",
+      });
+    } finally {
+      setRegeneratingQR(false);
+    }
   };
 
   return (
@@ -426,6 +450,8 @@ export default function CertificateList() {
         certificate={previewCertificate}
         qrCodeDataURL={previewQRCode}
         onDownload={handleDownloadQRCode}
+        onRegenerate={handleRegenerateQRCode}
+        isRegenerating={regeneratingQR}
       />
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>

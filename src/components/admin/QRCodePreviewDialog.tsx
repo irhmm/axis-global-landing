@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Download, QrCode, Globe } from "lucide-react";
+import { Download, QrCode, Globe, RefreshCw } from "lucide-react";
 import { getPublicBaseUrl, isDevelopmentEnvironment } from "@/lib/url";
 
 interface QRCodePreviewDialogProps {
@@ -13,6 +13,8 @@ interface QRCodePreviewDialogProps {
   } | null;
   qrCodeDataURL: string | null;
   onDownload: () => void;
+  onRegenerate: () => void;
+  isRegenerating?: boolean;
 }
 
 export function QRCodePreviewDialog({
@@ -21,6 +23,8 @@ export function QRCodePreviewDialog({
   certificate,
   qrCodeDataURL,
   onDownload,
+  onRegenerate,
+  isRegenerating = false,
 }: QRCodePreviewDialogProps) {
   if (!certificate || !qrCodeDataURL) return null;
 
@@ -89,14 +93,34 @@ export function QRCodePreviewDialog({
           </div>
         </ScrollArea>
 
-        <DialogFooter className="gap-2 sm:gap-0">
+        <DialogFooter className="gap-2 sm:gap-0 sm:justify-between">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Close
           </Button>
-          <Button onClick={onDownload} className="gap-2">
-            <Download className="h-4 w-4" />
-            Download QR Code
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              onClick={onRegenerate}
+              disabled={isRegenerating}
+              className="gap-2"
+            >
+              {isRegenerating ? (
+                <>
+                  <RefreshCw className="h-4 w-4 animate-spin" />
+                  Regenerating...
+                </>
+              ) : (
+                <>
+                  <RefreshCw className="h-4 w-4" />
+                  Regenerate
+                </>
+              )}
+            </Button>
+            <Button onClick={onDownload} className="gap-2" disabled={isRegenerating}>
+              <Download className="h-4 w-4" />
+              Download
+            </Button>
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
