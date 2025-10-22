@@ -7,7 +7,9 @@ import QRCode from 'qrcode';
  */
 export async function generateQRCode(certificateNumber: string): Promise<string> {
   try {
-    const verificationUrl = `${window.location.origin}/verify?cert=${certificateNumber}`;
+    // Use production URL from environment variable, fallback to current origin
+    const baseUrl = import.meta.env.VITE_PUBLIC_URL || window.location.origin;
+    const verificationUrl = `${baseUrl}/verify?cert=${certificateNumber}`;
     
     const qrCodeDataURL = await QRCode.toDataURL(verificationUrl, {
       width: 512,

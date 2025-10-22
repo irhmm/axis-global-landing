@@ -22,7 +22,8 @@ export function QRCodePreviewDialog({
 }: QRCodePreviewDialogProps) {
   if (!certificate || !qrCodeDataURL) return null;
 
-  const verificationUrl = `${window.location.origin}/verify?cert=${certificate.certificate_number}`;
+  const baseUrl = import.meta.env.VITE_PUBLIC_URL || window.location.origin;
+  const verificationUrl = `${baseUrl}/verify?cert=${certificate.certificate_number}`;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
