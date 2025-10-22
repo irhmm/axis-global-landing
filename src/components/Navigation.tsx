@@ -140,7 +140,7 @@ const Navigation = () => {
               className="w-14 h-14 md:w-16 md:h-16 object-contain drop-shadow-lg"
             />
             <div className="hidden sm:block">
-              <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight tracking-wide">AXIS Global</h1>
+              <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight tracking-wide">AXIS GLOBAL SERTIFIKASI</h1>
             </div>
           </Link>
 
