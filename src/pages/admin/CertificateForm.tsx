@@ -150,17 +150,29 @@ export default function CertificateForm() {
         certification_body: validated.certification_body,
         accreditation_body: validated.accreditation_body,
         template_type: validated.template_type,
-        // SIS Cert optional fields
-        address: validated.address || null,
-        certified_location: validated.certified_location || null,
-        country: validated.country || null,
-        issue: validated.issue || null,
+        // SIS Cert optional fields - use empty string instead of null
+        address: validated.address || "",
+        certified_location: validated.certified_location || "",
+        country: validated.country || "",
+        issue: validated.issue || "",
         first_issue_date: validated.first_issue_date ? format(validated.first_issue_date, "yyyy-MM-dd") : null,
         latest_issue_date: validated.latest_issue_date ? format(validated.latest_issue_date, "yyyy-MM-dd") : null,
         recertification_date: validated.recertification_date ? format(validated.recertification_date, "yyyy-MM-dd") : null,
-        ea_code: validated.ea_code || null,
-        scope: validated.scope || null,
+        ea_code: validated.ea_code || "",
+        scope: validated.scope || "",
         status: validated.status || 'active',
+        // Equal optional fields - use empty string instead of null
+        trading_name: validated.trading_name || "",
+        main_site_address: validated.main_site_address || "",
+        other_sites: validated.other_sites || "",
+        website: validated.website || "",
+        certification_criteria: validated.certification_criteria || "",
+        certification_approval_date: validated.certification_approval_date ? format(validated.certification_approval_date, "yyyy-MM-dd") : null,
+        original_audit_date: validated.original_audit_date ? format(validated.original_audit_date, "yyyy-MM-dd") : null,
+        certification_expiration_date: validated.certification_expiration_date ? format(validated.certification_expiration_date, "yyyy-MM-dd") : null,
+        isic_code: validated.isic_code || "",
+        managing_partner: validated.managing_partner || "",
+        managing_practice: validated.managing_practice || "",
       };
 
       if (isEditMode) {
