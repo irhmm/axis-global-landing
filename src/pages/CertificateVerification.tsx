@@ -12,7 +12,10 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function CertificateVerification() {
   const [searchParams] = useSearchParams();
-  const certNumber = searchParams.get("cert");
+  const rawCertNumber = searchParams.get("cert");
+  // Clean and decode the certificate number from URL
+  const certNumber = rawCertNumber ? decodeURIComponent(rawCertNumber).trim() : null;
+  
   const [certificate, setCertificate] = useState<Certificate | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,23 +34,26 @@ export default function CertificateVerification() {
     setLoading(true);
     setError(null);
     
+    // Clean the certificate number
+    const cleanCertNum = certNum.trim();
+    
     try {
       const { data, error } = await supabase
         .from("certificates")
         .select("*")
-        .eq("certificate_number", certNum)
+        .eq("certificate_number", cleanCertNum)
         .maybeSingle();
 
       if (error) throw error;
 
       if (!data) {
-        setError("Certificate not found");
+        setError(`Certificate "${cleanCertNum}" not found. Please verify the certificate number is correct.`);
       } else {
         setCertificate(data);
       }
     } catch (err) {
       console.error("Error fetching certificate:", err);
-      setError("Failed to fetch certificate");
+      setError("Failed to fetch certificate. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,5 @@
 import QRCode from 'qrcode';
+import { getPublicBaseUrl } from './url';
 
 /**
  * Generate QR code as data URL from certificate number
@@ -7,8 +8,9 @@ import QRCode from 'qrcode';
  */
 export async function generateQRCode(certificateNumber: string): Promise<string> {
   try {
-    // Always use current domain - auto-adjusts to any domain
-    const verificationUrl = `${window.location.origin}/verify?cert=${certificateNumber}`;
+    // Use public base URL - automatically converts preview domains to public domain
+    const baseUrl = getPublicBaseUrl();
+    const verificationUrl = `${baseUrl}/verify?cert=${encodeURIComponent(certificateNumber)}`;
     
     const qrCodeDataURL = await QRCode.toDataURL(verificationUrl, {
       width: 512,

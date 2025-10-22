@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { getTemplateMetadata, CERTIFICATE_TEMPLATES } from "@/constants/templates";
 import { QRCodePreviewDialog } from "@/components/admin/QRCodePreviewDialog";
+import { getPublicBaseUrl } from "@/lib/url";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -344,11 +345,15 @@ export default function CertificateList() {
                           </TableCell>
                           <TableCell className="text-right">
                             <div className="flex justify-end gap-2">
-                              <Link to={`/verify?cert=${cert.certificate_number}`} target="_blank">
-                                <Button variant="ghost" size="icon" title="View">
+                              <a 
+                                href={`${getPublicBaseUrl()}/verify?cert=${encodeURIComponent(cert.certificate_number)}`} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                              >
+                                <Button variant="ghost" size="icon" title="View Public Certificate">
                                   <ExternalLink className="w-4 h-4" />
                                 </Button>
-                              </Link>
+                              </a>
                               <Link to={`/admin/certificates/${cert.id}/edit`}>
                                 <Button variant="ghost" size="icon" title="Edit">
                                   <Edit className="w-4 h-4" />
