@@ -54,7 +54,7 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
       </header>
 
       {/* Logo Section */}
-      <div className="bg-[#00A3AD] py-8">
+      <div className="bg-[#0993a6] py-8">
         <div className="container mx-auto px-4">
           <img 
             src={equalLogo} 
