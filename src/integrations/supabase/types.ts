@@ -167,6 +167,7 @@ export type Database = {
         | "classic"
         | "siscert"
         | "equal"
+        | "gresolve"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -301,6 +302,7 @@ export const Constants = {
         "classic",
         "siscert",
         "equal",
+        "gresolve",
       ],
     },
   },
