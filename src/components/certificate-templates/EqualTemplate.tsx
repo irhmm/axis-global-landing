@@ -197,20 +197,21 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
           </div>
 
           {/* Footer Info */}
-          <div className="mt-8 bg-gradient-to-r from-[#0993a6]/5 via-[#0993a6]/10 to-[#0993a6]/5 rounded-lg p-6 border border-border">
-            <div className="bg-card/80 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-border/50">
-              <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#0993a6]/10 flex items-center justify-center">
-                  <CheckCircle className="w-6 h-6 text-[#0993a6]" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm md:text-base text-foreground leading-relaxed">
-                    <span className="font-semibold">Certificate Verification:</span> Scan the QR code or visit our website to verify the authenticity of this certificate.
-                  </p>
-                  <p className="text-xs md:text-sm text-muted-foreground mt-1">
-                    For more information, please contact our support team.
-                  </p>
-                </div>
+          <div className="mt-8 bg-gradient-to-br from-[#0993a6]/10 via-[#0993a6]/5 to-transparent rounded-xl p-6 border border-[#0993a6]/20 shadow-lg">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#0993a6] shadow-md flex items-center justify-center">
+                <CheckCircle className="w-7 h-7 text-white" />
+              </div>
+              <div className="flex-1 space-y-2">
+                <h3 className="text-lg font-bold text-foreground">
+                  Certificate Verification
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  This certificate can be verified by scanning the QR code or visiting our official website. All information displayed is authentic and validated by Equal Assurance.
+                </p>
+                <p className="text-xs text-muted-foreground/80 mt-2 pt-2 border-t border-border/50">
+                  For inquiries or support, please contact our certification team through the official channels.
+                </p>
               </div>
             </div>
           </div>
