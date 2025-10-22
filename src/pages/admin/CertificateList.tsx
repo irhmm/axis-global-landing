@@ -14,6 +14,7 @@ import { generateQRCode, downloadQRCode } from "@/lib/qrcode";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { getTemplateMetadata, CERTIFICATE_TEMPLATES } from "@/constants/templates";
+import { QRCodePreviewDialog } from "@/components/admin/QRCodePreviewDialog";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -34,6 +35,9 @@ export default function CertificateList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [templateStats, setTemplateStats] = useState<Record<string, number>>({});
   const [generatingQR, setGeneratingQR] = useState<string | null>(null);
+  const [qrDialogOpen, setQrDialogOpen] = useState(false);
+  const [previewQRCode, setPreviewQRCode] = useState<string | null>(null);
+  const [previewCertificate, setPreviewCertificate] = useState<Certificate | null>(null);
   const itemsPerPage = 10;
   const { toast } = useToast();
 
@@ -149,16 +153,13 @@ export default function CertificateList() {
     return FileType;
   };
 
-  const handleGenerateQRCode = async (cert: Certificate) => {
+  const handleShowQRPreview = async (cert: Certificate) => {
     try {
       setGeneratingQR(cert.id);
       const qrCodeDataURL = await generateQRCode(cert.certificate_number);
-      downloadQRCode(cert.certificate_number, qrCodeDataURL);
-      
-      toast({
-        title: "Success",
-        description: `QR code for ${cert.certificate_number} downloaded successfully`,
-      });
+      setPreviewQRCode(qrCodeDataURL);
+      setPreviewCertificate(cert);
+      setQrDialogOpen(true);
     } catch (error) {
       toast({
         title: "Error",
@@ -168,6 +169,23 @@ export default function CertificateList() {
     } finally {
       setGeneratingQR(null);
     }
+  };
+
+  const handleDownloadQRCode = () => {
+    if (previewCertificate && previewQRCode) {
+      downloadQRCode(previewCertificate.certificate_number, previewQRCode);
+      toast({
+        title: "Success",
+        description: `QR code for ${previewCertificate.certificate_number} downloaded successfully`,
+      });
+      handleCloseQRDialog();
+    }
+  };
+
+  const handleCloseQRDialog = () => {
+    setQrDialogOpen(false);
+    setPreviewQRCode(null);
+    setPreviewCertificate(null);
   };
 
   return (
@@ -313,9 +331,9 @@ export default function CertificateList() {
                             <Button
                               variant="outline"
                               size="icon"
-                              onClick={() => handleGenerateQRCode(cert)}
+                              onClick={() => handleShowQRPreview(cert)}
                               disabled={generatingQR === cert.id}
-                              title="Download QR Code"
+                              title="Preview QR Code"
                             >
                               {generatingQR === cert.id ? (
                                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -396,6 +414,14 @@ export default function CertificateList() {
           )}
         </div>
       </div>
+
+      <QRCodePreviewDialog
+        open={qrDialogOpen}
+        onOpenChange={setQrDialogOpen}
+        certificate={previewCertificate}
+        qrCodeDataURL={previewQRCode}
+        onDownload={handleDownloadQRCode}
+      />
 
       <AlertDialog open={!!deleteId} onOpenChange={() => setDeleteId(null)}>
         <AlertDialogContent>
