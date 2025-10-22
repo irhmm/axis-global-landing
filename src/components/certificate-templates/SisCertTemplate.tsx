@@ -1,9 +1,10 @@
 import { Certificate } from "@/types/certificate";
 import { format } from "date-fns";
-import { CheckCircle, ChevronLeft, Home } from "lucide-react";
+import { CheckCircle, ChevronLeft, Home, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import sisCertLogo from "@/assets/siscert-logo.png";
+import { getCertificateStatus, getStatusLabel } from "@/lib/certificateStatus";
 
 interface SisCertTemplateProps {
   certificate: Certificate;
@@ -21,19 +22,14 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
     }
   };
 
-  const getStatusBadge = (status?: string) => {
-    const statusValue = status || 'active';
-    const statusConfig = {
-      active: { label: 'Active', class: 'bg-green-500 hover:bg-green-600' },
-      inactive: { label: 'Inactive', class: 'bg-gray-500 hover:bg-gray-600' },
-      suspended: { label: 'Suspended', class: 'bg-orange-500 hover:bg-orange-600' },
-    };
-    const config = statusConfig[statusValue as keyof typeof statusConfig] || statusConfig.active;
+  const getStatusBadge = () => {
+    const status = getCertificateStatus(certificate.expiry_date);
+    const isActive = status === 'active';
     
     return (
-      <Badge className={`${config.class} text-white rounded-full px-3 py-1 text-sm font-semibold flex items-center gap-1 w-fit`}>
-        <CheckCircle className="w-4 h-4" />
-        {config.label}
+      <Badge className={`${isActive ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'} text-white rounded-full px-3 py-1 text-sm font-semibold flex items-center gap-1 w-fit`}>
+        {isActive ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+        {getStatusLabel(status)}
       </Badge>
     );
   };
@@ -80,7 +76,7 @@ export function SisCertTemplate({ certificate }: SisCertTemplateProps) {
             {/* Header Section with Status */}
             <div className="bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 px-6 sm:px-8 lg:px-10 py-6 border-b border-border">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                {getStatusBadge(certificate.status)}
+                {getStatusBadge()}
                 <div className="flex flex-wrap gap-2">
                   <Badge className="bg-primary text-primary-foreground rounded-lg px-3 py-1.5 text-xs sm:text-sm font-semibold">
                     {certificate.certificate_standard}

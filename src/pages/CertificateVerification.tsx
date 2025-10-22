@@ -9,6 +9,8 @@ import { AmericoTemplate, SisCertTemplate, EqualTemplate, GresolveTemplate } fro
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { getCertificateStatus } from "@/lib/certificateStatus";
+import { format } from "date-fns";
 
 export default function CertificateVerification() {
   const [searchParams] = useSearchParams();
@@ -134,6 +136,21 @@ export default function CertificateVerification() {
       {/* Show template rendering if certificate found */}
       {certificate && !loading && (
         <>
+          {/* Expired Warning Banner - Show before template */}
+          {getCertificateStatus(certificate.expiry_date) === 'expired' && (
+            <div className="fixed top-20 left-0 right-0 z-40 bg-red-50 border-b border-red-300 px-4 py-4">
+              <div className="container mx-auto max-w-2xl">
+                <div className="flex items-center gap-3">
+                  <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
+                  <p className="text-sm sm:text-base font-medium text-red-800">
+                    ⚠️ <strong>Warning:</strong> This certificate has expired on{" "}
+                    <strong>{format(new Date(certificate.expiry_date), "dd/MM/yyyy")}</strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          
           {renderTemplate()}
           {!certNumber && (
             <div className="fixed bottom-8 right-8 z-50">

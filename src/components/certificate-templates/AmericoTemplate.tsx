@@ -1,9 +1,10 @@
 import { Certificate } from "@/types/certificate";
 import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Smartphone } from "lucide-react";
+import { CheckCircle, Smartphone, XCircle, AlertCircle } from "lucide-react";
 import { format } from "date-fns";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { getCertificateStatus, getStatusBadgeColor, getStatusLabel } from "@/lib/certificateStatus";
 
 interface AmericoTemplateProps {
   certificate: Certificate;
@@ -13,6 +14,9 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
   const formatDate = (dateString: string) => {
     return format(new Date(dateString), "dd/MM/yyyy");
   };
+
+  const status = getCertificateStatus(certificate.expiry_date);
+  const isExpired = status === 'expired';
 
   return (
     <>
@@ -36,6 +40,32 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
               </p>
             </div>
           </div>
+
+          {/* Status Badge */}
+          <div className="max-w-2xl mx-auto mb-6">
+            <div className={`border rounded-lg p-4 flex items-center justify-center gap-3 ${getStatusBadgeColor(status)}`}>
+              {isExpired ? (
+                <XCircle className="w-5 h-5 flex-shrink-0" />
+              ) : (
+                <CheckCircle className="w-5 h-5 flex-shrink-0" />
+              )}
+              <p className="text-sm sm:text-base font-semibold">
+                Certificate Status: {getStatusLabel(status)}
+              </p>
+            </div>
+          </div>
+
+          {/* Expired Warning */}
+          {isExpired && (
+            <div className="max-w-2xl mx-auto mb-6">
+              <div className="bg-red-50 border border-red-300 rounded-lg p-4 flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+                <p className="text-sm sm:text-base font-medium text-red-800">
+                  ⚠️ This certificate has expired on <strong>{formatDate(certificate.expiry_date)}</strong>
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Certificate Card */}
           <Card className="max-w-2xl mx-auto shadow-md border border-gray-200 bg-white">

@@ -1,9 +1,10 @@
 import { Certificate } from "@/types/certificate";
 import { format } from "date-fns";
-import { CheckCircle, Home } from "lucide-react";
+import { CheckCircle, Home, XCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import equalLogo from "@/assets/equal-logo.jpeg";
+import { getCertificateStatus, getStatusLabel } from "@/lib/certificateStatus";
 
 interface EqualTemplateProps {
   certificate: Certificate;
@@ -21,19 +22,14 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
     }
   };
 
-  const getStatusBadge = (status?: string) => {
-    const statusValue = status || 'active';
-    const statusConfig = {
-      active: { label: 'Approved', class: 'bg-green-500 hover:bg-green-600' },
-      inactive: { label: 'Inactive', class: 'bg-gray-500 hover:bg-gray-600' },
-      suspended: { label: 'Suspended', class: 'bg-orange-500 hover:bg-orange-600' },
-    };
-    const config = statusConfig[statusValue as keyof typeof statusConfig] || statusConfig.active;
+  const getStatusBadge = () => {
+    const status = getCertificateStatus(certificate.expiry_date);
+    const isActive = status === 'active';
     
     return (
-      <Badge className={`${config.class} text-white rounded-md px-3 py-1 text-sm font-semibold flex items-center gap-1 w-fit`}>
-        <CheckCircle className="w-4 h-4" />
-        {config.label}
+      <Badge className={`${isActive ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'} text-white rounded-md px-3 py-1 text-sm font-semibold flex items-center gap-1 w-fit`}>
+        {isActive ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+        {getStatusLabel(status)}
       </Badge>
     );
   };
@@ -82,7 +78,7 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
             </h2>
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-muted-foreground">Certification Status:</span>
-              {getStatusBadge(certificate.status)}
+              {getStatusBadge()}
             </div>
           </div>
 

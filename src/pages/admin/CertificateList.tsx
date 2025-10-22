@@ -9,7 +9,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
 import { supabase } from "@/integrations/supabase/client";
 import { Certificate } from "@/types/certificate";
-import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType, BadgeCheck, Building2, QrCode, Loader2 } from "lucide-react";
+import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType, BadgeCheck, Building2, QrCode, Loader2, CheckCircle, XCircle } from "lucide-react";
+import { getCertificateStatus, getStatusBadgeColor, getStatusLabel } from "@/lib/certificateStatus";
 import { generateQRCode, downloadQRCode } from "@/lib/qrcode";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
@@ -326,6 +327,7 @@ export default function CertificateList() {
                     <TableHead className="text-center">Template</TableHead>
                     <TableHead className="text-center">Issue Date</TableHead>
                     <TableHead className="text-center">Expiry Date</TableHead>
+                    <TableHead className="text-center">Status</TableHead>
                     <TableHead className="text-center">QR Code</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
@@ -333,13 +335,15 @@ export default function CertificateList() {
                 <TableBody>
                   {filteredCertificates.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                         No certificates found
                       </TableCell>
                     </TableRow>
                   ) : (
                     paginatedCertificates.map((cert) => {
                       const templateMeta = getTemplateMetadata(cert.template_type || 'americo');
+                      const status = getCertificateStatus(cert.expiry_date);
+                      const isActive = status === 'active';
                       return (
                         <TableRow key={cert.id}>
                           <TableCell className="font-medium">{cert.certificate_number}</TableCell>
@@ -352,6 +356,12 @@ export default function CertificateList() {
                           </TableCell>
                           <TableCell className="text-center">{formatDate(cert.issue_date)}</TableCell>
                           <TableCell className="text-center">{formatDate(cert.expiry_date)}</TableCell>
+                          <TableCell className="text-center">
+                            <Badge className={`${getStatusBadgeColor(status)} border flex items-center gap-1 justify-center w-fit mx-auto`}>
+                              {isActive ? <CheckCircle className="w-3 h-3" /> : <XCircle className="w-3 h-3" />}
+                              {getStatusLabel(status)}
+                            </Badge>
+                          </TableCell>
                           <TableCell className="text-center">
                             <Button
                               variant="outline"

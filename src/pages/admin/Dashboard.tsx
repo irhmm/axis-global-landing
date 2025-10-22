@@ -5,13 +5,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck, Building2 } from "lucide-react";
+import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck, Building2, CheckCircle, XCircle } from "lucide-react";
 import { CERTIFICATE_TEMPLATES } from "@/constants/templates";
 import { CertificateTemplate } from "@/types/certificate";
+import { getCertificateStatus } from "@/lib/certificateStatus";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
     totalCertificates: 0,
+    activeCertificates: 0,
+    expiredCertificates: 0,
     templateStats: [] as { template: CertificateTemplate; count: number }[],
   });
 
@@ -25,15 +28,26 @@ export default function Dashboard() {
       .from("certificates")
       .select("*", { count: "exact", head: true });
 
-    // Get template statistics
+    // Get all certificates with expiry dates
     const { data: certificates } = await supabase
       .from("certificates")
-      .select("template_type");
+      .select("template_type, expiry_date");
 
     const templateCounts: Record<string, number> = {};
+    let activeCount = 0;
+    let expiredCount = 0;
+
     certificates?.forEach((cert) => {
       const template = cert.template_type || 'americo';
       templateCounts[template] = (templateCounts[template] || 0) + 1;
+      
+      // Calculate status based on expiry_date
+      const status = getCertificateStatus(cert.expiry_date);
+      if (status === 'active') {
+        activeCount++;
+      } else {
+        expiredCount++;
+      }
     });
 
     const templateStats = CERTIFICATE_TEMPLATES.map((template) => ({
@@ -43,6 +57,8 @@ export default function Dashboard() {
 
     setStats({
       totalCertificates: count || 0,
+      activeCertificates: activeCount,
+      expiredCertificates: expiredCount,
       templateStats,
     });
   };
@@ -57,7 +73,7 @@ export default function Dashboard() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
           <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -89,6 +105,36 @@ export default function Dashboard() {
                   New Certificate
                 </Button>
               </Link>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Active Certificates</CardTitle>
+              <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-green-600">{stats.activeCertificates}</div>
+              <p className="text-xs text-muted-foreground mt-1.5">
+                Currently valid certificates
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Expired Certificates</CardTitle>
+              <div className="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center">
+                <XCircle className="h-4 w-4 text-red-600" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-red-600">{stats.expiredCertificates}</div>
+              <p className="text-xs text-muted-foreground mt-1.5">
+                Past expiry date
+              </p>
             </CardContent>
           </Card>
 
