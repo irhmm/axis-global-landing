@@ -21,7 +21,7 @@ export const CERTIFICATE_TEMPLATES: TemplateMetadata[] = [
   },
   {
     value: 'gresolve',
-    name: 'AXIS',
+    name: 'Template AXIS',
     description: 'Professional design dengan AXIS Global Sertifikasi branding',
     color: 'bg-red-600',
   },
