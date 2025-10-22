@@ -39,7 +39,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </Button>
-        <h1 className="text-lg font-semibold ml-3">Americo Admin</h1>
+        <h1 className="text-lg font-semibold ml-3">AXIS Admin</h1>
       </div>
 
       {/* Sidebar */}
@@ -56,7 +56,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
                 {user?.email?.charAt(0).toUpperCase() || 'A'}
               </div>
               <div className="flex-1 min-w-0">
-                <h1 className="text-lg font-semibold text-foreground">Americo</h1>
+                <h1 className="text-lg font-semibold text-foreground">AXIS</h1>
                 <p className="text-xs text-muted-foreground truncate" title={user?.email}>
                   {user?.email}
                 </p>
