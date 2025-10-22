@@ -32,7 +32,7 @@ export function GresolveForm({ formData, setFormData, isEditMode }: GresolveForm
             onChange={(e) =>
               setFormData({ ...formData, certificate_number: e.target.value })
             }
-            placeholder="e.g., GRESOLVE-001-2024"
+            placeholder="e.g., AXIS-001-2024"
             className="h-10 border-border/50 focus:border-primary"
             required
           />
