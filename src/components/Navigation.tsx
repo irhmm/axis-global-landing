@@ -141,7 +141,6 @@ const Navigation = () => {
             />
             <div className="hidden sm:block">
               <h1 className="text-lg md:text-xl font-bold text-foreground leading-tight tracking-wide">AXIS Global</h1>
-              <p className="text-xs md:text-sm text-muted-foreground -mt-0.5">PT AXIS Global Sertifikasi</p>
             </div>
           </Link>
 
