@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, FileText, Menu, X } from "lucide-react";
+import { LogOut, LayoutDashboard, FileText, Menu, X, Image } from "lucide-react";
 import { useState } from "react";
 
 interface AdminLayoutProps {
@@ -23,6 +23,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
   const navItems = [
     { path: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { path: "/admin/certificates", label: "Certificates", icon: FileText },
+    { path: "/admin/success-stories", label: "Kisah Sukses", icon: Image },
   ];
 
   const isActive = (path: string) => location.pathname === path;

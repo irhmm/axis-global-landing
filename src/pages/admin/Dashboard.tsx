@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
-import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck, Building2, CheckCircle, XCircle } from "lucide-react";
+import { FileText, Plus, TrendingUp, Award, Sparkles, FileType, BadgeCheck, Building2, CheckCircle, XCircle, Image } from "lucide-react";
 import { CERTIFICATE_TEMPLATES } from "@/constants/templates";
 import { CertificateTemplate } from "@/types/certificate";
 import { getCertificateStatus } from "@/lib/certificateStatus";
@@ -15,6 +15,7 @@ export default function Dashboard() {
     totalCertificates: 0,
     activeCertificates: 0,
     expiredCertificates: 0,
+    totalSuccessStories: 0,
     templateStats: [] as { template: CertificateTemplate; count: number }[],
   });
 
@@ -26,6 +27,11 @@ export default function Dashboard() {
     // Get total certificates
     const { count } = await supabase
       .from("certificates")
+      .select("*", { count: "exact", head: true });
+
+    // Get total success stories
+    const { count: storiesCount } = await supabase
+      .from("success_stories")
       .select("*", { count: "exact", head: true });
 
     // Get all certificates with expiry dates
@@ -59,6 +65,7 @@ export default function Dashboard() {
       totalCertificates: count || 0,
       activeCertificates: activeCount,
       expiredCertificates: expiredCount,
+      totalSuccessStories: storiesCount || 0,
       templateStats,
     });
   };
@@ -157,6 +164,66 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           <Card className="border-border/50 shadow-sm">
             <CardHeader className="pb-4">
+              <CardTitle className="text-lg">Success Stories</CardTitle>
+              <CardDescription className="text-sm">Manage client success stories</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-4 border border-border/50 rounded-lg bg-gradient-to-br from-primary/5 to-transparent">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Image className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold">{stats.totalSuccessStories}</div>
+                      <p className="text-sm text-muted-foreground">Total Stories</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <Link to="/admin/success-stories">
+                    <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
+                      <Image className="w-4 h-4 mr-2" />
+                      View Stories
+                    </Button>
+                  </Link>
+                  <Link to="/admin/success-stories/new">
+                    <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
+                      <Plus className="w-4 h-4 mr-2" />
+                      Add New
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg">Recent Activity</CardTitle>
+              <CardDescription className="text-sm">Latest updates to your certificates</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2.5">
+                <Link to="/admin/certificates">
+                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
+                    <FileText className="w-4 h-4 mr-2" />
+                    View All Certificates
+                  </Button>
+                </Link>
+                <Link to="/admin/certificates/new">
+                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Create New Certificate
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="border-border/50 shadow-sm">
+            <CardHeader className="pb-4">
               <CardTitle className="text-lg">Certificate Templates</CardTitle>
               <CardDescription className="text-sm">Available templates and their usage statistics</CardDescription>
             </CardHeader>
@@ -233,30 +300,6 @@ export default function Dashboard() {
               </div>
             </CardContent>
           </Card>
-
-          <Card className="border-border/50 shadow-sm">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-lg">Recent Activity</CardTitle>
-              <CardDescription className="text-sm">Latest updates to your certificates</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2.5">
-                <Link to="/admin/certificates">
-                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
-                    <FileText className="w-4 h-4 mr-2" />
-                    View All Certificates
-                  </Button>
-                </Link>
-                <Link to="/admin/certificates/new">
-                  <Button variant="outline" size="sm" className="w-full justify-start h-10 border-border/50 hover:bg-accent/50">
-                    <Plus className="w-4 h-4 mr-2" />
-                    Create New Certificate
-                  </Button>
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </AdminLayout>
   );

@@ -1,84 +1,71 @@
-import { useState } from "react";
-import { X } from "lucide-react";
-import client1 from "@/assets/clients/client-1.jpg";
-import client2 from "@/assets/clients/client-2.jpg";
-import client3 from "@/assets/clients/client-3.jpg";
-import client4 from "@/assets/clients/client-4.jpg";
-import client5 from "@/assets/clients/client-5.jpg";
-import client6 from "@/assets/clients/client-6.jpg";
-import client7 from "@/assets/clients/client-7.jpg";
-import client8 from "@/assets/clients/client-8.jpg";
-import client9 from "@/assets/clients/client-9.jpg";
+import { useState, useEffect } from "react";
+import { X, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Story {
+  id: string;
   image: string;
   client: string;
   certification: string;
   category: string;
 }
 
-const successStories: Story[] = [
-  {
-    image: client1,
-    client: "Penyerahan Sertifikat ISO",
-    certification: "ISO 9001:2015",
-    category: "Sistem Manajemen Mutu",
-  },
-  {
-    image: client2,
-    client: "Audit Lapangan",
-    certification: "ISO 14001:2015",
-    category: "Sistem Manajemen Lingkungan",
-  },
-  {
-    image: client3,
-    client: "Klien Profesional",
-    certification: "ISO 45001:2018",
-    category: "Sistem Manajemen K3",
-  },
-  {
-    image: client4,
-    client: "Sertifikasi Berhasil",
-    certification: "ISO 22000:2018",
-    category: "Keamanan Pangan",
-  },
-  {
-    image: client5,
-    client: "Tim Audit Profesional",
-    certification: "ISO 27001:2013",
-    category: "Keamanan Informasi",
-  },
-  {
-    image: client6,
-    client: "Pencapaian Sertifikat",
-    certification: "ISO 50001:2018",
-    category: "Manajemen Energi",
-  },
-  {
-    image: client7,
-    client: "Proses Sertifikasi",
-    certification: "ISO 37001:2016",
-    category: "Anti Penyuapan",
-  },
-  {
-    image: client8,
-    client: "Kemitraan Sukses",
-    certification: "ISO 13485:2016",
-    category: "Alat Kesehatan",
-  },
-  {
-    image: client9,
-    client: "Momen Profesional",
-    certification: "ISO 17025:2017",
-    category: "Laboratorium",
-  },
-];
-
 const SuccessStoriesSection = () => {
   const [selectedImage, setSelectedImage] = useState<Story | null>(null);
   const [showAll, setShowAll] = useState(false);
-  
-  const displayedStories = showAll ? successStories : successStories.slice(0, 4);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchStories();
+
+    const channel = supabase
+      .channel("success-stories-realtime")
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "success_stories",
+        },
+        () => {
+          fetchStories();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const fetchStories = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("success_stories")
+        .select("*")
+        .order("display_order", { ascending: true });
+
+      if (error) throw error;
+
+      const mappedStories: Story[] =
+        data?.map((story) => ({
+          id: story.id,
+          image: story.image_url,
+          client: story.title,
+          certification: story.certification,
+          category: story.category,
+        })) || [];
+
+      setStories(mappedStories);
+    } catch (error) {
+      console.error("Error fetching success stories:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const displayedStories = showAll ? stories : stories.slice(0, 4);
 
   return (
     <section className="py-20 bg-gradient-to-b from-background to-secondary/5">
@@ -92,7 +79,19 @@ const SuccessStoriesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+          </div>
+        ) : stories.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-muted-foreground text-lg">
+              Belum ada kisah sukses yang ditampilkan
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {displayedStories.map((story, index) => (
             <div
               key={index}
@@ -117,17 +116,19 @@ const SuccessStoriesSection = () => {
               </div>
             </div>
           ))}
-        </div>
+            </div>
 
-        {!showAll && successStories.length > 4 && (
-          <div className="text-center mt-10">
-            <button
-              onClick={() => setShowAll(true)}
-              className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
-            >
-              Lihat Selengkapnya ({successStories.length - 4} Foto Lainnya)
-            </button>
-          </div>
+            {!showAll && stories.length > 4 && (
+              <div className="text-center mt-10">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl"
+                >
+                  Lihat Selengkapnya ({stories.length - 4} Foto Lainnya)
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
 

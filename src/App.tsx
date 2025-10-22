@@ -14,6 +14,8 @@ import CertificateVerification from "./pages/CertificateVerification";
 import Dashboard from "./pages/admin/Dashboard";
 import CertificateList from "./pages/admin/CertificateList";
 import CertificateForm from "./pages/admin/CertificateForm";
+import SuccessStories from "./pages/admin/SuccessStories";
+import SuccessStoryForm from "./pages/admin/SuccessStoryForm";
 import { AdminRoute } from "./components/auth/AdminRoute";
 
 const queryClient = new QueryClient();
@@ -62,6 +64,30 @@ const App = () => (
             element={
               <AdminRoute>
                 <CertificateForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/success-stories"
+            element={
+              <AdminRoute>
+                <SuccessStories />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/success-stories/new"
+            element={
+              <AdminRoute>
+                <SuccessStoryForm />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/admin/success-stories/:id/edit"
+            element={
+              <AdminRoute>
+                <SuccessStoryForm />
               </AdminRoute>
             }
           />
