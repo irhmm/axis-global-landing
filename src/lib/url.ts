@@ -1,20 +1,15 @@
 /**
  * Get the public base URL for certificate verification links
- * Automatically converts preview/editor domains to public domain
+ * Uses environment variable if set, otherwise falls back to current origin
  * @returns Public base URL
  */
 export function getPublicBaseUrl(): string {
-  const { protocol, hostname } = window.location;
-  
-  // If on a Lovable preview/editor domain (.lovable.app or .lovable.dev),
-  // convert to the public domain (.lovableproject.com)
-  if (hostname.endsWith('.lovable.app') || hostname.endsWith('.lovable.dev')) {
-    // Extract the subdomain (everything before .lovable.app/.lovable.dev)
-    const subdomain = hostname.split('.')[0];
-    return `${protocol}//${subdomain}.lovableproject.com`;
+  const envBase = import.meta.env.VITE_PUBLIC_BASE_URL as string | undefined;
+  if (envBase && typeof envBase === 'string' && envBase.trim()) {
+    // Remove trailing slash if present
+    return envBase.replace(/\/+$/, '');
   }
-  
-  // For custom domains or already on .lovableproject.com, use as-is
+  // Fallback to current origin (useful for development or when ENV not set)
   return window.location.origin;
 }
 

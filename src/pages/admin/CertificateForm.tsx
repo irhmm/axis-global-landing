@@ -10,6 +10,7 @@ import { CertificateTemplate } from "@/types/certificate";
 import { TemplateSelector } from "@/components/admin/TemplateSelector";
 import { format } from "date-fns";
 import { QrCode } from "lucide-react";
+import { getPublicBaseUrl } from "@/lib/url";
 import { AmericoForm } from "@/components/admin/forms/AmericoForm";
 import { SisCertForm } from "@/components/admin/forms/SisCertForm";
 import { EqualForm } from "@/components/admin/forms/EqualForm";
@@ -191,7 +192,7 @@ export default function CertificateForm() {
   };
 
   const verificationUrl = formData.certificate_number
-    ? `${window.location.origin}/verify?cert=${formData.certificate_number}`
+    ? `${getPublicBaseUrl()}/verify?cert=${formData.certificate_number}`
     : "";
 
   return (
