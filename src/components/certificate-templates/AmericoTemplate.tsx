@@ -22,11 +22,11 @@ export function AmericoTemplate({ certificate }: AmericoTemplateProps) {
   return (
     <>
       {/* Simple Header with Home Button */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
-        <div className="container mx-auto px-4 py-4 flex justify-end">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b shadow-sm">
+        <div className="container mx-auto px-4 py-3 flex justify-start">
           <Link to="/">
-            <Button variant="outline" size="sm" className="gap-2">
-              <Home className="w-4 h-4" />
+            <Button variant="default" size="default" className="gap-2 font-semibold" style={{ backgroundColor: '#667eea', color: 'white' }}>
+              <Home className="w-5 h-5" />
               Home
             </Button>
           </Link>
