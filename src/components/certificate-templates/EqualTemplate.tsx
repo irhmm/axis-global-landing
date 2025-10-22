@@ -195,6 +195,25 @@ export function EqualTemplate({ certificate }: EqualTemplateProps) {
               </div>
             )}
           </div>
+
+          {/* Footer Info */}
+          <div className="mt-8 bg-gradient-to-r from-[#0993a6]/5 via-[#0993a6]/10 to-[#0993a6]/5 rounded-lg p-6 border border-border">
+            <div className="bg-card/80 backdrop-blur-sm rounded-xl p-5 md:p-6 border border-border/50">
+              <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#0993a6]/10 flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-[#0993a6]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm md:text-base text-foreground leading-relaxed">
+                    <span className="font-semibold">Certificate Verification:</span> Scan the QR code or visit our website to verify the authenticity of this certificate.
+                  </p>
+                  <p className="text-xs md:text-sm text-muted-foreground mt-1">
+                    For more information, please contact our support team.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
