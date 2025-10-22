@@ -25,18 +25,6 @@ export const CERTIFICATE_TEMPLATES: TemplateMetadata[] = [
     description: 'Professional design dengan AXIS Global Sertifikasi branding',
     color: 'bg-red-600',
   },
-  {
-    value: 'modern',
-    name: 'Template Modern',
-    description: 'Clean dan minimalist design (Coming Soon)',
-    color: 'bg-blue-500',
-  },
-  {
-    value: 'classic',
-    name: 'Template Classic',
-    description: 'Traditional formal certificate design (Coming Soon)',
-    color: 'bg-gray-500',
-  },
 ];
 
 export const getTemplateMetadata = (value: string): TemplateMetadata => {
