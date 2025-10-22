@@ -41,38 +41,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Admin */}
           <div>
-            <h4 className="text-base md:text-lg font-semibold mb-4">Layanan</h4>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Admin</h4>
             <ul className="space-y-2">
-              <li className="text-sm text-background/80">Sertifikasi ISO 9001</li>
-              <li className="text-sm text-background/80">Sertifikasi ISO 14001</li>
-              <li className="text-sm text-background/80">Sertifikasi ISO 45001</li>
-              <li className="text-sm text-background/80">Sertifikasi Halal</li>
-              <li className="text-sm text-background/80">Sertifikasi ISPO</li>
-              
-              {/* Auth Links */}
-              <li className="pt-2 mt-2 border-t border-background/20">
-                {user ? (
-                  <>
-                    {isAdmin && (
-                      <Link to="/admin/dashboard" className="text-sm text-background/80 hover:text-primary transition-colors block mb-2">
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <li>
+                      <Link to="/admin/dashboard" className="text-sm text-background/80 hover:text-primary transition-colors">
                         Dashboard
                       </Link>
-                    )}
+                    </li>
+                  )}
+                  <li>
                     <button 
                       onClick={() => signOut()} 
                       className="text-sm text-background/80 hover:text-primary transition-colors text-left"
                     >
                       Logout
                     </button>
-                  </>
-                ) : (
+                  </li>
+                </>
+              ) : (
+                <li>
                   <Link to="/auth" className="text-sm text-background/80 hover:text-primary transition-colors">
                     Login
                   </Link>
-                )}
-              </li>
+                </li>
+              )}
             </ul>
           </div>
 
