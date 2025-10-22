@@ -33,7 +33,7 @@ export function GresolveTemplate({ certificate }: GresolveTemplateProps) {
                 className="h-24 w-24 object-contain"
               />
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={{ color: '#dc2626' }}>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#dc2626' }}>
               AXIS Global Sertifikasi
             </h1>
             <p className="text-base sm:text-lg text-gray-600">Certificate Verification System</p>
