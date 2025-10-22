@@ -9,7 +9,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
 import { supabase } from "@/integrations/supabase/client";
 import { Certificate } from "@/types/certificate";
-import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType, BadgeCheck, Building2 } from "lucide-react";
+import { Plus, Search, Edit, Trash2, ExternalLink, Award, Sparkles, FileType, BadgeCheck, Building2, QrCode, Loader2 } from "lucide-react";
+import { generateQRCode, downloadQRCode } from "@/lib/qrcode";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import { getTemplateMetadata, CERTIFICATE_TEMPLATES } from "@/constants/templates";
@@ -32,6 +33,7 @@ export default function CertificateList() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [templateStats, setTemplateStats] = useState<Record<string, number>>({});
+  const [generatingQR, setGeneratingQR] = useState<string | null>(null);
   const itemsPerPage = 10;
   const { toast } = useToast();
 
@@ -147,6 +149,27 @@ export default function CertificateList() {
     return FileType;
   };
 
+  const handleGenerateQRCode = async (cert: Certificate) => {
+    try {
+      setGeneratingQR(cert.id);
+      const qrCodeDataURL = await generateQRCode(cert.certificate_number);
+      downloadQRCode(cert.certificate_number, qrCodeDataURL);
+      
+      toast({
+        title: "Success",
+        description: `QR code for ${cert.certificate_number} downloaded successfully`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate QR code",
+        variant: "destructive",
+      });
+    } finally {
+      setGeneratingQR(null);
+    }
+  };
+
   return (
     <AdminLayout>
       <div className="space-y-6">
@@ -260,13 +283,14 @@ export default function CertificateList() {
                     <TableHead className="text-center">Template</TableHead>
                     <TableHead className="text-center">Issue Date</TableHead>
                     <TableHead className="text-center">Expiry Date</TableHead>
+                    <TableHead className="text-center">QR Code</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredCertificates.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                         No certificates found
                       </TableCell>
                     </TableRow>
@@ -285,6 +309,21 @@ export default function CertificateList() {
                           </TableCell>
                           <TableCell className="text-center">{formatDate(cert.issue_date)}</TableCell>
                           <TableCell className="text-center">{formatDate(cert.expiry_date)}</TableCell>
+                          <TableCell className="text-center">
+                            <Button
+                              variant="outline"
+                              size="icon"
+                              onClick={() => handleGenerateQRCode(cert)}
+                              disabled={generatingQR === cert.id}
+                              title="Download QR Code"
+                            >
+                              {generatingQR === cert.id ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <QrCode className="w-4 h-4" />
+                              )}
+                            </Button>
+                          </TableCell>
                           <TableCell className="text-right">
                             <div className="flex justify-end gap-2">
                               <Link to={`/verify?cert=${cert.certificate_number}`} target="_blank">
