@@ -52,6 +52,10 @@ const partners = [
 ];
 
 const AboutSection = () => {
+  // Debug: Log partners array
+  console.log('Partners array:', partners);
+  console.log('Total partners:', partners.length);
+  
   return (
     <section className="relative py-16 md:py-20 lg:py-24 xl:py-28 bg-gradient-to-br from-background via-background to-primary/[0.02] overflow-hidden">
       {/* Decorative Elements */}
