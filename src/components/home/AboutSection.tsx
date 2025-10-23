@@ -48,7 +48,7 @@ const features = [
 ];
 
 const partners = [
-  "ISO", "BPJPH", "KEMENAG", "SNI", "HACCP", "GMP", "HALAL MUI", "FSSC", "CARBON"
+  "ISO", "BPJPH", "KEMENAKER", "SNI", "HACCP", "GMP", "HALAL MUI", "FSSC", "CARBON", "SEDEX", "BRC"
 ];
 
 const AboutSection = () => {
