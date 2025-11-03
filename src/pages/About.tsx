@@ -78,7 +78,7 @@ const About = () => {
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Visi</h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    Menjadi konsultan sertifikasi terdepan di Indonesia yang membantu perusahaan mencapai 
+                    Menjadi badan sertifikasi terdepan di Indonesia yang membantu perusahaan mencapai 
                     standar internasional dan meningkatkan daya saing di pasar global.
                   </p>
                 </CardContent>
