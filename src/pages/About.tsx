@@ -17,7 +17,7 @@ const values = [
   {
     icon: Award,
     title: "Profesionalisme",
-    description: "Tim konsultan bersertifikat dengan pengalaman dan keahlian di bidangnya.",
+    description: "Tim sertifikasi bersertifikat dengan pengalaman dan keahlian di bidangnya.",
     image: professionalismImg,
   },
   {
