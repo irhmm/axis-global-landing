@@ -94,7 +94,7 @@ const About = () => {
                   <ul className="text-left space-y-2 text-muted-foreground">
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
-                      <span>Memberikan layanan konsultasi berkualitas tinggi</span>
+                      <span>Memberikan layanan sertifikasi berkualitas tinggi</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary mt-1">•</span>
