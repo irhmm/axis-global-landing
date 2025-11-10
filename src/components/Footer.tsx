@@ -17,7 +17,7 @@ const Footer = () => {
               <h3 className="text-lg font-bold leading-tight">PT AXIS Global Sertifikasi</h3>
             </div>
             <p className="text-sm text-background/80 leading-relaxed">
-              Axis Global Sertifikasi adalah badan sertifikasi berbasis ISO dan standar lainnya, terkait dengan sistem manajemen kompetensi SDM dan pengujian peralatan atau mesin yang profesional dan kredibel secara nasional maupun internasional.
+              Axis Global Sertifikasi adalah badan sertifikasi berbasis ISO dan standar lainnya, terkait dengan sistem manajemen, kompetensi SDM, dan pengujian peralatan atau mesin yang profesional dan kredibel baik secara nasional maupun internasional.
             </p>
           </div>
 
