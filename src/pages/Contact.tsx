@@ -27,7 +27,7 @@ const Contact = () => {
     setFormData({ name: "", email: "", company: "", phone: "", message: "" });
   };
 
-  const whatsappNumber = "6281268746727";
+  const whatsappNumber = "6285236193969";
   const whatsappMessage = encodeURIComponent("Halo Axis Global Certification, saya ingin berkonsultasi mengenai sertifikasi.");
 
   return (
@@ -62,8 +62,8 @@ const Contact = () => {
                     <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                       Telepon
                     </h3>
-                    <a href="tel:+6281268746727" className="text-muted-foreground hover:text-primary transition-colors font-medium">
-                      +62 812 6874 6727
+                    <a href="tel:+6285236193969" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+                      +62 852 3619 3969
                     </a>
                   </div>
                 </div>
