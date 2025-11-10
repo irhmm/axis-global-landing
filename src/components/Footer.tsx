@@ -13,16 +13,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img 
-                src={logo} 
-                alt="Axis Global Sertifikasi Logo" 
-                className="w-10 h-10 object-contain"
-              />
-              <div>
-                <h3 className="text-lg font-bold leading-tight">Axis Global</h3>
-                <p className="text-xs text-background/70">PT AXIS Global Sertifikasi</p>
-              </div>
+            <div className="mb-4">
+              <h3 className="text-lg font-bold leading-tight">PT AXIS Global Sertifikasi</h3>
             </div>
             <p className="text-sm text-background/80 leading-relaxed">
               Axis Global Sertifikasi adalah badan sertifikasi berbasis ISO dan standar lainnya, terkait dengan sistem manajemen kompetensi SDM dan pengujian peralatan atau mesin yang profesional dan kredibel secara nasional maupun internasional.
