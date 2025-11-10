@@ -182,7 +182,7 @@ const Affiliasi = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-6">
-                    <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform p-2 shadow-sm border border-border/30">
+                    <div className="w-24 h-24 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform p-3 shadow-sm border border-border/30">
                       {affiliation.logo ? (
                         <img 
                           src={affiliation.logo} 
