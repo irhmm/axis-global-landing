@@ -32,12 +32,12 @@ const affiliations = [
     ],
   },
   {
-    name: "Majelis Ulama Indonesia (MUI)",
-    description: "Lembaga yang mengeluarkan fatwa halal dan menjadi rujukan sertifikasi halal di Indonesia.",
+    name: "Kementerian Ketenagakerjaan Republik Indonesia (Kemenaker)",
+    description: "Lembaga pemerintah yang mengatur dan membina ketenagakerjaan, termasuk sertifikasi kompetensi kerja dan sistem manajemen keselamatan dan kesehatan kerja (K3).",
     benefits: [
-      "Fatwa halal dari MUI",
-      "Kepercayaan konsumen Muslim",
-      "Standar halal yang ketat",
+      "Sertifikasi kompetensi kerja yang diakui nasional",
+      "Lisensi Lembaga Sertifikasi Profesi (LSP)",
+      "Pengakuan kompetensi SDM sesuai SKKNI",
     ],
   },
   {
