@@ -93,7 +93,7 @@ const Footer = () => {
                 <Clock size={16} className="mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-semibold">Jam Operasional</p>
-                  <p className="text-xs text-background/70 mt-0.5">Senin - Jumat</p>
+                  <p className="text-xs text-background/70 mt-0.5">Senin - Sabtu</p>
                   <p className="text-xs text-background/70">09:00 - 17:00 WIB</p>
                 </div>
               </li>
