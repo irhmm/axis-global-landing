@@ -2,10 +2,14 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Award, Globe, CheckCircle } from "lucide-react";
+import isoLogo from "@/assets/accreditation/iso.png";
+import halalLogo from "@/assets/accreditation/halal.jpg";
+import bsnLogo from "@/assets/accreditation/bsn.jpeg";
 
 const affiliations = [
   {
     name: "International Organization for Standardization (ISO)",
+    logo: isoLogo,
     description: "Lembaga internasional yang menetapkan standar kualitas, lingkungan, dan keselamatan kerja yang diakui secara global.",
     benefits: [
       "Standar internasional yang diakui di seluruh dunia",
@@ -15,6 +19,7 @@ const affiliations = [
   },
   {
     name: "Badan Penyelenggara Jaminan Produk Halal (BPJPH)",
+    logo: halalLogo,
     description: "Lembaga pemerintah Indonesia yang berwenang menyelenggarakan jaminan produk halal.",
     benefits: [
       "Sertifikasi halal resmi dari pemerintah Indonesia",
@@ -24,6 +29,7 @@ const affiliations = [
   },
   {
     name: "Badan Standardisasi Nasional (BSN)",
+    logo: bsnLogo,
     description: "Lembaga pemerintah yang bertanggung jawab di bidang standardisasi nasional Indonesia (SNI).",
     benefits: [
       "Standar nasional Indonesia (SNI)",
@@ -162,8 +168,16 @@ const Affiliasi = () => {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <CardHeader className="p-6">
-                    <div className="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <Shield className="text-white" size={24} />
+                    <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform p-2 shadow-sm border border-border/30">
+                      {affiliation.logo ? (
+                        <img 
+                          src={affiliation.logo} 
+                          alt={`${affiliation.name} logo`}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <Shield className="text-primary" size={24} />
+                      )}
                     </div>
                     <CardTitle className="text-xl">{affiliation.name}</CardTitle>
                     <CardDescription className="text-base leading-relaxed">
