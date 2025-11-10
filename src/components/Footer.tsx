@@ -33,36 +33,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Admin */}
+          {/* Legal Address */}
           <div>
-            <h4 className="text-base md:text-lg font-semibold mb-4">Admin</h4>
-            <ul className="space-y-2">
-              {user ? (
-                <>
-                  {isAdmin && (
-                    <li>
-                      <Link to="/admin/dashboard" className="text-sm text-background/80 hover:text-primary transition-colors">
-                        Dashboard
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <button 
-                      onClick={() => signOut()} 
-                      className="text-sm text-background/80 hover:text-primary transition-colors text-left"
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link to="/auth" className="text-sm text-background/80 hover:text-primary transition-colors">
-                    Login
-                  </Link>
-                </li>
-              )}
-            </ul>
+            <h4 className="text-base md:text-lg font-semibold mb-4">Legal</h4>
+            <div className="flex items-start gap-2 text-sm text-background/80">
+              <MapPin size={16} className="mt-1 flex-shrink-0" />
+              <div>
+                <p>Jl. Medokan Semampir AWS 1/34</p>
+                <p>Surabaya - 60119</p>
+              </div>
+            </div>
           </div>
 
           {/* Contact Info */}
@@ -100,20 +80,6 @@ const Footer = () => {
               <a href="#" className="w-8 h-8 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin size={16} />
               </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Legal Address Section */}
-        <div className="border-t border-background/20 pt-8 pb-4">
-          <div className="max-w-md mx-auto text-center">
-            <h4 className="text-sm font-semibold text-primary mb-3">LEGAL</h4>
-            <div className="flex items-start justify-center gap-2 text-sm text-background/80">
-              <MapPin size={16} className="mt-1 flex-shrink-0" />
-              <div className="text-left">
-                <p>Jl. Medokan Semampir AWS 1/34</p>
-                <p>Surabaya - 60119</p>
-              </div>
             </div>
           </div>
         </div>
