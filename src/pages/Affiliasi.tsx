@@ -10,6 +10,7 @@ import iafLogo from "@/assets/accreditation/iaf.webp";
 import kanLogo from "@/assets/accreditation/kan.png";
 import uafLogo from "@/assets/accreditation/uaf.webp";
 import iasLogo from "@/assets/accreditation/ias.png";
+import egacLogo from "@/assets/accreditation/egac.png";
 import jasAnzLogo from "@/assets/accreditation/jas-anz.png";
 
 const affiliations = [
@@ -95,6 +96,7 @@ const affiliations = [
   },
   {
     name: "Emirates Global Accreditation Centre (EGAC)",
+    logo: egacLogo,
     description: "Lembaga akreditasi internasional dari Uni Emirat Arab yang memberikan akreditasi untuk lembaga sertifikasi dengan fokus pada wilayah Timur Tengah dan global.",
     benefits: [
       "Akses ke pasar Timur Tengah dan Afrika",
