@@ -48,7 +48,7 @@ const ContactSection = () => {
                       WhatsApp Kami
                     </a>
                     <a 
-                      href="mailto:axisglobalcertification@gmail.com"
+                      href="mailto:axisglobalsertifikasi@gmail.com"
                       className="inline-flex items-center gap-2 bg-card border-2 border-primary text-primary font-semibold px-6 md:px-8 py-2.5 md:py-3 rounded-full hover:bg-primary hover:text-white transition-all hover:scale-105 text-sm md:text-base"
                     >
                       <Mail className="w-4 h-4 md:w-5 md:h-5" />
