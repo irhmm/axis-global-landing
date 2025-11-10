@@ -104,6 +104,20 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Legal Address Section */}
+        <div className="border-t border-background/20 pt-8 pb-4">
+          <div className="max-w-md mx-auto text-center">
+            <h4 className="text-sm font-semibold text-primary mb-3">LEGAL</h4>
+            <div className="flex items-start justify-center gap-2 text-sm text-background/80">
+              <MapPin size={16} className="mt-1 flex-shrink-0" />
+              <div className="text-left">
+                <p>Jl. Medokan Semampir AWS 1/34</p>
+                <p>Surabaya - 60119</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="border-t border-background/20 pt-8 text-center">
           <p className="text-sm text-background/70">
             © {currentYear} Axis Global Certification. Semua hak dilindungi undang-undang.
