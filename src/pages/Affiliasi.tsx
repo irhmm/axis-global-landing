@@ -5,6 +5,12 @@ import { Shield, Award, Globe, CheckCircle } from "lucide-react";
 import isoLogo from "@/assets/accreditation/iso.png";
 import halalLogo from "@/assets/accreditation/halal.jpg";
 import bsnLogo from "@/assets/accreditation/bsn.jpeg";
+import kemnakerLogo from "@/assets/accreditation/kemnaker.png";
+import iafLogo from "@/assets/accreditation/iaf.webp";
+import kanLogo from "@/assets/accreditation/kan.png";
+import uafLogo from "@/assets/accreditation/uaf.webp";
+import iasLogo from "@/assets/accreditation/ias.png";
+import jasAnzLogo from "@/assets/accreditation/jas-anz.png";
 
 const affiliations = [
   {
@@ -39,6 +45,7 @@ const affiliations = [
   },
   {
     name: "Kementerian Ketenagakerjaan Republik Indonesia (Kemenaker)",
+    logo: kemnakerLogo,
     description: "Lembaga pemerintah yang mengatur dan membina ketenagakerjaan, termasuk sertifikasi kompetensi kerja dan sistem manajemen keselamatan dan kesehatan kerja (K3).",
     benefits: [
       "Sertifikasi kompetensi kerja yang diakui nasional",
@@ -48,6 +55,7 @@ const affiliations = [
   },
   {
     name: "International Accreditation Forum (IAF)",
+    logo: iafLogo,
     description: "Organisasi global untuk akreditasi lembaga sertifikasi yang memastikan konsistensi standar internasional.",
     benefits: [
       "Pengakuan sertifikasi di berbagai negara",
@@ -57,6 +65,7 @@ const affiliations = [
   },
   {
     name: "Komite Akreditasi Nasional (KAN)",
+    logo: kanLogo,
     description: "Lembaga akreditasi nasional Indonesia yang memberikan akreditasi kepada lembaga sertifikasi, laboratorium, dan lembaga inspeksi sesuai standar internasional ISO/IEC 17000 series.",
     benefits: [
       "Akreditasi nasional yang diakui oleh IAF dan ILAC",
@@ -66,6 +75,7 @@ const affiliations = [
   },
   {
     name: "United Accreditation Foundation (UAF)",
+    logo: uafLogo,
     description: "Lembaga akreditasi internasional yang memberikan akreditasi kepada lembaga sertifikasi untuk berbagai skema standar manajemen sistem.",
     benefits: [
       "Pengakuan akreditasi multi-negara",
@@ -75,6 +85,7 @@ const affiliations = [
   },
   {
     name: "International Accreditation Service (IAS)",
+    logo: iasLogo,
     description: "Lembaga akreditasi internasional berbasis di Amerika Serikat yang terakreditasi oleh ANSI National Accreditation Board (ANAB) dan diakui secara global.",
     benefits: [
       "Akreditasi dengan standar internasional tertinggi",
@@ -93,6 +104,7 @@ const affiliations = [
   },
   {
     name: "Joint Accreditation System of Australia and New Zealand (JAS-ANZ)",
+    logo: jasAnzLogo,
     description: "Lembaga akreditasi gabungan Australia dan Selandia Baru yang memberikan akreditasi kepada lembaga sertifikasi, laboratorium, dan lembaga inspeksi di kawasan Asia-Pasifik.",
     benefits: [
       "Pengakuan akreditasi di Australia, Selandia Baru, dan Asia-Pasifik",
