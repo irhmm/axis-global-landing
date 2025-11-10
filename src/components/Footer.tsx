@@ -33,16 +33,45 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal Address */}
+          {/* Legal Address & Admin */}
           <div>
             <h4 className="text-base md:text-lg font-semibold mb-4">Legal</h4>
-            <div className="flex items-start gap-2 text-sm text-background/80">
+            <div className="flex items-start gap-2 text-sm text-background/80 mb-6">
               <MapPin size={16} className="mt-1 flex-shrink-0" />
               <div>
                 <p>Jl. Medokan Semampir AWS 1/34</p>
                 <p>Surabaya - 60119</p>
               </div>
             </div>
+
+            <h4 className="text-base md:text-lg font-semibold mb-4">Admin</h4>
+            <ul className="space-y-2">
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <li>
+                      <Link to="/admin/dashboard" className="text-sm text-background/80 hover:text-primary transition-colors">
+                        Dashboard
+                      </Link>
+                    </li>
+                  )}
+                  <li>
+                    <button 
+                      onClick={() => signOut()} 
+                      className="text-sm text-background/80 hover:text-primary transition-colors text-left"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link to="/auth" className="text-sm text-background/80 hover:text-primary transition-colors">
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
           </div>
 
           {/* Contact Info */}
