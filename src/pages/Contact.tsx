@@ -107,7 +107,7 @@ const Contact = () => {
                       Jam Kerja
                     </h3>
                     <p className="text-muted-foreground text-sm md:text-base mb-1">
-                      Senin - Jumat
+                      Senin - Sabtu
                     </p>
                     <p className="text-muted-foreground text-sm md:text-base font-medium">
                       09:00 - 17:00 WIB
