@@ -48,7 +48,7 @@ const About = () => {
           <div className="container mx-auto px-4 text-center relative z-10">
             <h1 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">Tentang Axis Global Sertifikasi</h1>
             <p className="text-base md:text-xl max-w-3xl mx-auto opacity-90">
-              Partner terpercaya untuk sertifikasi standar internasional di Indonesia
+              Partner Terpercaya Untuk Sertifikasi Standar Internasional Di Indonesia
             </p>
           </div>
         </section>
