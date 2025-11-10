@@ -59,7 +59,7 @@ const About = () => {
             <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 animate-fade-in">
               <h2 className="mb-6">Siapa Kami</h2>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                <strong className="text-foreground">Axis Global Sertifikasi</strong> adalah badan sertifikasi berbasis ISO dan standar lainnya, terkait dengan sistem manajemen kompetensi SDM dan pengujian peralatan atau mesin yang profesional dan kredibel secara nasional maupun internasional.
+                <strong className="text-foreground">Axis Global Sertifikasi</strong> adalah badan sertifikasi berbasis ISO dan standar lainnya, terkait dengan sistem manajemen, kompetensi SDM, dan pengujian peralatan atau mesin yang profesional dan kredibel baik secara nasional maupun internasional.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed mb-4">
                 Axis Global Sertifikasi tidak sekedar melakukan audit sertifikasi tetapi juga membantu organisasi untuk mampu menciptakan sustainability innovation.
