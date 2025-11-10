@@ -49,6 +49,51 @@ const affiliations = [
       "Kepercayaan stakeholder global",
     ],
   },
+  {
+    name: "Komite Akreditasi Nasional (KAN)",
+    description: "Lembaga akreditasi nasional Indonesia yang memberikan akreditasi kepada lembaga sertifikasi, laboratorium, dan lembaga inspeksi sesuai standar internasional ISO/IEC 17000 series.",
+    benefits: [
+      "Akreditasi nasional yang diakui oleh IAF dan ILAC",
+      "Meningkatkan kepercayaan pasar domestik dan internasional",
+      "Memenuhi persyaratan regulasi Indonesia",
+    ],
+  },
+  {
+    name: "United Accreditation Foundation (UAF)",
+    description: "Lembaga akreditasi internasional yang memberikan akreditasi kepada lembaga sertifikasi untuk berbagai skema standar manajemen sistem.",
+    benefits: [
+      "Pengakuan akreditasi multi-negara",
+      "Fleksibilitas dalam cakupan akreditasi",
+      "Kemitraan global yang luas",
+    ],
+  },
+  {
+    name: "International Accreditation Service (IAS)",
+    description: "Lembaga akreditasi internasional berbasis di Amerika Serikat yang terakreditasi oleh ANSI National Accreditation Board (ANAB) dan diakui secara global.",
+    benefits: [
+      "Akreditasi dengan standar internasional tertinggi",
+      "Pengakuan di Amerika Utara dan global",
+      "Kredibilitas tinggi di pasar internasional",
+    ],
+  },
+  {
+    name: "Emirates Global Accreditation Centre (EGAC)",
+    description: "Lembaga akreditasi internasional dari Uni Emirat Arab yang memberikan akreditasi untuk lembaga sertifikasi dengan fokus pada wilayah Timur Tengah dan global.",
+    benefits: [
+      "Akses ke pasar Timur Tengah dan Afrika",
+      "Pengakuan di negara-negara Gulf Cooperation Council (GCC)",
+      "Standar internasional dengan pemahaman pasar lokal",
+    ],
+  },
+  {
+    name: "Joint Accreditation System of Australia and New Zealand (JAS-ANZ)",
+    description: "Lembaga akreditasi gabungan Australia dan Selandia Baru yang memberikan akreditasi kepada lembaga sertifikasi, laboratorium, dan lembaga inspeksi di kawasan Asia-Pasifik.",
+    benefits: [
+      "Pengakuan akreditasi di Australia, Selandia Baru, dan Asia-Pasifik",
+      "Standar audit yang ketat dan berkualitas tinggi",
+      "Anggota penuh IAF dan ILAC",
+    ],
+  },
 ];
 
 const Affiliasi = () => {
@@ -78,7 +123,7 @@ const Affiliasi = () => {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="text-primary" size={32} />
                 </div>
-                <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                <div className="text-4xl font-bold text-primary mb-2">10+</div>
                 <p className="text-muted-foreground">Lembaga Partner</p>
               </div>
               <div className="text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
