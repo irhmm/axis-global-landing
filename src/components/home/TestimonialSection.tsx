@@ -20,6 +20,14 @@ const testimonials = [
     rating: 5,
     image: "/src/assets/testimonials/client-6.jpg",
   },
+  {
+    name: "Ibu Ririn Pujiastuti, S.S",
+    position: "Direktur Utama",
+    company: "KKSP RSUD DR Soetomo",
+    content: "Kami selalu terbantu oleh Axis Global Sertifikasi yang memiliki layanan affiliasi sertifikasi komplit, dan tidak sekedar melakukan audit sertifikasi namun kami mendapatkan bonus pelatihan jika kami membutuhkan.",
+    rating: 5,
+    image: "/src/assets/testimonials/client-7.jpg",
+  },
 ];
 
 const TestimonialSection = () => {
