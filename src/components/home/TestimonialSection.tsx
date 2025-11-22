@@ -28,6 +28,14 @@ const testimonials = [
     rating: 5,
     image: "/src/assets/testimonials/client-7.jpg",
   },
+  {
+    name: "Bapak Ir. Elip Woro Sukarno, ST. MT.",
+    position: "Direktur Utama",
+    company: "PT Skala Pilar Lima",
+    content: "Saya sangat puas terhadap pelayanan PT Axis Global Sertifikasi karena benar-benar profesional, cepat, mudah karena dibantu tim ahli, harga yang sangat kompetitif",
+    rating: 5,
+    image: "/src/assets/testimonials/client-8.jpg",
+  },
 ];
 
 const TestimonialSection = () => {
