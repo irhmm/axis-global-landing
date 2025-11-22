@@ -192,8 +192,8 @@ const SuccessStoriesSection = () => {
                   </div>
                 </header>
 
-                {/* Featured Image - Smaller & Centered */}
-                <figure className="space-y-3">
+                {/* Featured Image with Description */}
+                <figure className="space-y-4">
                   <div className="max-w-2xl mx-auto">
                     <img
                       src={selectedImage.image}
@@ -204,18 +204,16 @@ const SuccessStoriesSection = () => {
                   <figcaption className="text-center text-sm text-muted-foreground italic">
                     Dokumentasi Sertifikasi {selectedImage.certification}
                   </figcaption>
-                </figure>
-
-                {/* Article Content - Description */}
-                {selectedImage.description && (
-                  <section className="prose prose-lg max-w-3xl mx-auto">
-                    <div className="space-y-4">
+                  
+                  {/* Description - Directly below photo */}
+                  {selectedImage.description && (
+                    <div className="max-w-3xl mx-auto pt-4">
                       <p className="text-base md:text-lg text-muted-foreground leading-loose text-justify whitespace-pre-line">
                         {selectedImage.description}
                       </p>
                     </div>
-                  </section>
-                )}
+                  )}
+                </figure>
 
                 {/* Tags Footer */}
                 {selectedImage.tags && selectedImage.tags.length > 0 && (
