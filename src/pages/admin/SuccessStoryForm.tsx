@@ -15,6 +15,8 @@ const successStorySchema = z.object({
   title: z.string().min(1, "Judul harus diisi").max(200, "Judul maksimal 200 karakter"),
   certification: z.string().min(1, "Sertifikasi harus diisi").max(100, "Sertifikasi maksimal 100 karakter"),
   category: z.string().min(1, "Kategori harus diisi").max(500, "Kategori maksimal 500 karakter"),
+  description: z.string().optional(),
+  tags: z.string().optional(),
 });
 
 const SuccessStoryForm = () => {
@@ -29,6 +31,8 @@ const SuccessStoryForm = () => {
     title: "",
     certification: "",
     category: "",
+    description: "",
+    tags: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -55,6 +59,8 @@ const SuccessStoryForm = () => {
         title: data.title,
         certification: data.certification,
         category: data.category,
+        description: data.description || "",
+        tags: data.tags?.join(", ") || "",
       });
       setImagePreview(data.image_url);
     } catch (error) {
@@ -160,7 +166,11 @@ const SuccessStoryForm = () => {
       }
 
       const storyData = {
-        ...formData,
+        title: formData.title,
+        certification: formData.certification,
+        category: formData.category,
+        description: formData.description || null,
+        tags: formData.tags ? formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag.length > 0) : [],
         image_url: imageUrl,
         ...(isEdit ? {} : { display_order: displayOrder }),
       };
@@ -314,6 +324,43 @@ const SuccessStoryForm = () => {
               {errors.category && (
                 <p className="text-sm text-destructive">{errors.category}</p>
               )}
+            </div>
+
+            {/* Description */}
+            <div className="space-y-2">
+              <Label htmlFor="description">
+                Deskripsi Detail
+              </Label>
+              <Textarea
+                id="description"
+                value={formData.description}
+                onChange={(e) =>
+                  setFormData({ ...formData, description: e.target.value })
+                }
+                placeholder="Jelaskan detail kisah sukses ini..."
+                rows={5}
+              />
+              <p className="text-sm text-muted-foreground">
+                Opsional - Deskripsi akan ditampilkan di lightbox
+              </p>
+            </div>
+
+            {/* Tags */}
+            <div className="space-y-2">
+              <Label htmlFor="tags">
+                Tags
+              </Label>
+              <Input
+                id="tags"
+                value={formData.tags}
+                onChange={(e) =>
+                  setFormData({ ...formData, tags: e.target.value })
+                }
+                placeholder="ISO9001, QualityManagement, Surabaya"
+              />
+              <p className="text-sm text-muted-foreground">
+                Opsional - Pisahkan dengan koma. Contoh: ISO9001, Manufacturing, Jakarta
+              </p>
             </div>
 
             {/* Submit Buttons */}
