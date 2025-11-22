@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import client5 from "@/assets/testimonials/client-5.jpg";
+import client6 from "@/assets/testimonials/client-6.jpg";
+import client7 from "@/assets/testimonials/client-7.jpg";
+import client8 from "@/assets/testimonials/client-8.jpg";
 
 const testimonials = [
   {
@@ -10,7 +14,7 @@ const testimonials = [
     company: "PT Panca Tirta Prigen - Kosme Nutrition - J99 Corporation Group",
     content: "Kami sangat terbantu dengan proses sertifikasi sistem keamanan pangan ISO 22000 yang diminta cepat oleh calon pelanggan JIWATER, dan Axis Global Sertifikasi sebagai agensi Americo Quality Standards Registech melayani realisasi dengan profesional, cepat dan benar benar nama perusahaan kami tercantum di jaringan internasional dan nasional (IAF)",
     rating: 5,
-    image: "/src/assets/testimonials/client-5.jpg",
+    image: client5,
   },
   {
     name: "Ibu Fika Kharisyanti, S. Farm.",
@@ -18,7 +22,7 @@ const testimonials = [
     company: "Stem Cell Center - Universitas Airlangga",
     content: "Kami harus menjaga mutu pelayanan Stem Cell Center - Universitas Airlangga, namun peraturan senantiasa berganti-ganti, untung kami dibantu oleh Axis Global Sertifikasi - Equal Assurance dengan konsultan PT Idea Multiple Management. Semua Permasalahan menjadi mudah dan tidak perlu lagi khawartir",
     rating: 5,
-    image: "/src/assets/testimonials/client-6.jpg",
+    image: client6,
   },
   {
     name: "Ibu Ririn Pujiastuti, S.S",
@@ -26,7 +30,7 @@ const testimonials = [
     company: "KKSP RSUD DR Soetomo",
     content: "Kami selalu terbantu oleh Axis Global Sertifikasi yang memiliki layanan affiliasi sertifikasi komplit, dan tidak sekedar melakukan audit sertifikasi namun kami mendapatkan bonus pelatihan jika kami membutuhkan.",
     rating: 5,
-    image: "/src/assets/testimonials/client-7.jpg",
+    image: client7,
   },
   {
     name: "Bapak Ir. Elip Woro Sukarno, ST. MT.",
@@ -34,7 +38,7 @@ const testimonials = [
     company: "PT Skala Pilar Lima",
     content: "Saya sangat puas terhadap pelayanan PT Axis Global Sertifikasi karena benar-benar profesional, cepat, mudah karena dibantu tim ahli, harga yang sangat kompetitif",
     rating: 5,
-    image: "/src/assets/testimonials/client-8.jpg",
+    image: client8,
   },
 ];
 
