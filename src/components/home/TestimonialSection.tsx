@@ -32,6 +32,13 @@ const testimonials = [
     rating: 5,
     image: "/src/assets/testimonials/client-4.jpg",
   },
+  {
+    name: "Bp. Triono Suwignyo",
+    role: "Factory Manager - PT Panca Tirta Prigen - Kosme Nutrition - J99 Corporation Group",
+    content: "Kami sangat terbantu dengan proses sertifikasi sistem keamanan pangan ISO 22000 yang diminta cepat oleh calon pelanggan JIWATER, dan Axis Global Sertifikasi sebagai agensi Americo Quality Standards Registech melayani realisasi dengan profesional, cepat dan benar benar nama perusahaan kami tercantum di jaringan internasional dan nasional (IAF)",
+    rating: 5,
+    image: "/src/assets/testimonials/client-5.jpg",
+  },
 ];
 
 const TestimonialSection = () => {
