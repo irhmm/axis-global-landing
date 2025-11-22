@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonials = [
   {
@@ -8,24 +9,28 @@ const testimonials = [
     role: "Direktur Operasional",
     content: "Proses sertifikasi ISO 9001 bersama Axis Global sangat profesional dan efisien. Tim mereka memberikan pendampingan yang luar biasa dari awal hingga akhir.",
     rating: 5,
+    image: "/src/assets/testimonials/client-1.jpg",
   },
   {
     name: "CV. Berkah Mandiri",
     role: "General Manager",
     content: "Sangat terbantu dengan konsultasi sertifikasi Halal. Prosesnya cepat dan tim sangat responsif dalam menjawab setiap pertanyaan kami.",
     rating: 5,
+    image: "/src/assets/testimonials/client-2.jpg",
   },
   {
     name: "PT. Industri Sejahtera",
     role: "HSE Manager",
     content: "Implementasi ISO 45001 berjalan lancar berkat bimbingan tim Axis Global. Sangat memahami kebutuhan industri kami.",
     rating: 5,
+    image: "/src/assets/testimonials/client-3.jpg",
   },
   {
     name: "PT. Karya Mandiri Sejahtera",
     role: "Quality Manager",
     content: "Proses audit dan sertifikasi ISO 14001 sangat terstruktur dan profesional. Tim Axis Global sangat membantu dalam meningkatkan sistem manajemen lingkungan kami.",
     rating: 5,
+    image: "/src/assets/testimonials/client-4.jpg",
   },
 ];
 
@@ -80,9 +85,22 @@ const TestimonialSection = () => {
                     <p className="text-base md:text-lg lg:text-xl text-foreground mb-8 italic leading-relaxed">
                       "{testimonial.content}"
                     </p>
-                    <div>
-                      <p className="card-title text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.name}</p>
-                      <p className="text-sm md:text-base text-muted-foreground mt-2">{testimonial.role}</p>
+                    <div className="flex flex-col items-center gap-4">
+                      <Avatar className="w-16 h-16 md:w-20 md:h-20 border-2 border-primary/20 group-hover:border-primary/40 transition-all duration-300">
+                        <AvatarImage 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-primary/10 text-primary text-lg md:text-xl font-semibold">
+                          {testimonial.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                        </AvatarFallback>
+                      </Avatar>
+                      
+                      <div>
+                        <p className="card-title text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.name}</p>
+                        <p className="text-sm md:text-base text-muted-foreground mt-2">{testimonial.role}</p>
+                      </div>
                     </div>
                   </div>
                 </div>
