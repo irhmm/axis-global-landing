@@ -201,9 +201,6 @@ const SuccessStoriesSection = () => {
                       className="w-full h-auto rounded-lg shadow-lg object-cover"
                     />
                   </div>
-                  <p className="text-left text-base text-muted-foreground max-w-3xl mx-auto">
-                    Dokumentasi Sertifikasi {selectedImage.certification}
-                  </p>
                   
                   {/* Description - Directly below photo */}
                   {selectedImage.description && (
