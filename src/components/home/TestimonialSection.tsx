@@ -6,14 +6,16 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 const testimonials = [
   {
     name: "Bp. Triono Suwignyo",
-    role: "Factory Manager - PT Panca Tirta Prigen - Kosme Nutrition - J99 Corporation Group",
+    position: "Factory Manager",
+    company: "PT Panca Tirta Prigen - Kosme Nutrition - J99 Corporation Group",
     content: "Kami sangat terbantu dengan proses sertifikasi sistem keamanan pangan ISO 22000 yang diminta cepat oleh calon pelanggan JIWATER, dan Axis Global Sertifikasi sebagai agensi Americo Quality Standards Registech melayani realisasi dengan profesional, cepat dan benar benar nama perusahaan kami tercantum di jaringan internasional dan nasional (IAF)",
     rating: 5,
     image: "/src/assets/testimonials/client-5.jpg",
   },
   {
     name: "Ibu Fika Kharisyanti, S. Farm.",
-    role: "Operation Manager - Stem Cell Center - Universitas Airlangga",
+    position: "Operation Manager",
+    company: "Stem Cell Center - Universitas Airlangga",
     content: "Kami harus menjaga mutu pelayanan Stem Cell Center - Universitas Airlangga, namun peraturan senantiasa berganti-ganti, untung kami dibantu oleh Axis Global Sertifikasi - Equal Assurance dengan konsultan PT Idea Multiple Management. Semua Permasalahan menjadi mudah dan tidak perlu lagi khawartir",
     rating: 5,
     image: "/src/assets/testimonials/client-6.jpg",
@@ -83,9 +85,16 @@ const TestimonialSection = () => {
                         </AvatarFallback>
                       </Avatar>
                       
-                      <div>
-                        <p className="card-title text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.name}</p>
-                        <p className="text-sm md:text-base text-muted-foreground mt-2">{testimonial.role}</p>
+                      <div className="space-y-2">
+                        <p className="text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-sm md:text-base font-semibold text-primary">
+                          {testimonial.position}
+                        </p>
+                        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
+                          {testimonial.company}
+                        </p>
                       </div>
                     </div>
                   </div>
