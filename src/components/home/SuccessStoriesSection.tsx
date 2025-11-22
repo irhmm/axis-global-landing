@@ -8,6 +8,8 @@ interface Story {
   client: string;
   certification: string;
   category: string;
+  description?: string;
+  tags?: string[];
 }
 
 const SuccessStoriesSection = () => {
@@ -55,6 +57,8 @@ const SuccessStoriesSection = () => {
           client: story.title,
           certification: story.certification,
           category: story.category,
+          description: story.description || undefined,
+          tags: story.tags || undefined,
         })) || [];
 
       setStories(mappedStories);
@@ -139,25 +143,68 @@ const SuccessStoriesSection = () => {
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white hover:text-primary transition-colors"
+            className="absolute top-4 right-4 text-white hover:text-primary transition-colors z-10"
             onClick={() => setSelectedImage(null)}
             aria-label="Close lightbox"
           >
             <X size={32} />
           </button>
           
-          <div className="max-w-4xl w-full animate-scale-in" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={selectedImage.image}
-              alt={`${selectedImage.client} - ${selectedImage.certification}`}
-              className="w-full h-auto rounded-lg"
-            />
-            <div className="bg-background/95 p-6 rounded-b-lg mt-2">
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                {selectedImage.client}
-              </h3>
-              <p className="text-muted-foreground mb-1">{selectedImage.certification}</p>
-              <p className="text-sm text-muted-foreground">{selectedImage.category}</p>
+          <div className="max-w-5xl w-full max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
+            <div className="relative">
+              <img
+                src={selectedImage.image}
+                alt={selectedImage.client}
+                className="w-full h-auto rounded-t-lg object-cover"
+              />
+            </div>
+
+            <div className="bg-background/98 backdrop-blur-sm p-8 rounded-b-lg space-y-6">
+              {/* Title Section */}
+              <div className="space-y-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                  {selectedImage.client}
+                </h3>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-primary/10 text-primary">
+                    {selectedImage.certification}
+                  </span>
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-secondary text-secondary-foreground">
+                    {selectedImage.category}
+                  </span>
+                </div>
+              </div>
+
+              {/* Description Section */}
+              {selectedImage.description && (
+                <div className="space-y-2">
+                  <h4 className="text-lg font-semibold text-foreground">
+                    Deskripsi
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {selectedImage.description}
+                  </p>
+                </div>
+              )}
+
+              {/* Tags Section */}
+              {selectedImage.tags && selectedImage.tags.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-lg font-semibold text-foreground">
+                    Tags
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedImage.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-accent text-accent-foreground border border-border hover:bg-accent/80 transition-colors"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

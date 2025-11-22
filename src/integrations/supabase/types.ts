@@ -131,9 +131,11 @@ export type Database = {
           certification: string
           created_at: string
           created_by: string | null
+          description: string | null
           display_order: number
           id: string
           image_url: string
+          tags: string[] | null
           title: string
           updated_at: string
         }
@@ -142,9 +144,11 @@ export type Database = {
           certification: string
           created_at?: string
           created_by?: string | null
+          description?: string | null
           display_order?: number
           id?: string
           image_url: string
+          tags?: string[] | null
           title: string
           updated_at?: string
         }
@@ -153,9 +157,11 @@ export type Database = {
           certification?: string
           created_at?: string
           created_by?: string | null
+          description?: string | null
           display_order?: number
           id?: string
           image_url?: string
+          tags?: string[] | null
           title?: string
           updated_at?: string
         }
