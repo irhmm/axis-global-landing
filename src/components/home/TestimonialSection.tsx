@@ -39,6 +39,13 @@ const testimonials = [
     rating: 5,
     image: "/src/assets/testimonials/client-5.jpg",
   },
+  {
+    name: "Ibu Fika Kharisyanti, S. Farm.",
+    role: "Operation Manager - Stem Cell Center - Universitas Airlangga",
+    content: "Kami harus menjaga mutu pelayanan Stem Cell Center - Universitas Airlangga, namun peraturan senantiasa berganti-ganti, untung kami dibantu oleh Axis Global Sertifikasi - Equal Assurance dengan konsultan PT Idea Multiple Management. Semua Permasalahan menjadi mudah dan tidak perlu lagi khawartir",
+    rating: 5,
+    image: "/src/assets/testimonials/client-6.jpg",
+  },
 ];
 
 const TestimonialSection = () => {
