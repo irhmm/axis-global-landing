@@ -160,7 +160,7 @@ const SuccessStoryForm = () => {
           .select("display_order")
           .order("display_order", { ascending: false })
           .limit(1)
-          .single();
+          .maybeSingle();
 
         displayOrder = (maxOrderData?.display_order || 0) + 1;
       }
