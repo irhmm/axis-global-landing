@@ -40,6 +40,8 @@ interface SuccessStory {
   title: string;
   certification: string;
   category: string;
+  description: string | null;
+  tags: string[] | null;
   display_order: number;
   created_at: string;
 }
@@ -184,6 +186,8 @@ const SuccessStories = () => {
                       <TableHead>Judul</TableHead>
                       <TableHead>Sertifikasi</TableHead>
                       <TableHead>Kategori</TableHead>
+                      <TableHead>Deskripsi</TableHead>
+                      <TableHead>Tags</TableHead>
                       <TableHead className="text-right">Aksi</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -202,6 +206,45 @@ const SuccessStories = () => {
                         </TableCell>
                         <TableCell>{story.certification}</TableCell>
                         <TableCell>{story.category}</TableCell>
+                        
+                        {/* Description Column */}
+                        <TableCell className="max-w-[300px]">
+                          {story.description ? (
+                            <p className="text-sm text-muted-foreground line-clamp-2">
+                              {story.description}
+                            </p>
+                          ) : (
+                            <span className="text-xs text-muted-foreground/50 italic">
+                              Tidak ada deskripsi
+                            </span>
+                          )}
+                        </TableCell>
+                        
+                        {/* Tags Column */}
+                        <TableCell>
+                          {story.tags && story.tags.length > 0 ? (
+                            <div className="flex flex-wrap gap-1">
+                              {story.tags.slice(0, 3).map((tag, idx) => (
+                                <span
+                                  key={idx}
+                                  className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-accent text-accent-foreground"
+                                >
+                                  #{tag}
+                                </span>
+                              ))}
+                              {story.tags.length > 3 && (
+                                <span className="text-xs text-muted-foreground">
+                                  +{story.tags.length - 3}
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-xs text-muted-foreground/50 italic">
+                              Tidak ada tags
+                            </span>
+                          )}
+                        </TableCell>
+                        
                         <TableCell className="text-right space-x-2">
                           <Button
                             variant="outline"

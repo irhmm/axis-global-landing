@@ -104,20 +104,39 @@ const SuccessStoriesSection = () => {
               style={{ animationDelay: `${index * 100}ms` }}
               onClick={() => setSelectedImage(story)}
             >
+              {/* Image Container */}
               <div className="aspect-[4/3] relative">
                 <img
                   src={story.image}
-                  alt={`${story.client} - ${story.certification} - Sertifikasi ${story.category}`}
+                  alt={`${story.client} - ${story.certification}`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="font-semibold text-lg mb-1">{story.client}</h3>
-                <p className="text-sm text-white/90 mb-1">{story.certification}</p>
-                <p className="text-xs text-white/80">{story.category}</p>
+              {/* Text Content - Always Visible */}
+              <div className="bg-background/95 backdrop-blur-sm p-4 border-t border-border">
+                <h3 className="font-semibold text-base mb-1 text-foreground line-clamp-1">
+                  {story.client}
+                </h3>
+                <p className="text-sm text-muted-foreground mb-2 line-clamp-1">
+                  {story.certification} • {story.category}
+                </p>
+                
+                {/* Description Preview */}
+                {story.description && (
+                  <p className="text-xs text-muted-foreground/80 line-clamp-2 leading-relaxed">
+                    {story.description}
+                  </p>
+                )}
+              </div>
+              
+              {/* Hover Overlay - Read More Hint */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                <span className="px-4 py-2 bg-background text-primary font-semibold rounded-lg shadow-lg">
+                  Baca Selengkapnya
+                </span>
               </div>
             </div>
           ))}
