@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Story {
   id: string;
@@ -136,76 +137,90 @@ const SuccessStoriesSection = () => {
         )}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal - Article Style */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button
-            className="absolute top-4 right-4 text-white hover:text-primary transition-colors z-10"
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors z-20"
             onClick={() => setSelectedImage(null)}
             aria-label="Close lightbox"
           >
             <X size={32} />
           </button>
           
-          <div className="max-w-5xl w-full max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
-            <div className="relative">
-              <img
-                src={selectedImage.image}
-                alt={selectedImage.client}
-                className="w-full h-auto rounded-t-lg object-cover"
-              />
-            </div>
-
-            <div className="bg-background/98 backdrop-blur-sm p-8 rounded-b-lg space-y-6">
-              {/* Title Section */}
-              <div className="space-y-2">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">
-                  {selectedImage.client}
-                </h3>
-                <div className="flex flex-wrap gap-2 items-center">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-primary/10 text-primary">
-                    {selectedImage.certification}
-                  </span>
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm bg-secondary text-secondary-foreground">
-                    {selectedImage.category}
-                  </span>
-                </div>
-              </div>
-
-              {/* Description Section */}
-              {selectedImage.description && (
-                <div className="space-y-2">
-                  <h4 className="text-lg font-semibold text-foreground">
-                    Deskripsi
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {selectedImage.description}
-                  </p>
-                </div>
-              )}
-
-              {/* Tags Section */}
-              {selectedImage.tags && selectedImage.tags.length > 0 && (
-                <div className="space-y-3">
-                  <h4 className="text-lg font-semibold text-foreground">
-                    Tags
-                  </h4>
+          <div 
+            className="max-w-4xl w-full h-[85vh] bg-background rounded-xl shadow-2xl overflow-hidden animate-scale-in" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ScrollArea className="h-full">
+              <article className="p-8 md:p-12 space-y-8">
+                
+                {/* Header with Title & Meta */}
+                <header className="space-y-4 border-b border-border pb-6">
+                  <h1 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                    {selectedImage.client}
+                  </h1>
                   <div className="flex flex-wrap gap-2">
-                    {selectedImage.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-accent text-accent-foreground border border-border hover:bg-accent/80 transition-colors"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
+                    <span className="px-4 py-1.5 rounded-full text-sm font-semibold bg-primary text-primary-foreground">
+                      {selectedImage.certification}
+                    </span>
+                    <span className="px-4 py-1.5 rounded-full text-sm font-medium bg-secondary text-secondary-foreground">
+                      {selectedImage.category}
+                    </span>
                   </div>
-                </div>
-              )}
-            </div>
+                </header>
+
+                {/* Featured Image - Smaller & Centered */}
+                <figure className="space-y-3">
+                  <div className="max-w-2xl mx-auto">
+                    <img
+                      src={selectedImage.image}
+                      alt={selectedImage.client}
+                      className="w-full h-auto rounded-lg shadow-lg object-cover"
+                    />
+                  </div>
+                  <figcaption className="text-center text-sm text-muted-foreground italic">
+                    Dokumentasi Sertifikasi {selectedImage.certification}
+                  </figcaption>
+                </figure>
+
+                {/* Article Content - Description */}
+                {selectedImage.description && (
+                  <section className="prose prose-lg max-w-3xl mx-auto">
+                    <div className="space-y-4">
+                      <p className="text-base md:text-lg text-muted-foreground leading-loose text-justify whitespace-pre-line">
+                        {selectedImage.description}
+                      </p>
+                    </div>
+                  </section>
+                )}
+
+                {/* Tags Footer */}
+                {selectedImage.tags && selectedImage.tags.length > 0 && (
+                  <footer className="border-t border-border pt-6">
+                    <div className="space-y-3">
+                      <h4 className="text-sm font-semibold text-foreground uppercase tracking-wide">
+                        Tags
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedImage.tags.map((tag, index) => (
+                          <span
+                            key={index}
+                            className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-accent text-accent-foreground border border-border hover:bg-accent/80 transition-colors cursor-default"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </footer>
+                )}
+
+              </article>
+            </ScrollArea>
           </div>
         </div>
       )}
