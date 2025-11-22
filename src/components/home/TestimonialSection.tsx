@@ -5,34 +5,6 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonials = [
   {
-    name: "PT. Maju Bersama Indonesia",
-    role: "Direktur Operasional",
-    content: "Proses sertifikasi ISO 9001 bersama Axis Global sangat profesional dan efisien. Tim mereka memberikan pendampingan yang luar biasa dari awal hingga akhir.",
-    rating: 5,
-    image: "/src/assets/testimonials/client-1.jpg",
-  },
-  {
-    name: "CV. Berkah Mandiri",
-    role: "General Manager",
-    content: "Sangat terbantu dengan konsultasi sertifikasi Halal. Prosesnya cepat dan tim sangat responsif dalam menjawab setiap pertanyaan kami.",
-    rating: 5,
-    image: "/src/assets/testimonials/client-2.jpg",
-  },
-  {
-    name: "PT. Industri Sejahtera",
-    role: "HSE Manager",
-    content: "Implementasi ISO 45001 berjalan lancar berkat bimbingan tim Axis Global. Sangat memahami kebutuhan industri kami.",
-    rating: 5,
-    image: "/src/assets/testimonials/client-3.jpg",
-  },
-  {
-    name: "PT. Karya Mandiri Sejahtera",
-    role: "Quality Manager",
-    content: "Proses audit dan sertifikasi ISO 14001 sangat terstruktur dan profesional. Tim Axis Global sangat membantu dalam meningkatkan sistem manajemen lingkungan kami.",
-    rating: 5,
-    image: "/src/assets/testimonials/client-4.jpg",
-  },
-  {
     name: "Bp. Triono Suwignyo",
     role: "Factory Manager - PT Panca Tirta Prigen - Kosme Nutrition - J99 Corporation Group",
     content: "Kami sangat terbantu dengan proses sertifikasi sistem keamanan pangan ISO 22000 yang diminta cepat oleh calon pelanggan JIWATER, dan Axis Global Sertifikasi sebagai agensi Americo Quality Standards Registech melayani realisasi dengan profesional, cepat dan benar benar nama perusahaan kami tercantum di jaringan internasional dan nasional (IAF)",
