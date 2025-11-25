@@ -31,7 +31,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
-import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, ChevronUp, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface SuccessStory {
@@ -102,6 +102,70 @@ const SuccessStories = () => {
       });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const moveUp = async (story: SuccessStory) => {
+    const currentIndex = stories.findIndex((s) => s.id === story.id);
+    if (currentIndex <= 0) return;
+
+    const previousStory = stories[currentIndex - 1];
+
+    try {
+      const { error: error1 } = await supabase
+        .from("success_stories")
+        .update({ display_order: previousStory.display_order })
+        .eq("id", story.id);
+
+      const { error: error2 } = await supabase
+        .from("success_stories")
+        .update({ display_order: story.display_order })
+        .eq("id", previousStory.id);
+
+      if (error1 || error2) throw error1 || error2;
+
+      toast({
+        title: "Berhasil",
+        description: "Urutan berhasil diubah",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah urutan",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const moveDown = async (story: SuccessStory) => {
+    const currentIndex = stories.findIndex((s) => s.id === story.id);
+    if (currentIndex >= stories.length - 1) return;
+
+    const nextStory = stories[currentIndex + 1];
+
+    try {
+      const { error: error1 } = await supabase
+        .from("success_stories")
+        .update({ display_order: nextStory.display_order })
+        .eq("id", story.id);
+
+      const { error: error2 } = await supabase
+        .from("success_stories")
+        .update({ display_order: story.display_order })
+        .eq("id", nextStory.id);
+
+      if (error1 || error2) throw error1 || error2;
+
+      toast({
+        title: "Berhasil",
+        description: "Urutan berhasil diubah",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Gagal mengubah urutan",
+        variant: "destructive",
+      });
     }
   };
 
@@ -182,6 +246,7 @@ const SuccessStories = () => {
                 <Table>
                   <TableHeader>
                     <TableRow>
+                      <TableHead className="w-[80px]">Urutan</TableHead>
                       <TableHead className="w-[100px]">Foto</TableHead>
                       <TableHead>Judul</TableHead>
                       <TableHead>Sertifikasi</TableHead>
@@ -192,8 +257,32 @@ const SuccessStories = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {currentStories.map((story) => (
+                    {currentStories.map((story, index) => {
+                      const actualIndex = stories.findIndex((s) => s.id === story.id);
+                      return (
                       <TableRow key={story.id}>
+                        <TableCell>
+                          <div className="flex flex-col gap-1">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => moveUp(story)}
+                              disabled={actualIndex === 0}
+                            >
+                              <ChevronUp className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => moveDown(story)}
+                              disabled={actualIndex === stories.length - 1}
+                            >
+                              <ChevronDown className="h-3 w-3" />
+                            </Button>
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <img
                             src={story.image_url}
@@ -269,7 +358,7 @@ const SuccessStories = () => {
                           </div>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    )})}
                   </TableBody>
                 </Table>
                 
